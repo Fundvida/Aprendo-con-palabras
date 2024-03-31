@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="blackM">#80000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whiteM">#80FFFFFF</color>
     <color name="fundaCuno">#63becf</color>
     <color name="fundaCdos">#1a4789</color>
     <color name="fundaVuno">#177E34</color>
     <color name="fundaVdos">#94DF85</color>
+
+
+    <color name="todo">#Ff9666</color>
+
+
+    <color name="adminU">#2f89a8</color>
+    <color name="adminD">#254c45</color>
+    <color name="adminDM">#E6254c45</color>
+
+    <color name="estudianteU">#6de6ef</color>
+    <color name="estudianteD">#9cf0f6</color>
+
+    <color name="donceteU">#1fa217</color>
+    <color name="donceteD">#51ce25</color>
+
+
+    <color name="rojo">#FF0000</color>
+    <color name="rojo_oscuro">#8B0000</color>
+    <color name="rojo_claro">#FF6347</color>
+    <color name="rojo_sangre">#DC143C</color>
+    <color name="rojo_indio">#CD5C5C</color>
+
+    <color name="verde">#008000</color>
+    <color name="verde_claro">#00FF00</color>
+    <color name="verde_oscuro">#006400</color>
+    <color name="verde_oliva">#808000</color>
+    <color name="verde_mar">#2E8B57</color>
+
+    <color name="azul">#0000FF</color>
+    <color name="azul_claro">#87CEEB</color>
+    <color name="azul_oscuro">#00008B</color>
+    <color name="azul_medianoche">#191970</color>
+    <color name="azul_acero">#4682B4</color>
+
+    <color name="amarillo">#FFFF00</color>
+    <color name="amarillo_claro">#FFFFE0</color>
+    <color name="amarillo_oscuro">#FFD700</color>
+    <color name="amarillo_arena">#F0E68C</color>
+    <color name="amarillo_verde">#ADFF2F</color>
+
+    <color name="naranja">#FFA500</color>
+    <color name="naranja_oscuro">#FF8C00</color>
+    <color name="naranja_claro">#FFDAB9</color>
+    <color name="naranja_coral">#FF7F50</color>
+    <color name="naranja_salmon">#FA8072</color>
+
+    <color name="morado">#800080</color>
+    <color name="morado_claro">#9370DB</color>
+    <color name="morado_oscuro">#4B0082</color>
+    <color name="morado_medianoche">#5D478B</color>
+    <color name="morado_lavanda">#E6E6FA</color>
+
+    <color name="rosa">#FFC0CB</color>
+    <color name="rosa_claro">#FF69B4</color>
+    <color name="rosa_oscuro">#FF1493</color>
+    <color name="rosa_violeta">#DB7093</color>
+    <color name="rosa_calido">#FFA07A</color>
+
+    <color name="gris">#808080</color>
+    <color name="gris_claro">#D3D3D3</color>
+    <color name="gris_oscuro">#A9A9A9</color>
+    <color name="gris_pizarra">#708090</color>
+    <color name="gris_plata">#C0C0C0</color>
+
+
 </resources>

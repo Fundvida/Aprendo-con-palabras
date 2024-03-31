@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/efondo"
+    tools:context=".user.inicio">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+        <View
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            />
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/user"
+            />
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            />
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/estrella"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="jonathan"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/black"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="150dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:text="1500"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/trofeo"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            />
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:orientation="horizontal"
+                android:background="@color/whiteM"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NIVEL"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:background="@color/blackM"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="150dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:text="1500"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        >
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
+        >
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:background="@drawable/juego_caja_uno"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jugar"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 vs 1"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:background="@drawable/juego_caja_uno"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Practicar"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:background="@drawable/juego_caja_uno"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jugar"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:background="@drawable/juego_caja_uno"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Torneo"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+    >
+        <View
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/engranaje"
+            android:padding="10dp"
+            android:onClick="onGearButtonClick" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+        <Button
+
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/whatsapp"
+            android:padding="10dp"
+            android:onClick="whatsapp" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            />
+        <Button
+
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/instagram"
+            android:padding="10dp"
+            android:onClick="instagram" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            />
+        <Button
+
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/facebook"
+            android:padding="10dp"
+            android:onClick="facebook" />
+        <View
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        />
+</LinearLayout>

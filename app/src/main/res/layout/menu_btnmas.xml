@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boton_menu"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="5dp"
+    >
+    <Button
+        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SOY DOCENTE"
+        android:backgroundTint="@color/fundaCdos"
+        android:typeface="serif"
+        android:onClick="soydocente"
+        android:textStyle="bold" />
+
+    <Button
+        android:textSize="15dp"
+
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SOY TUTOR/PADRE"
+        android:backgroundTint="@color/rojo_oscuro"
+        android:typeface="serif"
+        android:onClick="soytutor"
+        android:textStyle="bold" />
+
+    <Button
+        android:textSize="15dp"
+        android:onClick="registrarme"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="REGISTRARME"
+        android:backgroundTint="@color/morado"
+        android:typeface="serif"
+        android:textStyle="bold" />
+
+</LinearLayout>

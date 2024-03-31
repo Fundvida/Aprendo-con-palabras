@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rojo"
+    android:orientation="vertical"
+    tools:context=".login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="250dp"
+            android:background="@drawable/troll"
+            android:layout_marginBottom="-50dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/redonde">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="-20dp"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:hint="Ingresar Usuario"
+            android:textColorHint="#FF0000"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:helperTextTextColor="#FFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtuser"
+                android:layout_width="match_parent"
+                android:textColor="@color/rojo"
+                android:layout_height="50dp"
+                android:inputType="text|textNoSuggestions"
+                android:gravity="center"
+                android:backgroundTint="#FF0000"></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/rojo"
+            android:hint="Ingresar Password"
+            android:textColorHint="#FF0000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            android:layout_gravity="center"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtpass"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:backgroundTint="#FF0000"
+                android:textColor="@color/rojo"
+                android:gravity="center"
+                android:inputType="text|textNoSuggestions"></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="INGRESAR"
+            android:backgroundTint="@color/rojo"
+            android:typeface="serif"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="JUGAR DEMO"
+            android:backgroundTint="@color/black"
+            android:typeface="serif"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/btnmas"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="MAS"
+            android:textSize="20dp"
+            android:backgroundTint="@color/fundaVuno"
+            android:typeface="serif"
+            android:textStyle="bold"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="90dp"
+            android:background="@drawable/slogan"
+            />
+    </LinearLayout>
+
+</LinearLayout>
