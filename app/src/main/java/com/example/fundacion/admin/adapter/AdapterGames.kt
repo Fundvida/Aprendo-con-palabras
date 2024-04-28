@@ -1,31 +1,38 @@
 package com.example.fundacion.admin.adapter
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.R
-import com.example.fundacion.admin.Refresh
+import com.example.fundacion.admin.CGame
+import com.example.fundacion.admin.Fragmentt
+import com.example.fundacion.admin.RefreshGame
+import com.example.fundacion.admin.fragment.Admin_fragment_game_list
+import com.example.fundacion.admin.fragment.prueba
 import com.example.fundacion.admin.lgames
-import com.example.fundacion.admin.lusuarios
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
+import com.google.gson.Gson
 import es.dmoral.toasty.Toasty
-import java.util.Calendar
 
 class AdapterGames(
     private val context: Context,
-    private val userList: List<lgames>
-    //private val refreshableComponent: Refresh
+    private val userList: List<lgames>,
+    private val refresh: RefreshGame
 ): RecyclerView.Adapter<AdapterGames.ViewHolder>() {
+
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,159 +45,316 @@ class AdapterGames(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val games = userList[position]
         holder.bind(games)
-/*
-        holder.btnActualizar.setOnClickListener {
 
+        holder.btn_ver.setOnClickListener {
+            refresh.verlist(Admin_fragment_game_list())
+            config.GameTarea =   games.tarea
+            config.IDGameTarea = games.id
+        }
+
+        holder.btn_edit.setOnClickListener {
             holder.itemView.post{
                 modal_edit(holder.adapterPosition)
             }
         }
 
-        holder.btnEliminar.setOnClickListener {
-
-            Fuel.delete("${config.url}admin/user-delete/"+games.id).responseString { _, _, result ->
+        holder.btn_delete.setOnClickListener {
+            println(games.id)
+            Fuel.delete("${config.url}admin/game-delete/${games.id}"
+            ).responseString{result ->
                 result.fold(
-                    success = { data ->
-                        Toasty.error(context, "Usuario Eliminado", Toasty.LENGTH_SHORT).show()
-                        //refreshableComponent.refresha()
+                    success = {d ->
+
+                        Toasty.error(context, "TArea Eliminada", Toasty.LENGTH_SHORT).show()
+                        refresh.refresh()
                     },
-                    failure = { error -> println(error) }
-
+                    failure = {e ->
+                        println("Error en la solicitud : $e")
+                    }
                 )
-            }
 
-        }*/
+            }
+        }
     }
     override fun getItemCount(): Int {
         return userList.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-      /*  private val txtNombre: TextView = itemView.findViewById(R.id.nombres)
-        private val txtApellidos: TextView = itemView.findViewById(R.id.apellidos)
-        private val txtCarnet: TextView = itemView.findViewById(R.id.carnet)
-        private val txtCelular: TextView = itemView.findViewById(R.id.celular)
-        private val txtCodgio: TextView = itemView.findViewById(R.id.codigo)
-        private val txtNacimiento: TextView = itemView.findViewById(R.id.nacimiento)
-        private val txtPais: TextView = itemView.findViewById(R.id.pais)
-        private val txtCiudad: TextView = itemView.findViewById(R.id.ciudad)
-        private val txtCorreo: TextView = itemView.findViewById(R.id.correo)
-        private val txtUser: TextView = itemView.findViewById(R.id.user)
-        val btnActualizar: ImageButton = itemView.findViewById(R.id.edit)
-        val btnEliminar: ImageButton = itemView.findViewById(R.id.delete)*/
+
+        private val nivel: TextView = itemView.findViewById(R.id.nivel)
+        private val tema: TextView = itemView.findViewById(R.id.tema)
+        private val tarea: TextView = itemView.findViewById(R.id.tarea)
+        private val tiempo: TextView = itemView.findViewById(R.id.tiempo)
+        val btn_ver: ImageButton = itemView.findViewById(R.id.eyes)
+        val btn_edit: ImageButton = itemView.findViewById(R.id.edit)
+        val btn_delete: ImageButton = itemView.findViewById(R.id.delete)
 
         fun bind(games: lgames) {
             if (games != null){
-            /*
-                txtNombre.text = usuario.nombres
-                txtApellidos.text = usuario.apellidos
-                txtCarnet.text = usuario.ci
-                txtCelular.text = usuario.celular
-                txtCodgio.text = usuario.codigo
-                txtNacimiento.text = usuario.nacimiento
-                txtPais.text = usuario.pais
-                txtCiudad.text = usuario.ciudad
-                txtCorreo.text = usuario.email
-                txtUser.text = usuario.user
-                */
+
+                nivel.text = games.tema.nivel.tipo
+                tema.text = games.tema.tema
+                tarea.text = games.tarea
+                tiempo.text = games.tiempo
+
             }
         }
     }
 
-
-    private val calendar = Calendar.getInstance()
-    private lateinit var nacimiento: EditText
-
+    var idtema : String? = null
     fun modal_edit(position: Int){
-
         val dialog = Dialog(context)
-        dialog.setContentView(R.layout.aaa_modal_usuario_edit)
+        dialog.setContentView(R.layout.aaa_modal_game_edit)
+        val spinner = dialog.findViewById<Spinner>(R.id.spiner)
+        val spinnerTwo = dialog.findViewById<Spinner>(R.id.spinerTwo)
+        val btnaceptar = dialog.findViewById<Button>(R.id.btn_aceptar)
+        val tarea = dialog.findViewById<EditText>(R.id.tarea)
+        val time = dialog.findViewById<EditText>(R.id.time)
 
-        val close = dialog.findViewById<ImageButton>(R.id.btn_close)
-        val cancel = dialog.findViewById<Button>(R.id.btn_cancel)
-        val aceptar = dialog.findViewById<Button>(R.id.btn_aceptar)
+        val btncancel = dialog.findViewById<Button>(R.id.btn_cancel)
+        val btnclose = dialog.findViewById<ImageButton>(R.id.btn_close)
 
-        val nombre = dialog.findViewById<EditText>(R.id.nombres)
-        val apellido = dialog.findViewById<EditText>(R.id.apellidos)
-        val carnet = dialog.findViewById<EditText>(R.id.carnet)
-        val celular = dialog.findViewById<EditText>(R.id.celular)
-        val codigo = dialog.findViewById<EditText>(R.id.codigo)
-        nacimiento = dialog.findViewById(R.id.nacimiento)
-        val pais = dialog.findViewById<EditText>(R.id.pais)
-        val ciudad = dialog.findViewById<EditText>(R.id.ciudad)
-        val correo = dialog.findViewById<EditText>(R.id.correo)
-        val user = dialog.findViewById<EditText>(R.id.user)
-        val rpass = dialog.findViewById<Button>(R.id.btn_rpass)
+        val select = """
+            [
+                {
+                    "id": 1,
+                    "tipo": "BASICO",
+                    "estado": 1,
+                    "temas": [
+                        {
+                            "id": 1,
+                            "nivel": 1,
+                            "tema": "LAS VOCALES",
+                            "estado": 1
+                        },
+                        {
+                            "id": 2,
+                            "nivel": 1,
+                            "tema": "EL ABECEDARIO",
+                            "estado": 1
+                        },
+                        {
+                            "id": 3,
+                            "nivel": 1,
+                            "tema": "LAS SILABAS SIMPLES",
+                            "estado": 1
+                        },
+                        {
+                            "id": 4,
+                            "nivel": 1,
+                            "tema": "EL DELETREO DE PALABRAS HASTA TRES SILABAS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 5,
+                            "nivel": 1,
+                            "tema": "SOPA DE LETRAS DE ALIMENTOS, MUEBLES DE LA CASA, CIUDADES DE BOLIVIA",
+                            "estado": 1
+                        },
+                        {
+                            "id": 6,
+                            "nivel": 1,
+                            "tema": "CONSTRUIR ORACIONES CORTAS ORDENANDO PALABRAS",
+                            "estado": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "tipo": "INTERMEDIO",
+                    "estado": 1,
+                    "temas": [
+                        {
+                            "id": 7,
+                            "nivel": 2,
+                            "tema": "CONSTRUIR ORACIONES ORDENANDO PALABRAS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 8,
+                            "nivel": 2,
+                            "tema": "SINONIMOS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 9,
+                            "nivel": 2,
+                            "tema": "ANTONIMOS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 10,
+                            "nivel": 2,
+                            "tema": "SILABAS COMPUESTAS, TRABADAS, E INVERTIDAS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 11,
+                            "nivel": 2,
+                            "tema": "DELETREO DE PALABRAS DE MAS DE TRES SILABAS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 12,
+                            "nivel": 2,
+                            "tema": "CUENTOS CORTOS CON PREGUNTAS DE COMPRENSION",
+                            "estado": 1
+                        },
+                        {
+                            "id": 13,
+                            "nivel": 2,
+                            "tema": "SOPA DE PALABRAS",
+                            "estado": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "tipo": "AVANZADO",
+                    "estado": 1,
+                    "temas": [
+                        {
+                            "id": 14,
+                            "nivel": 3,
+                            "tema": "PALABRAS GRAVES, LLANAS, ESDRUJULAS, Y AGUDAS",
+                            "estado": 1
+                        },
+                        {
+                            "id": 15,
+                            "nivel": 3,
+                            "tema": "COMPOSION DE ORACIONES PARA IDENTIFICAR SUJETO, PREDICADO Y VERBO",
+                            "estado": 1
+                        },
+                        {
+                            "id": 16,
+                            "nivel": 3,
+                            "tema": "CUENTO Y SUS PARTES (PLANTEAMIENTO, BUDO Y DESENLACE)",
+                            "estado": 1
+                        },
+                        {
+                            "id": 17,
+                            "nivel": 3,
+                            "tema": "REDACCION DE UNA CARTA",
+                            "estado": 1
+                        },
+                        {
+                            "id": 18,
+                            "nivel": 3,
+                            "tema": "CRUCIGRAMA",
+                            "estado": 1
+                        },
+                        {
+                            "id": 19,
+                            "nivel": 3,
+                            "tema": "SOPA DE LETRAS",
+                            "estado": 1
+                        }
+                    ]
+                }
+            ]
+        """.trimIndent()
+        val gamesList = Gson().fromJson(select, Array<CGame>::class.java).toList()
+
+        val firt = gamesList.map { it.tipo }.toMutableList()
+        firt.add(0, "Elige un nivel")
+        val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, firt)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        val adapterT = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, mutableListOf("Elige un tema"))
+        adapterT.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerTwo.adapter = adapterT
+
+
+
 
         val datos = userList[position]
 
-        nombre.setText(datos.nombres)
-        apellido.setText(datos.apellidos)
-        carnet.setText(datos.ci)
-        celular.setText(datos.celular)
-        codigo.setText(datos.codigo)
-        nacimiento.setText(datos.nacimiento)
-        pais.setText(datos.ciudad)
-        ciudad.setText(datos.ciudad)
-        correo.setText(datos.email)
-        user.setText(datos.user)
 
-        dialog.show()
 
-        nacimiento.setOnClickListener{ mostrarDatePickerDialog() }
-        close.setOnClickListener { dialog.dismiss() }
-        cancel.setOnClickListener { dialog.dismiss() }
+        val SelectPosition = firt.indexOf(datos.tema.nivel.tipo)
+        spinner.setSelection(SelectPosition)
 
-        aceptar.setOnClickListener {
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val valorSeleccionado = parent?.getItemAtPosition(position).toString()
 
-            val postData = """
-            {
-                "nombres": "${nombre.text}",
-                "apellidos": "${apellido.text}",
-                "carnet": "${carnet.text}",
-                "celular": "${celular.text}",
-                "codigo": "${codigo.text}",
-                "nacimiento": "${nacimiento.text}",
-                "pais": "${pais.text}",
-                "ciudad": "${ciudad.text}",
-                "correo": "${correo.text}",
-                "user": "${user.text}"
+                val tareas = gamesList.filter { it.tipo == valorSeleccionado }.firstOrNull()?.temas
+                val temas = tareas?.map { it.tema }?.toMutableList() ?: mutableListOf()
+                temas.add(0, "Elige un tema")
+
+
+                adapterT.clear()
+                adapterT.addAll(temas)
+                adapterT.notifyDataSetChanged()
+
+                val selectTema = temas.indexOf(datos.tema.tema)
+                if (selectTema != -1) {
+                    spinnerTwo.setSelection(selectTema)
+                }
+
+                spinnerTwo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                        if (position > 0) {
+                            val temaSeleccionado = tareas?.get(position - 1)
+                            temaSeleccionado?.let {
+                                idtema = it.id.toString()
+                            }
+                        }else{
+                            idtema = null
+                        }
+                    }
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+                }
+
             }
-        """.trimIndent()
 
-            Fuel.put("${config.url}admin/user-update/"+datos.id)
-                .jsonBody(postData)
-                .responseString { _, _, result ->
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Manejo cuando no se selecciona nada
+            }
+        }
+
+
+        tarea.setText(datos.tarea)
+        time.setText(datos.tiempo)
+
+        btnaceptar.setOnClickListener {
+            println(datos.id)
+
+            val postdata = """
+                 {
+                     "tema": "$idtema",
+                     "tarea": "${tarea.text}",
+                     "tiempo": "${time.text}"
+                 }
+            """.trimIndent()
+            println(postdata)
+            println("${config.url}admin/game-edit/"+datos.id)
+
+            Fuel.put("${config.url}admin/game-edit/"+datos.id)
+                .jsonBody(postdata)
+                .responseString{_,_, result ->
                     result.fold(
                         success = { data->
-
-
                             Toasty.success(context, "Actualizado Correctamente", Toasty.LENGTH_SHORT).show()
-
-                            //refreshableComponent.refresha()
+                            refresh.refresh()
                             dialog.dismiss()
 
                         },
                         failure = { error -> println(error) }
-
                     )
+
                 }
         }
+
+        btnclose.setOnClickListener { dialog.dismiss() }
+        btncancel.setOnClickListener { dialog.dismiss() }
+
+        dialog.show()
     }
 
-    private fun mostrarDatePickerDialog() {
-        val datePickerDialog = DatePickerDialog(
-            context,
-            { _, year, month, dayOfMonth ->
-                val fechaSeleccionada = "$year-${month + 1}-$dayOfMonth"
-                nacimiento.setText(fechaSeleccionada)
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-        datePickerDialog.show()
-    }
+
 
 
 }

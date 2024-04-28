@@ -19,35 +19,47 @@ import com.example.fundacion.user.registrarme
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.Console
 
 class login : BaseActivity() {
+
+
+    private lateinit var popupWindow: PopupWindow
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
 
         val btnMas = findViewById<Button>(R.id.btnmas)
-        btnMas.setOnClickListener {
-            val inflater = LayoutInflater.from(this)
-            val popupView: View = inflater.inflate(R.layout.menu_btnmas, null)
-            val popupWindow = PopupWindow(
-                popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                true
-            )
-            val offsetY = resources.getDimensionPixelSize(R.dimen.popup_offset_y)
-            popupWindow.showAtLocation(
-                btnMas,
-                Gravity.BOTTOM or Gravity.NO_GRAVITY,
-                0,
-                offsetY
-            )
+        val inflater = LayoutInflater.from(this)
+        val popupView: View = inflater.inflate(R.layout.menu_btnmas, null)
+        popupWindow = PopupWindow(
+            popupView,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            true
+        )
 
+        btnMas.setOnClickListener {
+            if (!isFinishing && !isDestroyed) {
+                val offsetY = resources.getDimensionPixelSize(R.dimen.popup_offset_y)
+                popupWindow.showAtLocation(
+                    btnMas,
+                    Gravity.BOTTOM or Gravity.NO_GRAVITY,
+                    0,
+                    offsetY
+                )
+            }
         }
+
 
         val txtuser = findViewById<EditText>(R.id.txtuser)
         val txtpass = findViewById<TextView>(R.id.txtpass)
@@ -64,6 +76,12 @@ class login : BaseActivity() {
 
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        popupWindow.dismiss()
+    }
+
 
     fun LOGIN(u: String, p: String) {
 
@@ -100,18 +118,28 @@ class login : BaseActivity() {
 
     }
     fun soydocente(view: View){
-        val intent = Intent(this, Dlogin::class.java)
-        startActivity(intent)
+        Thread{
+            val intent = Intent(this, Dlogin::class.java)
+            startActivity(intent)
+        }.start()
         //finish()
     }
     fun soytutor(view: View){
-        val intent = Intent(this, Dlogin::class.java)
-        startActivity(intent)
+        //val intent = Intent(this, Dlogin::class.java)
+        //startActivity(intent)
     }
 
     fun registrarme(view: View){
-        val intent = Intent(this, registrarme::class.java)
-        startActivity(intent)
+        GlobalScope.launch(Dispatchers.Main) {
+            // Coloca aquí el código que quieres ejecutar de manera asíncrona
+            // Por ejemplo, operaciones de red, procesamiento intensivo, etc.
+            withContext(Dispatchers.Default) {
+                // Operaciones en un hilo en segundo plano
+            }
+
+            val intent = Intent(this@login, registrarme()::class.java)
+            startActivity(intent)
+        }
     }
 
 }

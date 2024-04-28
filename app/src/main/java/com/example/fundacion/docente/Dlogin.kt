@@ -51,6 +51,9 @@ class Dlogin : BaseActivity() {
             }
         """.trimIndent()
 
+        val intent = Intent(this, Ainicio::class.java)
+        startActivity(intent)
+
         Fuel.post("${config.url}Alogin")
             .jsonBody(postData)
             .responseString{ _, _, result ->

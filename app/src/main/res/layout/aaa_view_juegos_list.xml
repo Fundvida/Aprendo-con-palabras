@@ -42,14 +42,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NIVEL "
+                    android:text="NIVEL: "
                     android:textColor="@color/white"
                     />
 
                 <TextView
+                    android:id="@+id/nivel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BASICO"
+                    android:textAllCaps="true"
+
                     android:textColor="@color/white"
                     />
 
@@ -68,15 +71,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TEMA "
+                    android:text="TEMA: "
                     android:textColor="@color/white"
                     />
 
                 <TextView
+                    android:id="@+id/tema"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="VOCALES"
                     android:textColor="@color/white"
+                    android:textAllCaps="true"
+
                     />
 
             </LinearLayout>
@@ -94,15 +100,52 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TAREA "
+                    android:text="TAREA: "
                     android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/tarea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="lectura"
+                    android:textColor="@color/white"
+                    android:textAllCaps="true"
+                    />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TIEMPO: "
+                    android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/tiempo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="time"
+                    android:textColor="@color/white"
+                    android:textAllCaps="true"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LECTURA"
+                    android:text=" minutos"
                     android:textColor="@color/white"
+                    android:textAllCaps="true"
                     />
 
             </LinearLayout>
@@ -125,12 +168,16 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             >
 
             <ImageButton
+                android:id="@+id/eyes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginVertical="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 android:src="@drawable/eyes"
                 app:tint="@color/white"
                 android:background="@android:color/transparent"/>
@@ -145,12 +192,16 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             >
 
             <ImageButton
+                android:id="@+id/edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginVertical="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 android:src="@drawable/baseline_edit_24"
                 app:tint="@color/warningColor"
                 android:background="@android:color/transparent"/>
@@ -165,11 +216,15 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             >
             <ImageButton
+                android:id="@+id/delete"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginVertical="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 android:src="@drawable/baseline_delete_24"
                 app:tint="@color/errorColor"
                 android:background="@android:color/transparent"/>
