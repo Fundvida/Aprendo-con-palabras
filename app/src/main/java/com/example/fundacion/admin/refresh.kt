@@ -1,8 +1,6 @@
 package com.example.fundacion.admin
 
-import android.net.Uri
 import androidx.fragment.app.Fragment
-import com.example.fundacion.admin.adapter.AdapterGames
 
 interface Refresh {
     fun refresha()
@@ -29,3 +27,8 @@ interface RefreshGamePreguntasVocal{
     fun modalEditVocales(position: Int)
 }
 
+interface RefreshGamePreguntasSilabasSimples{
+    fun refresh()
+    fun modalEditSilabas(position: Int)
+
+}

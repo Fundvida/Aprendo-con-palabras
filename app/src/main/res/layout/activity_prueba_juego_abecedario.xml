@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.game.PruebaJuego_vocal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_vocal_cristian"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="encuentre la letra del "
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="30dp"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="abecedario imprenta mayuscula "
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="30dp"
+                android:gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" :"
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="30dp"
+                android:gravity="center"
+                />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondo_vocal_noselect"
+                android:layout_marginLeft="5dp"
+                >
+                <ImageView
+                    android:id="@+id/txtimg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
+
+                <GridView
+                    android:id="@+id/grid_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:numColumns="5"
+                    android:horizontalSpacing="5dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="vertical"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="5dp"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:background="@drawable/fondo_botton_vocal"
+            android:gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/fondo_total_vocal_new"
+                android:gravity="center"
+                android:paddingHorizontal="15dp"
+                >
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40dp"
+                    android:fontFamily="@font/digitalt"
+                    android:textColor="@color/white"
+                    android:text="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/digitalt"
+                    android:textColor="@color/white"
+                    android:text="TOTAL "/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/fondo_halladas_vocal_new"
+                android:gravity="center"
+                android:paddingHorizontal="15dp"
+                >
+
+                <TextView
+                    android:id="@+id/encontradas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/digitalt"
+                    android:textSize="40dp"
+                    android:textColor="@color/white"
+                    android:text="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/digitalt"
+                    android:textColor="@color/white"
+                    android:text="HALLADAS "/>
+            </LinearLayout>
+            <View
+                android:layout_width="150dp"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingHorizontal="15dp"
+                android:background="@drawable/fondo_restantes_vocal_new"
+                >
+                <TextView
+                    android:id="@+id/faltante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/digitalt"
+                    android:textColor="@color/white"
+                    android:textSize="40dp"
+                    android:text="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/digitalt"
+                    android:textColor="@color/white"
+                    android:text="Restantes"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>

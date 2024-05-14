@@ -25,22 +25,17 @@ class Ainicio : BaseActivity() {
         super.onDestroy()
         networkListener.stopListening()
     }
-
-
     fun inicio(view : View){
         Toasty.warning(this, "Estas en inicio", Toasty.LENGTH_LONG).show()
     }
     fun usuarios(view : View){
         val intent = Intent(this, Ausuarios::class.java)
         startActivity(intent)
-        //finish()
     }
-
     fun docentes(view : View){
 
         Toasty.warning(this, "docente", Toasty.LENGTH_LONG).show()
     }
-
     fun estudiantes(view : View){
 
         Toasty.warning(this, "Estudiante", Toasty.LENGTH_LONG).show()
@@ -61,14 +56,12 @@ class Ainicio : BaseActivity() {
         startActivity(intent)
     }
     fun reportes(view : View){
-        val intent = Intent(this, Areportes::class.java)
-        startActivity(intent)
-        Toasty.warning(this, "reportes", Toasty.LENGTH_LONG).show()
-    }
-    fun buscador(view : View){
         val intent = Intent(this, Abuscador::class.java)
         startActivity(intent)
-        Toasty.warning(this, "buscador", Toasty.LENGTH_LONG).show()
+    }
+    fun pruebas(view : View){
+        val intent = Intent(this, Apruebas::class.java)
+        startActivity(intent)
     }
 
     fun off(view: View){

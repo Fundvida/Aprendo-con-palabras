@@ -11,6 +11,9 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
+import com.example.fundacion.admin.Abuscador
+import com.example.fundacion.admin.Areportes
+import com.example.fundacion.admin.Atorneo
 
 class inicio : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,22 @@ class inicio : BaseActivity() {
         val facebookPageId = "100063510101095"
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse("https://www.facebook.com/$facebookPageId")
+        startActivity(intent)
+    }
+
+    fun vocales(view: View){
+        /**/
+        val intent = Intent(this, Areportes::class.java)
+        startActivity(intent)
+    }
+    fun jugar(view: View){
+        /**/
+        val intent = Intent(this, Abuscador::class.java)
+        startActivity(intent)
+    }
+
+    fun deletreo(view: View){
+        val intent = Intent(this, Atorneo::class.java)
         startActivity(intent)
     }
 }

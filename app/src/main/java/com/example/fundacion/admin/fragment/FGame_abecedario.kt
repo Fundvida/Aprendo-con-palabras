@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -21,7 +20,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.net.toFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,14 +27,14 @@ import com.example.fundacion.R
 import com.example.fundacion.admin.RefreshGame
 import com.example.fundacion.admin.RefreshGamePreguntasVocal
 import com.example.fundacion.admin.adapter.AdapterPreg
-import com.example.fundacion.admin.lgames
+import com.example.fundacion.admin.adapter.AdapterPregAbecedario
+import com.example.fundacion.admin.adapter.AdapterPregVocal
 import com.example.fundacion.admin.lpreguntas
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FileDataPart
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import es.dmoral.toasty.Toasty
 import org.json.JSONObject
 import java.io.File
@@ -44,7 +42,7 @@ import java.io.File
 private val preg: MutableList<lpreguntas> = mutableListOf()
 private lateinit var rvPreg: RecyclerView
 
-class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
+class FGame_abecedario : Fragment(), RefreshGamePreguntasVocal {
 
     private lateinit var imageView: ImageView
     private lateinit var uploadButton: Button
@@ -76,7 +74,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
         puntaje.setText(preg[position].puntaje)
 
         Glide.with(requireContext())
-            .load("${config.url}admin/preg-vocal-imagen/${preg[position].img}")
+            .load("${config.url}admin/preg-abecedario-imagen/${preg[position].img}")
             .into(imageViewEdit)
 
         val btncancel : Button = dialog.findViewById(R.id.btn_cancel)
@@ -92,10 +90,11 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                 val file = File(getRealPathFromURI(selectedImageUri!!))
                 val dataPart = FileDataPart(file, name = "file", filename = file.name)
                 if(tieneEspacios(file.name)){
-                    Toasty.warning(requireContext(), "El nombre de la imagen no debe contener espacios!!!!",Toasty.LENGTH_SHORT).show()
+                    Toasty.warning(requireContext(), "El nombre de la imagen no debe contener espacios!!!!",
+                        Toasty.LENGTH_SHORT).show()
                 }else{
 
-                    Fuel.upload("${config.url}admin/preg-imagen-vocal")
+                    Fuel.upload("${config.url}admin/preg-imagen-abecedario")
                         .add(dataPart)
                         .responseString { result ->
                             result.fold(
@@ -114,7 +113,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                                         """.trimIndent()
 
                                         println("============= $res")
-                                        Fuel.delete("${config.url}admin/preg-vocal-edit/"+ preg[position].id )
+                                        Fuel.delete("${config.url}admin/preg-abecedario-edit/"+ preg[position].id )
                                             .jsonBody(postData)
                                             .responseString{result ->
                                                 result.fold(
@@ -151,7 +150,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                      }
                 """.trimIndent()
 
-                Fuel.delete("${config.url}admin/preg-vocal-edit/"+ preg[position].id)
+                Fuel.delete("${config.url}admin/preg-abecedario-edit/"+ preg[position].id)
                     .jsonBody(postData)
                     .responseString{result ->
                         result.fold(
@@ -194,13 +193,16 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_f_game_abecedario, container, false)
 
-        val view = inflater.inflate(R.layout.fragment_admin_game_list, container, false)
+
+
         val title = view.findViewById<TextView>(R.id.title)
         title.setText(config.GameTarea)
 
         val LinearCreate : LinearLayout = view.findViewById(R.id.view_new)
-        val LinearList : LinearLayout  = view.findViewById(R.id.view_list)
+        val LinearList : LinearLayout = view.findViewById(R.id.view_list)
 
         val retro = view.findViewById<ImageButton>(R.id.retro)
         retro.setOnClickListener { refresh?.retro() }
@@ -247,7 +249,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                 if(tieneEspacios(file.name)){
                     Toasty.warning(requireContext(), "El nombre de la imagen no debe contener espacios!!!!",Toasty.LENGTH_SHORT).show()
                 }else{
-                    Fuel.upload("${config.url}admin/preg-imagen-vocal")
+                    Fuel.upload("${config.url}admin/preg-imagen-abecedario")
                         .add(dataPart)
                         .responseString { result ->
                             result.fold(
@@ -266,7 +268,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                                             }
                                         """.trimIndent()
 
-                                        Fuel.post("${config.url}admin/preg-vocal-new")
+                                        Fuel.post("${config.url}admin/preg-abecedario-new")
                                             .jsonBody(postData)
                                             .responseString{result ->
                                                 result.fold(
@@ -304,8 +306,10 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
 
 
 
+
         return view
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -327,13 +331,13 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
     }
 
     fun datos(){
-        Fuel.get("${config.url}admin/preg-vocal-all/${config.IDGameTarea}").responseString{result ->
+        Fuel.get("${config.url}admin/preg-abecedario-all/${config.IDGameTarea}").responseString{result ->
             result.fold(
                 success = {data->
                     val pregunta = Gson().fromJson(data, Array<lpreguntas>::class.java).toList()
                     preg.clear()
                     preg.addAll(pregunta)
-                    val adapter = AdapterPreg(requireContext(), preg, this@Admin_fragment_game_list)
+                    val adapter = AdapterPregAbecedario(requireContext(), preg, this@FGame_abecedario)
                     rvPreg.adapter = adapter
                 },
                 failure = { error ->
@@ -371,9 +375,6 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
         super.onDetach()
         refresh = null
     }
-
-
-
 
 
 }

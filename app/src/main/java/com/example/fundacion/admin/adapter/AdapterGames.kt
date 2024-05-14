@@ -15,10 +15,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.R
 import com.example.fundacion.admin.CGame
-import com.example.fundacion.admin.Fragmentt
 import com.example.fundacion.admin.RefreshGame
-import com.example.fundacion.admin.fragment.Admin_fragment_game_list
-import com.example.fundacion.admin.fragment.prueba
+import com.example.fundacion.admin.fragment.FGame_abecedario
+import com.example.fundacion.admin.fragment.FGame_silabas_simples
+import com.example.fundacion.admin.fragment.FGame_vocales
 import com.example.fundacion.admin.lgames
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
@@ -47,9 +47,21 @@ class AdapterGames(
         holder.bind(games)
 
         holder.btn_ver.setOnClickListener {
-            refresh.verlist(Admin_fragment_game_list())
+            //refresh.verlist(Admin_fragment_game_list())
             config.GameTarea =   games.tarea
             config.IDGameTarea = games.id
+            //if (games.tema.tema == "")
+            when (games.tema.tema){
+                "LAS VOCALES" -> {
+                    refresh.verlist(FGame_vocales())
+                }
+                "EL ABECEDARIO" -> {
+                    refresh.verlist(FGame_abecedario())
+                }
+                "LAS SILABAS SIMPLES" -> {
+                    refresh.verlist(FGame_silabas_simples())
+                }
+            }
         }
 
         holder.btn_edit.setOnClickListener {

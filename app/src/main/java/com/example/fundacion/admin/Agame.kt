@@ -1,29 +1,20 @@
 package com.example.fundacion.admin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.admin.adapter.AdapterGames
-import com.example.fundacion.admin.adapter.AdapterUsuario
 
-import com.example.fundacion.admin.fragment.prueba
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody

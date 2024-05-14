@@ -2,6 +2,7 @@ package com.example.fundacion
 
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -10,14 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.fundacion.docente.Dlogin
 import com.example.fundacion.user.inicio
 import com.example.fundacion.user.registrarme
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -38,7 +43,7 @@ class login : BaseActivity() {
         setContentView(R.layout.activity_login)
 
 
-        val btnMas = findViewById<Button>(R.id.btnmas)
+        val btnMas = findViewById<FloatingActionButton>(R.id.btnmas)
         val inflater = LayoutInflater.from(this)
         val popupView: View = inflater.inflate(R.layout.menu_btnmas, null)
         popupWindow = PopupWindow(
@@ -64,7 +69,7 @@ class login : BaseActivity() {
         val txtuser = findViewById<EditText>(R.id.txtuser)
         val txtpass = findViewById<TextView>(R.id.txtpass)
 
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val btnLogin = findViewById<ImageButton>(R.id.btnLogin)
         btnLogin.setOnClickListener {
             /*val intent = Intent(this, inicio::class.java)
             startActivity(intent)*/

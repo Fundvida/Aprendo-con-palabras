@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
+
+
+    <color name="greyinput">#737370</color>
+    <color name="gamecolorazul">#436185</color>
+    <color name="gamecolorazuldos">#6F8B9F</color>
+
+
     <color name="black">#FF000000</color>
     <color name="blackM">#80000000</color>
     <color name="white">#FFFFFFFF</color>

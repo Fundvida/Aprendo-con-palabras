@@ -105,4 +105,17 @@ data class lpreguntas(
     val img: String,
     val puntaje: String,
     val estado: String,
+
+    val silaba_estatico: String,
+    val silaba_pregunta: String,
 )
+
+data class Juego(
+    val id: String,
+    val tema: String,
+    val tarea: String,
+    val tiempo: String,
+    val estado: String
+)
+
+

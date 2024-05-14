@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/donceteD"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/adminU"
-    tools:context=".admin.Areportes">
+    tools:context=".user.Evocales_game">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,85 +16,93 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Encontral la vocal: "/>
+                android:text="Encontral la vocal: "
+                android:textSize="20dp" />
+
             <ImageView
                 android:id="@+id/txtimg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:text="1"/>
+                android:text="1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vocales por encontrar: "/>
+                android:text="Vocales por encontrar: " />
+
             <TextView
                 android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"/>
+                android:text="1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Letras encontradas: "/>
+                android:text="Letras encontradas: " />
+
             <TextView
                 android:id="@+id/encontradas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"/>
+                android:text="1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Letras faltantes: "/>
+                android:text="Letras faltantes: " />
+
             <TextView
                 android:id="@+id/faltante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"/>
+                android:text="1" />
         </LinearLayout>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp" />
+
     <GridView
         android:id="@+id/grid_view"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/white"
-        android:numColumns="5"
-        android:horizontalSpacing="0dp"
         android:clipToPadding="false"
+        android:horizontalSpacing="0dp"
+        android:numColumns="5"
         android:scrollbars="vertical"
-        android:stretchMode="columnWidth"
-        />
+        android:stretchMode="columnWidth" />
+
 
 </LinearLayout>

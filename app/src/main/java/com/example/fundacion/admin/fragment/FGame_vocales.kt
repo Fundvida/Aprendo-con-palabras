@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -21,22 +20,19 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.net.toFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fundacion.R
 import com.example.fundacion.admin.RefreshGame
 import com.example.fundacion.admin.RefreshGamePreguntasVocal
-import com.example.fundacion.admin.adapter.AdapterPreg
-import com.example.fundacion.admin.lgames
+import com.example.fundacion.admin.adapter.AdapterPregVocal
 import com.example.fundacion.admin.lpreguntas
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FileDataPart
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import es.dmoral.toasty.Toasty
 import org.json.JSONObject
 import java.io.File
@@ -44,7 +40,7 @@ import java.io.File
 private val preg: MutableList<lpreguntas> = mutableListOf()
 private lateinit var rvPreg: RecyclerView
 
-class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
+class FGame_vocales : Fragment(), RefreshGamePreguntasVocal {
 
     private lateinit var imageView: ImageView
     private lateinit var uploadButton: Button
@@ -57,7 +53,6 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
     private val PICK_IMAGE_REQUEST = 1
 
     private var selectedImageUri: Uri? = null
-
 
     override fun refresh() {
         datos()
@@ -92,7 +87,8 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                 val file = File(getRealPathFromURI(selectedImageUri!!))
                 val dataPart = FileDataPart(file, name = "file", filename = file.name)
                 if(tieneEspacios(file.name)){
-                    Toasty.warning(requireContext(), "El nombre de la imagen no debe contener espacios!!!!",Toasty.LENGTH_SHORT).show()
+                    Toasty.warning(requireContext(), "El nombre de la imagen no debe contener espacios!!!!",
+                        Toasty.LENGTH_SHORT).show()
                 }else{
 
                     Fuel.upload("${config.url}admin/preg-imagen-vocal")
@@ -184,23 +180,18 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
 
     private var refresh: RefreshGame? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_f_game_vocales, container, false)
 
-        val view = inflater.inflate(R.layout.fragment_admin_game_list, container, false)
+
         val title = view.findViewById<TextView>(R.id.title)
         title.setText(config.GameTarea)
 
         val LinearCreate : LinearLayout = view.findViewById(R.id.view_new)
-        val LinearList : LinearLayout  = view.findViewById(R.id.view_list)
+        val LinearList : LinearLayout = view.findViewById(R.id.view_list)
 
         val retro = view.findViewById<ImageButton>(R.id.retro)
         retro.setOnClickListener { refresh?.retro() }
@@ -307,6 +298,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
         return view
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -326,6 +318,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
 
     }
 
+
     fun datos(){
         Fuel.get("${config.url}admin/preg-vocal-all/${config.IDGameTarea}").responseString{result ->
             result.fold(
@@ -333,7 +326,7 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
                     val pregunta = Gson().fromJson(data, Array<lpreguntas>::class.java).toList()
                     preg.clear()
                     preg.addAll(pregunta)
-                    val adapter = AdapterPreg(requireContext(), preg, this@Admin_fragment_game_list)
+                    val adapter = AdapterPregVocal(requireContext(), preg, this@FGame_vocales)
                     rvPreg.adapter = adapter
                 },
                 failure = { error ->
@@ -342,7 +335,6 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
             )
         }
     }
-
 
     fun getRealPathFromURI(uri: Uri): String {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
@@ -371,8 +363,6 @@ class Admin_fragment_game_list : Fragment(), RefreshGamePreguntasVocal {
         super.onDetach()
         refresh = null
     }
-
-
 
 
 

@@ -480,7 +480,7 @@
                 android:background="@drawable/fondoinicio"
                 android:layout_margin="15dp"
                 android:orientation="vertical"
-                android:onClick="buscador"
+                android:onClick="pruebas"
                 >
 
                 <LinearLayout
@@ -491,7 +491,8 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/buscador"
+                        android:src="@drawable/baseline_play_circle_24"
+                        app:tint="@color/adminU"
                         android:padding="2dp"
                         />
                 </LinearLayout>
@@ -503,7 +504,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BUSCADOR"
+                        android:text="PRUEBAS"
                         android:textColor="@color/adminU"
                         />
                 </LinearLayout>

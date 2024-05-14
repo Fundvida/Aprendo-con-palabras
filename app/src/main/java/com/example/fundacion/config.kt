@@ -8,5 +8,7 @@ class config {
         //const val url = "https://desnycell.000webhostapp.com/"
         var GameTarea : String? = null
         var IDGameTarea : String? = null
+        var IDJuegoPrueba: String? = null
+        var NAMEJuegoPrueba: String? = null
     }
 }
