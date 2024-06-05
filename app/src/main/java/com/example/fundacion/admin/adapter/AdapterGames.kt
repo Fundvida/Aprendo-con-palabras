@@ -17,7 +17,10 @@ import com.example.fundacion.R
 import com.example.fundacion.admin.CGame
 import com.example.fundacion.admin.RefreshGame
 import com.example.fundacion.admin.fragment.FGame_abecedario
+import com.example.fundacion.admin.fragment.FGame_contruir_oraciones_simple
+import com.example.fundacion.admin.fragment.FGame_deletreo_simple
 import com.example.fundacion.admin.fragment.FGame_silabas_simples
+import com.example.fundacion.admin.fragment.FGame_sopa_letras_simple
 import com.example.fundacion.admin.fragment.FGame_vocales
 import com.example.fundacion.admin.lgames
 import com.example.fundacion.config
@@ -51,15 +54,24 @@ class AdapterGames(
             config.GameTarea =   games.tarea
             config.IDGameTarea = games.id
             //if (games.tema.tema == "")
-            when (games.tema.tema){
-                "LAS VOCALES" -> {
+            when (games.tema.id){
+                1 -> {
                     refresh.verlist(FGame_vocales())
                 }
-                "EL ABECEDARIO" -> {
+                2 -> {
                     refresh.verlist(FGame_abecedario())
                 }
-                "LAS SILABAS SIMPLES" -> {
+                3 -> {
                     refresh.verlist(FGame_silabas_simples())
+                }
+                4 -> {
+                    refresh.verlist(FGame_deletreo_simple())
+                }
+                5 -> {
+                    refresh.verlist(FGame_sopa_letras_simple())
+                }
+                6 -> {
+                    refresh.verlist(FGame_contruir_oraciones_simple())
                 }
             }
         }

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_silabas_simples_cristian"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sopa de letras de "
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="35dp"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hogar casa"
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="35dp"
+                android:gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" :"
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="35dp"
+                android:gravity="center"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <View
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:padding="20dp"
+                        android:orientation="vertical"
+                        >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/gridView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/aaa_view_sopaletras_game"
+                            />
+
+                        <ImageView
+                            android:id="@+id/txtimg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:gravity="center"
+                        >
+                        <ScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            >
+                            <GridLayout
+                                android:id="@+id/botones"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:alignmentMode="alignMargins"
+                                android:columnOrderPreserved="false"
+                                />
+                        </ScrollView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</FrameLayout>

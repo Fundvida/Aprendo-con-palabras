@@ -1,0 +1,39 @@
+<!-- res/layout/item_tarea.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:background="@drawable/fondo_game_list"
+        >
+        <TextView
+            android:id="@+id/tareaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:text="Tarea" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/inicio_play_btn"
+            android:layout_marginTop="4dp"
+            android:id="@+id/jugar"
+            />
+
+    </LinearLayout>
+    <!-- Otros campos de tu diseño pueden ir aquí -->
+</LinearLayout>

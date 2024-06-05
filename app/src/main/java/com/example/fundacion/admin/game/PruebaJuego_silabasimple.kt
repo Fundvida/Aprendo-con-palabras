@@ -1,14 +1,12 @@
 package com.example.fundacion.admin.game
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +17,11 @@ import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import java.util.Locale
 
@@ -76,22 +79,51 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
         button1.setOnClickListener {
             val resp = button1.text.toString()
             siguiente(resp)
+
+            button1.isEnabled = false
+            button2.isEnabled = false
+            button3.isEnabled = false
+            button4.isEnabled = false
+            button5.isEnabled = false
+
         }
         button2.setOnClickListener {
             val resp = button2.text.toString()
             siguiente(resp)
+            button1.isEnabled = false
+            button2.isEnabled = false
+            button3.isEnabled = false
+            button4.isEnabled = false
+            button5.isEnabled = false
         }
         button3.setOnClickListener {
             val resp = button3.text.toString()
             siguiente(resp)
+            button1.isEnabled = false
+            button2.isEnabled = false
+            button3.isEnabled = false
+            button4.isEnabled = false
+            button5.isEnabled = false
         }
         button4.setOnClickListener {
             val resp = button4.text.toString()
             siguiente(resp)
+
+            button1.isEnabled = false
+            button2.isEnabled = false
+            button3.isEnabled = false
+            button4.isEnabled = false
+            button5.isEnabled = false
         }
         button5.setOnClickListener {
             val resp = button5.text.toString()
             siguiente(resp)
+
+            button1.isEnabled = false
+            button2.isEnabled = false
+            button3.isEnabled = false
+            button4.isEnabled = false
+            button5.isEnabled = false
         }
     }
 
@@ -146,6 +178,12 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
     fun inicio(){
         if (jsonArrayDatos.length() > position){
 
+            button1.isEnabled = true
+            button2.isEnabled = true
+            button3.isEnabled = true
+            button4.isEnabled = true
+            button5.isEnabled = true
+
             silaba_resp.setText(" _ _")
             val item = jsonArrayDatos.getJSONObject(position)
             val img = item.getString("img")
@@ -157,6 +195,7 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
 
             val pregunta = item.getString("silaba_pregunta")
             variantes.clear()
+
             if (pregunta.last().toString() == "a"){
                 for (vocal in vocales) {
                     val variante = pregunta.replace('A', vocal, ignoreCase = true)
@@ -188,13 +227,13 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
                 }
             }
 
+            variantes.shuffle()
 
             val botones = listOf(button1, button2, button3, button4, button5)
             for (i in botones.indices) {
                 botones[i].text = variantes[i]
             }
             PalabraCompleta = item.getString("palabra")
-            println(variantes)
         }
         else{
             val textToSpeak = "felicidades terminaste quieres volver a jugar"
@@ -212,12 +251,27 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
         {
             val textToSpeak = "la palabra formada es $juntarresp y es correcto"
             speakOut(textToSpeak)
-            alertCorrecto()
+
+
+            CoroutineScope(Dispatchers.IO).launch {
+                delay(2000)
+                withContext(Dispatchers.Main) {
+                    alertCorrecto()
+
+                }
+            }
+
         }
         else{
             val textToSpeak = "la palabra correcta era $PalabraCompleta"
             speakOut(textToSpeak)
-            alertIncorrecto()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                delay(2000)
+                withContext(Dispatchers.Main) {
+                    alertIncorrecto()
+                }
+            }
         }
 
     }

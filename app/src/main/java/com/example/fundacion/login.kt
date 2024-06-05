@@ -2,23 +2,14 @@ package com.example.fundacion
 
 import android.app.Dialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.example.fundacion.docente.Dlogin
-import com.example.fundacion.user.inicio
+import com.example.fundacion.user.Ueligirnivel
 import com.example.fundacion.user.registrarme
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
@@ -28,9 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONArray
 import org.json.JSONObject
-import java.io.Console
 
 class login : BaseActivity() {
 
@@ -44,6 +33,7 @@ class login : BaseActivity() {
 
 
         val btnMas = findViewById<FloatingActionButton>(R.id.btnmas)
+        /*
         val inflater = LayoutInflater.from(this)
         val popupView: View = inflater.inflate(R.layout.menu_btnmas, null)
         popupWindow = PopupWindow(
@@ -52,7 +42,6 @@ class login : BaseActivity() {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true
         )
-
         btnMas.setOnClickListener {
             if (!isFinishing && !isDestroyed) {
                 val offsetY = resources.getDimensionPixelSize(R.dimen.popup_offset_y)
@@ -63,6 +52,39 @@ class login : BaseActivity() {
                     offsetY
                 )
             }
+        }
+        */
+
+        btnMas.setOnClickListener{
+            val dialog = Dialog(this, R.style.TransparentDialog)
+            dialog.setContentView(R.layout.uuu_modal_menulogin)
+
+            dialog.setCancelable(false)
+            dialog.setCanceledOnTouchOutside(false)
+
+            val docente = dialog.findViewById<ImageButton>(R.id.btn_docente)
+            val tutor = dialog.findViewById<ImageButton>(R.id.btn_tutor)
+            val registro = dialog.findViewById<ImageButton>(R.id.btn_registro)
+            val close = dialog.findViewById<ImageButton>(R.id.btn_close)
+
+            docente.setOnClickListener{
+                val intent = Intent(this, Dlogin::class.java)
+                startActivity(intent)
+            }
+            tutor.setOnClickListener{
+                /*val intent = Intent(this, Dlogin::class.java)
+                startActivity(intent)*/
+                println(config.url)
+            }
+            registro.setOnClickListener{
+                val intent = Intent(this, Dlogin::class.java)
+                startActivity(intent)
+            }
+            close.setOnClickListener { dialog.dismiss() }
+
+
+
+            dialog.show()
         }
 
 
@@ -84,17 +106,24 @@ class login : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        popupWindow.dismiss()
+        //popupWindow.dismiss()
     }
 
 
     fun LOGIN(u: String, p: String) {
 
-
+/*
         val postData = """
             {
                 "username": "$u",
                 "password": "$p"
+            }
+        """.trimIndent()
+        */
+        val postData = """
+            {
+                "username": "estu",
+                "password": "estu"
             }
         """.trimIndent()
 
@@ -110,7 +139,7 @@ class login : BaseActivity() {
                         }
                         else {
                             Toasty.success(this, "estudiante encontrado", Toasty.LENGTH_SHORT).show()
-                            val intent = Intent(this, inicio::class.java)
+                            val intent = Intent(this, Ueligirnivel::class.java)
                             startActivity(intent)
                         }
                     },

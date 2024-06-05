@@ -6,6 +6,7 @@ import android.view.View
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.NetworkListener
 import com.example.fundacion.R
+import com.example.fundacion.admin.game.PruebaJuego_silabas_CTI
 import com.example.fundacion.login
 import es.dmoral.toasty.Toasty
 
@@ -52,7 +53,7 @@ class Ainicio : BaseActivity() {
     }
     fun demo(view : View){
 
-        val intent = Intent(this, Ademo::class.java)
+        val intent = Intent(this, PruebaJuego_silabas_CTI::class.java)
         startActivity(intent)
     }
     fun reportes(view : View){

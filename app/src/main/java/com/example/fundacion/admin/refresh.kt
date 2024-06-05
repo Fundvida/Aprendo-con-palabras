@@ -32,3 +32,22 @@ interface RefreshGamePreguntasSilabasSimples{
     fun modalEditSilabas(position: Int)
 
 }
+interface RefreshGamePreguntas{
+    fun refresh()
+    fun modalEdit(position: Int)
+
+}
+interface RefreshGameSopaLetras{
+    fun refresh()
+    fun modalEdit(position: Int)
+
+}
+interface RefreshGameSopaLetrasPrueba{
+    fun letraSelect(callback: (String, String) -> Unit)
+
+    fun botonSelect(text: String)
+    fun letraincorrecto(text: String)
+    fun noselect()
+    fun terminado()
+
+}

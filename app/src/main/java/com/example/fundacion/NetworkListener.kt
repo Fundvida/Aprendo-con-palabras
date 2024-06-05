@@ -44,7 +44,7 @@ class NetworkListener(private val context: Context) {
                     val nuevaIP = modificarIP(ip)
                     Log.d("SplashActivity", "Nueva IP modificada: $nuevaIP")
 
-                    config.url = "http://$nuevaIP/slim/"
+                    //config.url = "http://$nuevaIP/slim/"
                     Log.d("SplashActivity", "Nueva URL: ${config.url}")
 
                 }
