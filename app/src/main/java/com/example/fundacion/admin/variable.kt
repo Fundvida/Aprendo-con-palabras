@@ -2,6 +2,44 @@ package com.example.fundacion.admin
 
 import android.graphics.Bitmap
 
+data class lestudiantes (
+    val id: String,
+    val docente: String,
+    val nombres: String,
+    val apellidos: String,
+    val carnet: String,
+    val celular: String,
+    val nacimiento: String,
+    val pais: String,
+    val ciudad: String,
+    val email: String,
+    val user: String,
+    val pass: String,
+    val edad: String,
+    val puntos: String,
+    val estado: String,
+    val docentes: ldocentes
+    )
+
+
+data class ldocentes (
+    val id: String,
+    val nombres: String,
+    val apellidos: String,
+    val ci: String,
+    val celular: String,
+    val codigo: String,
+    val nacimiento: String,
+    val pais: String,
+    val ciudad: String,
+    val email: String,
+    val user: String,
+    val pass: String,
+    val rol: String,
+    val estado: String
+
+    )
+
 data class lusuarios (
     val id: String,
     val nombres: String,
@@ -119,3 +157,37 @@ data class Juego(
 )
 
 
+data class Torneo(
+    val id: String,
+    val nombre: String,
+    val fecha_inicio: String,
+    val fecha_fin: String,
+    val tiempo: String,
+    val intentos: String,
+    val estado: String
+)
+
+
+data class Gamess(
+    val id: String,
+    val tema: lTema,
+    val tarea: String,
+    val tiempo: String,
+    val estado: String
+)
+
+data class Torneo_Game(
+    val id: String,
+    val torneo: Torneo,
+    val tareas: String,
+    val estado: String,
+    val games: Gamess
+)
+
+data class Torneo_estudiante(
+    val id: String,
+    val estudiante: String,
+    val torneo: String,
+    val estado: String,
+    val estu: lestudiantes
+)

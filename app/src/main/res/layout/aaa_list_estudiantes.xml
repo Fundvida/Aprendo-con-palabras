@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_game_list"
+    android:layout_marginBottom="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="8"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/perfilImg"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/baseline_account_circle_24"
+                app:tint="@color/white"
+                />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            >
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/infoColor"
+                android:gravity="center"
+                >
+                <ImageButton
+                    android:id="@+id/ver"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginVertical="8dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/eyes"
+                    app:tint="@color/white"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/warningColor"
+                android:gravity="center"
+
+                >
+                <ImageButton
+                    android:id="@+id/edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginVertical="8dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_edit_24"
+                    app:tint="@color/white"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/errorColor"
+                android:gravity="center"
+
+                >
+                <ImageButton
+                    android:layout_marginVertical="8dp"
+                    android:id="@+id/delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:src="@drawable/baseline_delete_24"
+                    app:tint="@color/white"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/black"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="puntos"
+                android:textColor="@color/adminU"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textAllCaps="true"
+                />
+
+            <TextView
+                android:id="@+id/puntos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:background="@color/infoColor"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Docente a Cargo"
+                android:textColor="@color/adminU"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textAllCaps="true"
+                />
+
+            <TextView
+                android:id="@+id/docente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="afff"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:background="@color/successColor"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombres"
+                android:textColor="@color/adminU"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textAllCaps="true"
+                />
+
+            <TextView
+                android:id="@+id/nombres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="afff"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apellidos"
+                android:textColor="@color/adminU"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textAllCaps="true"
+                />
+
+            <TextView
+                android:id="@+id/apellidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PAIS"
+                android:textColor="@color/adminU"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/pais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/white"/>
+
+
+
+
+
+</LinearLayout>

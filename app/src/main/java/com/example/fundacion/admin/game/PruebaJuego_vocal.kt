@@ -1,13 +1,12 @@
 package com.example.fundacion.admin.game
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.ImageView
@@ -18,7 +17,6 @@ import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.admin.Game_Vocal
-import com.example.fundacion.admin.adapter.ImageAdapter
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONArray
@@ -176,6 +174,37 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
             }
         }
     }
+
+    fun retroceder(view: View){
+
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "ESTAS SEGURO!"
+        sweetAlertDialog.contentText = "QUE QUIERES SALIR"
+        sweetAlertDialog.confirmText = "si"
+        sweetAlertDialog.cancelText = "no"
+        sweetAlertDialog.setCancelable(false)
+        sweetAlertDialog.setConfirmClickListener {
+            finish()
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.show()
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     fun alertTerminado(){
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)

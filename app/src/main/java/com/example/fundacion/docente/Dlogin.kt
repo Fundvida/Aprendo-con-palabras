@@ -8,7 +8,6 @@ import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.config
-import com.example.fundacion.user.inicio
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import es.dmoral.toasty.Toasty
@@ -43,7 +42,10 @@ class Dlogin : BaseActivity() {
             }
         """.trimIndent()
 
-*/
+
+ */
+
+
         val postData = """
             {
                 "username": "admin",
@@ -51,8 +53,8 @@ class Dlogin : BaseActivity() {
             }
         """.trimIndent()
 
-        val intent = Intent(this, Ainicio::class.java)
-        startActivity(intent)
+
+
 
         Fuel.post("${config.url}Alogin")
             .jsonBody(postData)

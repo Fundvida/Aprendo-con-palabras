@@ -161,7 +161,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
-                android:hint="Buscador de usuario"
+                android:hint="Buscar"
                 android:textColorHint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -235,35 +235,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 />
-            <HorizontalScrollView
+
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/buttonbartrue"
-                android:padding="2dp"
-
+                android:padding="15dp"
                 >
-
-                <ScrollView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
                     >
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/list"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            tools:listitem="@layout/aaa_listausuarios" />
-                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+
+                        android:id="@+id/list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/aaa_view_torneo_all"
+
+                        />
+                </LinearLayout>
 
 
-                </ScrollView>
+            </ScrollView>
 
-            </HorizontalScrollView>
 
 
         </LinearLayout>
@@ -640,9 +639,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Crear Usuario"
+                        android:text="Crear Torneo"
                         android:textColor="@color/white"
                         android:textSize="20dp"
+                        android:textAllCaps="true"
                         />
 
                 </LinearLayout>
@@ -667,7 +667,7 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Nombres"
+                                android:hint="Nombre"
                                 android:textColorHint="@color/white"
                                 android:layout_gravity="center"
                                 android:backgroundTint="@color/white"
@@ -676,7 +676,7 @@
                                 >
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/nombres"
+                                    android:id="@+id/txt_nombre"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:inputType="text"
@@ -687,7 +687,7 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Apellidos"
+                                android:hint="Fecha Inicio"
                                 android:textColorHint="@color/white"
                                 android:layout_gravity="center"
                                 android:backgroundTint="@color/white"
@@ -695,85 +695,7 @@
                                 android:layout_marginHorizontal="25dp"
                                 >
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/apellidos"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:inputType="text"
-                                    android:backgroundTint="@color/white"
-                                    />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Carnet"
-                                android:textColorHint="@color/white"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginHorizontal="25dp"
-                                >
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/carnet"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:inputType="number"
-                                    android:maxLength="12"
-                                    android:backgroundTint="@color/white"
-                                    />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Celular"
-                                android:textColorHint="@color/white"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginHorizontal="25dp"
-                                >
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/celular"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:inputType="number"
-                                    android:maxLength="8"
-                                    android:backgroundTint="@color/white"
-                                    />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Codigo"
-                                android:textColorHint="@color/white"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginHorizontal="25dp"
-                                >
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/codigo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:inputType="text"
-                                    android:backgroundTint="@color/white"
-                                    />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Fecha de Nacimiento"
-                                android:textColorHint="@color/white"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginHorizontal="25dp"
-                                >
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/nacimiento"
+                                    android:id="@+id/txt_fecha_inicio"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:inputType="text"
@@ -786,7 +708,7 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Pais"
+                                android:hint="Fecha Fin"
                                 android:textColorHint="@color/white"
                                 android:layout_gravity="center"
                                 android:backgroundTint="@color/white"
@@ -794,10 +716,34 @@
                                 android:layout_marginHorizontal="25dp"
                                 >
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/pais"
+                                    android:id="@+id/txt_fecha_fin"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:inputType="text"
+                                    android:backgroundTint="@color/white"
+                                    android:focusable="false"
+                                    android:clickable="true"
+                                    />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Tiempo"
+                                android:textColorHint="@color/white"
+                                android:layout_gravity="center"
+                                android:backgroundTint="@color/white"
+                                android:layout_marginVertical="10dp"
+                                android:layout_marginHorizontal="25dp"
+                                >
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/txt_tiempo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:inputType="number"
+                                    android:maxLength="2"
                                     android:backgroundTint="@color/white"
                                     />
                             </com.google.android.material.textfield.TextInputLayout>
@@ -805,7 +751,7 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Ciudad"
+                                android:hint="Intentos"
                                 android:textColorHint="@color/white"
                                 android:layout_gravity="center"
                                 android:backgroundTint="@color/white"
@@ -813,55 +759,14 @@
                                 android:layout_marginHorizontal="25dp"
                                 >
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/ciudad"
+                                    android:id="@+id/txt_intentos"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:inputType="text"
+                                    android:inputType="number"
+                                    android:maxLength="2"
                                     android:backgroundTint="@color/white"
                                     />
                             </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Correo"
-                                android:textColorHint="@color/white"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginHorizontal="25dp"
-                                >
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/correo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:inputType="text"
-                                    android:backgroundTint="@color/white"
-                                    />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="User"
-                                android:textColorHint="@color/white"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginHorizontal="25dp"
-                                >
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/user"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:inputType="text"
-                                    android:backgroundTint="@color/white"
-                                    />
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
 
 
                         </LinearLayout>
@@ -928,6 +833,23 @@
 
 
 
+    <!-- Esta es la vista de framelayout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8.5"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="gone"
+        android:id="@+id/fragment"
+        >
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 
 

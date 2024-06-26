@@ -8,6 +8,7 @@ import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
@@ -169,6 +170,32 @@ class PruebaJuego_construir_oraciones_simples : BaseActivity(), TextToSpeech.OnI
             speakOut(textToSpeak)
         }
     }
+
+
+
+    fun retroceder(view: View){
+
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "ESTAS SEGURO!"
+        sweetAlertDialog.contentText = "QUE QUIERES SALIR"
+        sweetAlertDialog.confirmText = "si"
+        sweetAlertDialog.cancelText = "no"
+        sweetAlertDialog.setCancelable(false)
+        sweetAlertDialog.setConfirmClickListener {
+            finish()
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.show()
+
+    }
+
+
+
+
+
 
 
     fun alertCorrecto(){

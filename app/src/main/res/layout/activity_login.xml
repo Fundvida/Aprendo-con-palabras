@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,84 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logofund_grande"
+            />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="USUARIO"
+            android:textColorHint="@color/greyinput"
+            >
+
+            <EditText
+                android:id="@+id/txtuser"
+                android:layout_width="450dp"
+                android:layout_height="50dp"
+                android:textSize="30dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/greyinput"
+                android:gravity="center"
+                android:background="@drawable/style_input_login"
+                android:inputType="text|textNoSuggestions"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="contraseña"
+            android:textColorHint="@color/greyinput"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/greyinput">
+            <EditText
+                android:id="@+id/txtpass"
+                android:layout_width="450dp"
+                android:layout_height="50dp"
+                android:textSize="30dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/greyinput"
+                android:gravity="center"
+                android:background="@drawable/style_input_login"
+                android:inputType="textPassword|textNoSuggestions"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/button_acceder_new"
+            android:backgroundTint="@color/float_transparent"
+            />
+
+
+
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnmas"
@@ -21,72 +99,9 @@
         app:borderWidth="0dp"
         app:fabSize="normal"
         android:layout_marginRight="15dp"
-        />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="USUARIO"
-        android:textColorHint="@color/greyinput"
-        >
-
-        <EditText
-            android:id="@+id/txtuser"
-            android:layout_width="450dp"
-            android:layout_height="50dp"
-            android:textSize="30dp"
-            android:fontFamily="@font/digitalt"
-            android:textColor="@color/greyinput"
-            android:gravity="center"
-            android:background="@drawable/style_input_login"
-            android:inputType="text|textNoSuggestions"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="contraseña"
-        android:textColorHint="@color/greyinput"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/greyinput">
-        <EditText
-            android:id="@+id/txtpass"
-            android:layout_width="450dp"
-            android:layout_height="50dp"
-            android:textSize="30dp"
-            android:fontFamily="@font/digitalt"
-            android:textColor="@color/greyinput"
-            android:gravity="center"
-            android:background="@drawable/style_input_login"
-            android:inputType="textPassword|textNoSuggestions"
-
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
-
-    <ImageButton
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/button_acceder_new"
-        android:backgroundTint="@color/float_transparent"
+        android:layout_marginTop="15dp"
         />
 
 
 
-
-
-
-
-
-</LinearLayout>
+</FrameLayout>

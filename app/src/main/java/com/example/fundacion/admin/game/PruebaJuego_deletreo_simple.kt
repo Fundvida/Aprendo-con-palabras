@@ -5,20 +5,32 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
+import com.example.fundacion.config
+import com.github.kittinunf.fuel.Fuel
+import org.json.JSONArray
 
 class PruebaJuego_deletreo_simple : BaseActivity() {
+
+    lateinit var jsonArrayDatos : JSONArray
+    var palabrasDeletrear = mutableListOf<String>()
+
+
     private val SPEECH_REQUEST_CODE = 123
-    private val palabrasDeletrear = listOf("fundacion", "educar", "vida", "camino", "sueño")
+    //private val palabrasDeletrear = listOf("fundacion", "educar", "vida", "camino", "sueño")
     private var palabraActualIndex = 0
 
-    private lateinit var palabraActualTextView: TextView
-    private lateinit var escuchada: TextView
     private lateinit var palabraActualList: LinearLayout
 
     private fun startSpeechToText() {
@@ -32,15 +44,44 @@ class PruebaJuego_deletreo_simple : BaseActivity() {
         }
     }
 
+
+    fun datos(){
+
+        Fuel.get("${config.url}admin/preg-deletreo-simples-all/${config.IDJuegoPrueba}").responseString{ result ->
+            result.fold(
+                success = { data ->
+                    println("los datos son ${config.IDJuegoPrueba} ===>  "+data)
+
+
+                    val jsonArray = JSONArray(data)
+
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonObject = jsonArray.getJSONObject(i)
+                        val palabra = jsonObject.getString("palabra")
+                        palabrasDeletrear.add(palabra)
+                    }
+
+                    actualizarPalabraActual()
+
+                },
+                failure = { error ->
+                    Log.e("Upload", "Error: ${error.exception.message}")
+                }
+            )
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prueba_juego_deletreo_simple)
 
-        palabraActualList = findViewById(R.id.letras)
-        palabraActualTextView = findViewById(R.id.palabraActualTextView)
-        escuchada = findViewById(R.id.escuchada)
 
-        actualizarPalabraActual()
+        val tema : TextView = findViewById(R.id.tema)
+        tema.setText(config.NAMEJuegoPrueba)
+
+        palabraActualList = findViewById(R.id.letras)
+
 
         val botonDeletreo = findViewById<Button>(R.id.speechToTextButton)
         botonDeletreo.setOnClickListener {
@@ -57,11 +98,13 @@ class PruebaJuego_deletreo_simple : BaseActivity() {
                 Toast.makeText(this, "Todas las palabras han sido deletreadas", Toast.LENGTH_SHORT).show()
             }
         }
+
+        datos()
+
     }
 
     private fun actualizarPalabraActual() {
         palabraActualList.removeAllViews()
-        palabraActualTextView.text = palabrasDeletrear[palabraActualIndex]
         println(palabrasDeletrear[palabraActualIndex])
 
         val palabra = palabrasDeletrear[palabraActualIndex]
@@ -69,15 +112,38 @@ class PruebaJuego_deletreo_simple : BaseActivity() {
         for ((index, letra) in palabra.withIndex()) {
             val textView = TextView(this)
             textView.text = letra.toString()
-            textView.textSize = 24f // Tamaño de texto ajustable según tu preferencia
-            textView.setPadding(10, 0, 10, 0) // Ajusta el padding según tu diseño
+
+            textView.textSize = 50f // Tamaño de texto ajustable según tu preferencia
+            textView.setPadding(0, 0, 0, 0) // Ajusta el padding según tu diseño
             textView.id = index // Asignar un ID único a cada TextView
             textView.isAllCaps = true
+            textView.setBackgroundResource(R.drawable.fondo_deletreo_normal)
+            textView.gravity = Gravity.CENTER
+            textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+
+            textView.layoutParams = LinearLayout.LayoutParams(
+                dpToPx(60),
+                dpToPx(60)
+            ).apply {
+                setMargins(15, 5, 15, 5)
+                gravity = Gravity.CENTER
+            }
+
             palabraActualList.addView(textView)
         }
 
 
     }
+
+
+
+    private fun dpToPx(dp: Int): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this.resources.displayMetrics
+        ).toInt()
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -116,19 +182,18 @@ class PruebaJuego_deletreo_simple : BaseActivity() {
                 if (palabra.length > i ){
 
                     if (palabra[i].toString().lowercase() == textView.text.toString().lowercase()){
-                        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bien, 0, 0, 0)
+                        textView.setBackgroundResource(R.drawable.fondo_deletreo_bien)
                     }else
                     {
-                        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.error, 0, 0, 0)
+                        textView.setBackgroundResource(R.drawable.fondo_deletreo_mal)
                     }
                 }else{
-                    textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.alert, 0, 0, 0)
+                    textView.setBackgroundResource(R.drawable.fondo_deletreo_alert)
                 }
 
             }
         }
 
-        escuchada.setText(palabra)
         /*
         if (palabra.toLowerCase() == palabraCorrecta.toLowerCase()) {
             // Palabra correcta, puedes hacer lo que necesites aquí
@@ -145,5 +210,24 @@ class PruebaJuego_deletreo_simple : BaseActivity() {
             // Palabra incorrecta, puedes hacer lo que necesites aquí
             Toast.makeText(this, "Palabra incorrecta", Toast.LENGTH_SHORT).show()
         }*/
+    }
+
+    fun retroceder(view: View){
+
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "ESTAS SEGURO!"
+        sweetAlertDialog.contentText = "QUE QUIERES SALIR"
+        sweetAlertDialog.confirmText = "si"
+        sweetAlertDialog.cancelText = "no"
+        sweetAlertDialog.setCancelable(false)
+        sweetAlertDialog.setConfirmClickListener {
+            finish()
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.show()
+
     }
 }

@@ -12,6 +12,7 @@ import com.example.fundacion.R
 import com.example.fundacion.admin.Juego
 import com.example.fundacion.admin.game.PruebaJuego_abecedario
 import com.example.fundacion.admin.game.PruebaJuego_construir_oraciones_simples
+import com.example.fundacion.admin.game.PruebaJuego_deletreo_simple
 import com.example.fundacion.admin.game.PruebaJuego_silabasimple
 import com.example.fundacion.admin.game.PruebaJuego_sopaletras_basico
 import com.example.fundacion.admin.game.PruebaJuego_vocal
@@ -57,7 +58,7 @@ class Adapter_ListaJuegos(
                 }
                 //deletreo de palabras
                 4 -> {
-                    val intent = Intent(context, PruebaJuego_silabasimple::class.java)
+                    val intent = Intent(context, PruebaJuego_deletreo_simple::class.java)
                     context.startActivity(intent)
                     config.IDJuegoPrueba = juego.id
                     config.NAMEJuegoPrueba = juego.tarea

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.ImageView
@@ -154,6 +155,7 @@ class PruebaJuego_abecedario : BaseActivity(), Game_Vocal, TextToSpeech.OnInitLi
                 if (copiIMG.isEmpty()){
                     gridView.isEnabled = false
 
+
                     val textToSpeak = "felicidades terminaste quieres volver a jugar"
                     speakOut(textToSpeak)
                     alertTerminado()
@@ -173,6 +175,30 @@ class PruebaJuego_abecedario : BaseActivity(), Game_Vocal, TextToSpeech.OnInitLi
             }
         }
     }
+
+
+    fun retroceder(view: View){
+
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "ESTAS SEGURO!"
+        sweetAlertDialog.contentText = "QUE QUIERES SALIR"
+        sweetAlertDialog.confirmText = "si"
+        sweetAlertDialog.cancelText = "no"
+        sweetAlertDialog.setCancelable(false)
+        sweetAlertDialog.setConfirmClickListener {
+            finish()
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.show()
+
+    }
+
+
+
+
 
     fun alertTerminado(){
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)

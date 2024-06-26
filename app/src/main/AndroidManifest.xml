@@ -21,9 +21,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".user.Ueligirnivel"
-            android:screenOrientation="landscape"
+            android:name=".admin.Aestudiantes"
             android:exported="false" />
+        <activity
+            android:name=".user.Ueligirnivel"
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".admin.game.PruebaJuego_sopaletras_basico"
             android:exported="false"
@@ -37,7 +40,8 @@
             android:exported="false" />
         <activity
             android:name=".admin.game.PruebaJuego_deletreo_simple"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".admin.game.PruebaJuego_silabasimple"
             android:exported="false"

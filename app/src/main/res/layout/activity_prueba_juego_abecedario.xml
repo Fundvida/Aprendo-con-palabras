@@ -21,6 +21,36 @@
             android:gravity="center"
             android:paddingHorizontal="10dp"
             >
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                />
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/inicio_back_btn"
+                android:background="@color/float_transparent"
+                android:onClick="retroceder"
+                />
+            <View
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                />
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/button_menu_new"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,7 +58,7 @@
                 android:textColor="@color/gamecolorazul"
                 android:textStyle="bold"
                 android:fontFamily="@font/digitalt"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:gravity="center"
                 />
             <TextView
@@ -39,7 +69,7 @@
                 android:textColor="@color/gamecolorazul"
                 android:textStyle="bold"
                 android:fontFamily="@font/digitalt"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:gravity="center"
                 />
             <TextView
@@ -66,6 +96,13 @@
                     android:layout_height="40dp"
                     android:text="1"/>
             </LinearLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
         </LinearLayout>
 
 
@@ -86,10 +123,18 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 >
-                <View
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"/>
+                    android:layout_weight="1.5"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logofund_grande"
+                        android:layout_gravity="center"
+                        />
+                </LinearLayout>
 
                 <GridView
                     android:id="@+id/grid_view"
@@ -104,10 +149,18 @@
                     android:verticalSpacing="5dp"
                     />
 
-                <View
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"/>
+                    android:layout_weight="1.5"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logofund_grande"
+                        android:layout_gravity="center"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"

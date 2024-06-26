@@ -3,17 +3,13 @@ package com.example.fundacion.admin.adapter
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.R
 import com.example.fundacion.admin.Refresh
@@ -28,7 +24,7 @@ class AdapterUsuario(
     private val context: Context,
     private val userList: List<lusuarios>,
     private val refreshableComponent: Refresh
-    ): RecyclerView.Adapter<AdapterUsuario.ViewHolder>() {
+): RecyclerView.Adapter<AdapterUsuario.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -131,7 +127,7 @@ class AdapterUsuario(
         celular.setText(datos.celular)
         codigo.setText(datos.codigo)
         nacimiento.setText(datos.nacimiento)
-        pais.setText(datos.ciudad)
+        pais.setText(datos.pais)
         ciudad.setText(datos.ciudad)
         correo.setText(datos.email)
         user.setText(datos.user)
@@ -162,20 +158,20 @@ class AdapterUsuario(
             Fuel.put("${config.url}admin/user-update/"+datos.id)
                 .jsonBody(postData)
                 .responseString { _, _, result ->
-                result.fold(
-                    success = { data->
+                    result.fold(
+                        success = { data->
 
 
                             Toasty.success(context, "Actualizado Correctamente", Toasty.LENGTH_SHORT).show()
 
-                        refreshableComponent.refresha()
-                        dialog.dismiss()
+                            refreshableComponent.refresha()
+                            dialog.dismiss()
 
-                    },
-                    failure = { error -> println(error) }
+                        },
+                        failure = { error -> println(error) }
 
-                )
-            }
+                    )
+                }
         }
     }
 
@@ -195,4 +191,4 @@ class AdapterUsuario(
 
 
 
-    }
+}

@@ -112,20 +112,22 @@ class login : BaseActivity() {
 
     fun LOGIN(u: String, p: String) {
 
-/*
+
         val postData = """
             {
                 "username": "$u",
                 "password": "$p"
             }
         """.trimIndent()
-        */
+
+        /*
         val postData = """
             {
                 "username": "estu",
                 "password": "estu"
             }
         """.trimIndent()
+        */
 
         Fuel.post("${config.url}login")
             .jsonBody(postData)

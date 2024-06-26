@@ -128,4 +128,8 @@ class inicio : BaseActivity() {
         gamelist(6)
     }
 
+
+    fun torneo(view: View){
+    }
+
 }

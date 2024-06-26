@@ -1,82 +1,183 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+﻿
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/adminD"
-    android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen">
-
-
-
+    >
 
 
 
 
     <LinearLayout
-        android:id="@+id/view_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8.5"
-        android:padding="10dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:visibility="visible"
+        android:background="@drawable/fondo_vocal_cristian"
         >
-        <TextView
-            android:id="@+id/palabraActualTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/speechToTextButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            android:visibility="visible" />
-        <Button
-            android:id="@+id/speechToTextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Deletrear con Voz" />
+
 
         <LinearLayout
-            android:id="@+id/letras"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center"
             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="28dp"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Da"
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="28dp"
+                android:gravity="center"
+                />
+
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="palabra Escuchada"/>
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
-        <TextView
-            android:id="@+id/escuchada"
+            <LinearLayout
+                android:id="@+id/letras"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/inicio_deletreo_sound"
+                />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                />
+
+            <Button
+                android:id="@+id/speechToTextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/inicio_deletreo_mic"
+                />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                />
+            <Button
+                android:id="@+id/siguiente"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/inicio_deletreo_next"
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+        </LinearLayout>
 
 
-        <Button
-            android:id="@+id/siguiente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Siguiente" />
+
+
 
     </LinearLayout>
 
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/retroceder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/inicio_back_btn"
+        app:elevation="8dp"
+        app:backgroundTint="@color/float_transparent"
+        app:maxImageSize="56dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:onClick="retroceder"
+        />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnmas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_menu_new"
+        app:elevation="8dp"
+        app:backgroundTint="@color/float_transparent"
+        app:maxImageSize="56dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_gravity="end"
+        android:src="@drawable/logofund_grande"
+        app:elevation="8dp"
+        app:backgroundTint="@color/float_transparent"
+        app:maxImageSize="56dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        />
 
 
 
 
 
-</LinearLayout>
+
+</FrameLayout>

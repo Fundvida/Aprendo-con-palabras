@@ -32,6 +32,11 @@ interface RefreshGamePreguntasSilabasSimples{
     fun modalEditSilabas(position: Int)
 
 }
+interface RefreshGamePreguntasDeletreoSimples{
+    fun refresh()
+    fun modalEditSilabas(position: Int)
+
+}
 interface RefreshGamePreguntas{
     fun refresh()
     fun modalEdit(position: Int)
@@ -50,4 +55,28 @@ interface RefreshGameSopaLetrasPrueba{
     fun noselect()
     fun terminado()
 
+}
+
+
+interface Refreshtorneo {
+    fun refresha()
+    fun verlist(fragment: Fragment)
+    fun retro()
+}
+
+interface RefreshTorneoGames{
+    fun refresh()
+    fun agregar()
+    fun agregarEdit()
+
+    fun edit(position: Int)
+    //fun modalEditVocales(position: Int)
+}
+interface RefreshTorneoEstudiante{
+    fun refresh()
+    fun agregar()
+    fun agregarEdit()
+
+    fun edit(position: Int)
+    //fun modalEditVocales(position: Int)
 }

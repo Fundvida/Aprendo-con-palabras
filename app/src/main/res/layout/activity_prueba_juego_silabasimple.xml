@@ -214,103 +214,53 @@
             android:orientation="horizontal"
             android:gravity="center"
             >
-            <!--
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:text="Selecciona un Boton"
-                           android:textStyle="bold"
-                           android:fontFamily="@font/digitalt"
-                           android:textColor="@color/errorColor"
-                           android:textSize="30dp"
-                           android:gravity="center"
-                           />
-
-
-
-                       <LinearLayout
-                           android:layout_width="90dp"
-                           android:layout_height="wrap_content"
-                           android:orientation="vertical"
-                           android:background="@drawable/fondo_total_vocal_new"
-                           android:gravity="center"
-                           android:paddingHorizontal="15dp"
-                           >
-                           <TextView
-                               android:id="@+id/total"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:textSize="40dp"
-                               android:fontFamily="@font/digitalt"
-                               android:textColor="@color/white"
-                               android:text="1"/>
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/digitalt"
-                               android:textColor="@color/white"
-                               android:text="TOTAL "/>
-
-                       </LinearLayout>
-
-                       <View
-                           android:layout_width="150dp"
-                           android:layout_height="match_parent"/>
-
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:orientation="vertical"
-                           android:background="@drawable/fondo_halladas_vocal_new"
-                           android:gravity="center"
-                           android:paddingHorizontal="15dp"
-                           >
-
-                           <TextView
-                               android:id="@+id/encontradas"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/digitalt"
-                               android:textSize="40dp"
-                               android:textColor="@color/white"
-                               android:text="1"/>
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/digitalt"
-                               android:textColor="@color/white"
-                               android:text="HALLADAS "/>
-                       </LinearLayout>
-                       <View
-                           android:layout_width="150dp"
-                           android:layout_height="match_parent"/>
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:orientation="vertical"
-                           android:gravity="center"
-                           android:paddingHorizontal="15dp"
-                           android:background="@drawable/fondo_restantes_vocal_new"
-                           >
-                           <TextView
-                               android:id="@+id/faltante"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/digitalt"
-                               android:textColor="@color/white"
-                               android:textSize="40dp"
-                               android:text="1"/>
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:fontFamily="@font/digitalt"
-                               android:textColor="@color/white"
-                               android:text="Restantes"/>
-
-                       </LinearLayout>
-           -->
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/retroceder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/inicio_back_btn"
+        app:elevation="8dp"
+        app:backgroundTint="@color/float_transparent"
+        app:maxImageSize="56dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:onClick="retroceder"
+        />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnmas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_menu_new"
+        app:elevation="8dp"
+        app:backgroundTint="@color/float_transparent"
+        app:maxImageSize="56dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_gravity="end"
+        android:src="@drawable/logofund_grande"
+        app:elevation="8dp"
+        app:backgroundTint="@color/float_transparent"
+        app:maxImageSize="56dp"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        />
+
+
+
 </FrameLayout>

@@ -38,13 +38,15 @@ class NetworkListener(private val context: Context) {
             if (capacidades?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true) {
                 val direcciones = connectivityManager.getLinkProperties(red)?.linkAddresses
                 direcciones?.forEach { direccion ->
+
+                    println("esta es la url                ${config.url}")
                     val ip = direccion.address.hostAddress
                     Log.d("SplashActivity", "IP actual: $ip")
                     // Aquí puedes hacer lo que necesites con la dirección IP, como guardarla en SharedPreferences
                     val nuevaIP = modificarIP(ip)
                     Log.d("SplashActivity", "Nueva IP modificada: $nuevaIP")
 
-                    //config.url = "http://$nuevaIP/slim/"
+                    config.url = "http://$nuevaIP/slim/"
                     Log.d("SplashActivity", "Nueva URL: ${config.url}")
 
                 }

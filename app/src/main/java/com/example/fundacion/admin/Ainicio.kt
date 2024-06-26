@@ -34,12 +34,12 @@ class Ainicio : BaseActivity() {
         startActivity(intent)
     }
     fun docentes(view : View){
-
-        Toasty.warning(this, "docente", Toasty.LENGTH_LONG).show()
+        val intent = Intent(this, Adocentes::class.java)
+        startActivity(intent)
     }
     fun estudiantes(view : View){
-
-        Toasty.warning(this, "Estudiante", Toasty.LENGTH_LONG).show()
+        val intent = Intent(this, Aestudiantes::class.java)
+        startActivity(intent)
     }
     fun juegos(view : View){
         val intent = Intent(this, Agame::class.java)
