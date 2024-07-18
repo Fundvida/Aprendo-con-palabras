@@ -216,7 +216,7 @@ class PruebaJuego_deletreo_simple : BaseActivity() {
 
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
         sweetAlertDialog.titleText = "ESTAS SEGURO!"
-        sweetAlertDialog.contentText = "QUE QUIERES SALIR"
+        sweetAlertDialog.contentText = "¿QUE QUIERES SALIR?"
         sweetAlertDialog.confirmText = "si"
         sweetAlertDialog.cancelText = "no"
         sweetAlertDialog.setCancelable(false)

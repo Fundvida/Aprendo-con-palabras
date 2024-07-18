@@ -1,4 +1,4 @@
-package com.example.fundacion.admin.game
+package com.example.fundacion.user.torneo_estud
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,12 +17,16 @@ import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.admin.Game_Vocal
+import com.example.fundacion.admin.game.Adapter_vocales_gridview
 import com.example.fundacion.config
+import com.example.fundacion.user.ESTUDdatos
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONArray
 import java.util.Locale
 
-class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListener {
+class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListener {
+
+
 
     private lateinit var gridView: GridView
     private lateinit var imageAdapter : Adapter_vocales_gridview
@@ -59,9 +63,42 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
     }
 
 
+    var index : Int? = null
+    lateinit var puntaje : TextView
+    var pts_ganados = 0
+    var pts_fallados = 0
+    var correctas = 0
+    var incorrectas = 0
+
+    private lateinit var jsonArrayDatos: JSONArray
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_prueba_juego_vocal)
+        setContentView(R.layout.activity_game_torneo_vocal_estud)
+
+
+
+        index = ESTUDdatos.indexActivity
+
+        puntaje = findViewById(R.id.puntaje)
+
+        findViewById<TextView>(R.id.puntaje_total).setText(ESTUDdatos.puntaje_total.toString())
+
+        val games_total = ESTUDdatos.datos.size - index!! -1
+
+        if (games_total == 1){
+            findViewById<TextView>(R.id.faltan_games).setText("Falta " + games_total.toString() + " juego")
+        }
+        else if (games_total == 0){
+            findViewById<TextView>(R.id.faltan_games).setText("ultimo juego")
+        }
+        else{
+            findViewById<TextView>(R.id.faltan_games).setText("Faltan " + games_total.toString() + " juegos")
+        }
+
+
+
 
         tts = TextToSpeech(this, this)
 
@@ -71,16 +108,16 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
         txtimage = findViewById(R.id.txtimg)
 
         val tema = findViewById<TextView>(R.id.tema)
-        tema.setText(config.NAMEJuegoPrueba)
+        tema.setText(ESTUDdatos.datos[index!!].nameGAME)
 
 
         val imageUrls = mutableListOf<String>()
 
-        Fuel.get("${config.url}admin/preg-vocal-all/${config.IDJuegoPrueba}").responseString{ result ->
+        Fuel.get("${config.url}admin/preg-vocal-all/${ESTUDdatos.datos[index!!].idGAME}").responseString{ result ->
             result.fold(
                 success = { data ->
                     println(data)
-                    val jsonArrayDatos = JSONArray(data)
+                    jsonArrayDatos = JSONArray(data)
                     if (jsonArrayDatos.length() > 0){
                         for (i in 0 until jsonArrayDatos.length()) {
                             val item = jsonArrayDatos.getJSONObject(i)
@@ -103,6 +140,8 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
             )
         }
 
+
+
     }
 
 
@@ -110,12 +149,12 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
         val selectedIds = HashSet<Long>()
         gridView = findViewById(R.id.grid_view)
 
-        val totalItem = 48
-        imageAdapter = Adapter_vocales_gridview(this, imageUrls, totalItem, this@PruebaJuego_vocal)
+        val totalItem = 36
+        imageAdapter = Adapter_vocales_gridview(this, imageUrls, totalItem, this@Game_torneo_vocal_estud)
         val copiIMG = imageUrls.toMutableList().shuffled() as MutableList<String>
         imageAdapter.reset(copiIMG[0])
         gridView.adapter = imageAdapter
-        gridView.numColumns = 12
+        gridView.numColumns = 9
 
 
         Glide.with(this)
@@ -135,9 +174,27 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
                     selectedIds.add(id)
                     faltantes--
                     encontradas++
+
+                    Log.e("id de vocal", "$selectedIds")
+                    Log.e("id de vocal", "$imageUrls")
+                    Log.e("id de vocal", "$copiIMG")
+
+
+                    val valor = buscarpuntaje(copiIMG[0])
+
+                    Log.e("id de vocal", "$valor")
+
+                    pts_ganados = pts_ganados + valor!!.toInt()
+                    puntaje.setText(pts_ganados.toString())
+                    correctas++
+                    ESTUDdatos.correctas++
+
                 }else{
                     val textToSpeak = "vocal incorrecta"
                     speakOut(textToSpeak)
+                    incorrectas++
+                    ESTUDdatos.errores++
+                    pts_fallados = pts_fallados - 2
                 }
             }else{
                 val textToSpeak = "la vocal ya fue seleccionada!"
@@ -160,13 +217,13 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
                     alertTerminado()
 
                 }else{
-                    val textToSpeak = "bien ya encontramos todas las vocales $Tvocal, ahora sigamos y"
+                    val textToSpeak = "ahora"
                     speakOut(textToSpeak)
                     Handler().postDelayed({
                         imageAdapter.reset(copiIMG[0])
                         faltantes = total
                         selectedIds.clear()
-                    }, 5000)
+                    }, 200)
                     Glide.with(this)
                         .load("${config.url}admin/preg-vocal-imagen/${copiIMG[0]}")
                         .into(txtimage)
@@ -175,6 +232,16 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
         }
     }
 
+
+    private fun buscarpuntaje(img: String): String? {
+        for (i in 0 until jsonArrayDatos.length()) {
+            val item = jsonArrayDatos.getJSONObject(i)
+            if (item.getString("img") == img) {
+                return item.getString("puntaje")
+            }
+        }
+        return null // Retornar null si no se encuentra el ID
+    }
     fun retroceder(view: View){
 
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
@@ -193,12 +260,6 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
         sweetAlertDialog.show()
 
     }
-
-
-
-
-
-
 
 
 
@@ -230,6 +291,7 @@ class PruebaJuego_vocal : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListene
         sweetAlertDialog.titleText = "NO HAY DATOS"
         sweetAlertDialog.cancelText = "volver"
         sweetAlertDialog.confirmText = "ir inicio"
+        sweetAlertDialog.setCancelable(false)
         sweetAlertDialog.setConfirmClickListener {
             val intent = Intent(this, Ainicio::class.java)
             startActivity(intent)

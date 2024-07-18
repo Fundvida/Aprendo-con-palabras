@@ -1,7 +1,6 @@
 package com.example.fundacion.admin.game
 
 import android.content.Context
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -11,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.fundacion.R
 import com.example.fundacion.admin.Game_Vocal
 import com.example.fundacion.config
-import java.net.URL
 
 class Adapter_vocales_gridview(
     context: Context,
@@ -92,4 +90,6 @@ class Adapter_vocales_gridview(
         vocal =gvocal
         refresh()
     }
+
+
 }

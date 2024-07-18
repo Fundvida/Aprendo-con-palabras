@@ -5,22 +5,86 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
+import com.example.fundacion.TokenManager
 import com.example.fundacion.config
+import com.example.fundacion.user.adapter.TorneoAdapter
 import com.github.kittinunf.fuel.Fuel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import org.json.JSONArray
 
 class inicio : BaseActivity() {
+
+    private val torneo_list: MutableList<ETorneoEstudiante> = mutableListOf()
+
+
+    lateinit var BTNtorneo : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
+
+        val tokenManager = TokenManager(this)
+
+        val token = tokenManager.getToken()
+
+        var userData = tokenManager.getUserData()
+
+        val nombreCom : TextView = findViewById(R.id.nombreCompleto)
+        nombreCom.setText(userData.get("nombres").toString()+" "+userData.get("apellidos").toString())
+
+
+        BTNtorneo = findViewById(R.id.torneoBTN)
+        Fuel.get("${config.url}estud/torneo/${userData.get("id")}").responseString{result ->
+            result.fold(
+                success = { d ->
+
+                    Log.e("dato", "$d")
+
+                    val jsonArray = JSONArray(d)
+
+                    // Verificar si el array tiene más de un elemento
+                    if (jsonArray.length() > 0) {
+
+                        BTNtorneo.visibility = View.VISIBLE
+
+                        val datos = Gson().fromJson(d, Array<ETorneoEstudiante>::class.java).toList()
+                        torneo_list.clear()
+                        torneo_list.addAll(datos)
+
+
+                    } else {
+                        BTNtorneo.visibility = View.GONE
+
+                    }
+
+
+                    /*
+                      val userList = Gson().fromJson(data, Array<lusuarios>::class.java).toList()
+                    usuarioss.clear()
+                    usuarioss.addAll(userList)
+
+                    runOnUiThread{
+                        val aadapter = AdapterUsuario(this, usuarioss, this@Ausuarios)
+                        rvUsuarios?.adapter = aadapter
+                    }
+
+                     */
+                },
+                failure = {error ->
+
+                    println("Error en la solicitud: $error")
+                }
+            )
+        }
 
     }
 
@@ -58,9 +122,10 @@ class inicio : BaseActivity() {
     }
 
 
+    private lateinit var revTorneo : RecyclerView
     private lateinit var recyy : RecyclerView
     fun gamelist(int: Int){
-        Fuel.get("${config.url}user/game/$int")
+        Fuel.get("${config.url}estud/game/$int")
             .responseString{ _, _, result ->
                 result.fold(
                     success = { d ->
@@ -84,6 +149,28 @@ class inicio : BaseActivity() {
 
         recyy = dialog.findViewById(R.id.recy)
         recyy.layoutManager = LinearLayoutManager(this)
+
+        val close = dialog.findViewById<ImageButton>(R.id.btn_close)
+        close.setOnClickListener { dialog.dismiss() }
+
+
+
+
+
+        dialog.show()
+    }
+    fun torneoGame(){
+
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_model_inicio_list)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        revTorneo = dialog.findViewById(R.id.recy)
+        revTorneo.layoutManager = LinearLayoutManager(this)
+
+        revTorneo.adapter = TorneoAdapter(this, torneo_list)
+
 
         val close = dialog.findViewById<ImageButton>(R.id.btn_close)
         close.setOnClickListener { dialog.dismiss() }
@@ -130,6 +217,7 @@ class inicio : BaseActivity() {
 
 
     fun torneo(view: View){
+        torneoGame()
     }
 
 }

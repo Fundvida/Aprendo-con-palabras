@@ -1,5 +1,6 @@
-package com.example.fundacion.admin.game
+package com.example.fundacion.user.torneo_estud
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -13,10 +14,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bumptech.glide.Glide
-import com.example.fundacion.BaseActivity
+import com.example.fundacion.BarButtonOFF
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.config
+import com.example.fundacion.user.ESTUDdatos
 import com.github.kittinunf.fuel.Fuel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,10 +28,15 @@ import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import java.util.Locale
 
-class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
+class Game_torneo_silabassimples_estud : BarButtonOFF(), TextToSpeech.OnInitListener {
+
 
     lateinit var jsonArrayDatos : JSONArray
     var position = 0
+    var pts_ganados = 0
+    var pts_fallados = 0
+    var correctas = 0
+    var incorrectas = 0
 
     lateinit var txtimage : ImageView
     lateinit var silaba_est : TextView
@@ -41,16 +48,41 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
     lateinit var button4 : Button
     lateinit var button5 : Button
 
+    lateinit var puntaje : TextView
+
     var vocales = listOf('a', 'e', 'i', 'o', 'u')
     var variantes = mutableListOf<String>()
     var PalabraCompleta: String? = null
 
     private lateinit var tts: TextToSpeech
 
+    var index : Int? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_prueba_juego_silabasimple)
+        setContentView(R.layout.activity_game_torneo_silabassimples_estud)
+
+
+        index = ESTUDdatos.indexActivity
+
+        puntaje = findViewById(R.id.puntaje)
+
+        findViewById<TextView>(R.id.puntaje_total).setText(ESTUDdatos.puntaje_total.toString())
+
+        val games_total = ESTUDdatos.datos.size - index!! -1
+
+        if (games_total == 1){
+            findViewById<TextView>(R.id.faltan_games).setText("Falta " + games_total.toString() + " juego")
+        }
+        else if (games_total == 0){
+            findViewById<TextView>(R.id.faltan_games).setText("ultimo juego")
+        }
+        else{
+            findViewById<TextView>(R.id.faltan_games).setText("Faltan " + games_total.toString() + " juegos")
+        }
+
+
 
         tts = TextToSpeech(this, this)
 
@@ -60,7 +92,7 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
         }, 2000)
 
         val tema : TextView = findViewById(R.id.tema)
-        tema.setText(config.NAMEJuegoPrueba)
+        tema.setText(ESTUDdatos.datos[index!!].nameGAME)
 
 
 
@@ -126,15 +158,17 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
             button4.isEnabled = false
             button5.isEnabled = false
         }
+
     }
+
 
     fun datos(){
 
-        Fuel.get("${config.url}admin/preg-silabas-simples-all/${config.IDJuegoPrueba}").responseString{ result ->
+        Fuel.get("${config.url}admin/preg-silabas-simples-all/${ESTUDdatos.datos[index!!].idGAME}").responseString{ result ->
             result.fold(
                 success = { data ->
-                    println(data)
-                    val textToSpeak = "${config.NAMEJuegoPrueba}"
+                    Log.e("GAME Silabas", data)
+                    val textToSpeak = "${ESTUDdatos.datos[index!!].nameGAME}"
                     speakOut(textToSpeak)
                     jsonArrayDatos = JSONArray(data)
                     if (jsonArrayDatos.length() > 0){
@@ -151,27 +185,20 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
     }
 
     fun alertFAIL(){
-        var opcionSeleccionada = false
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
         sweetAlertDialog.titleText = "NO HAY DATOS"
         sweetAlertDialog.cancelText = "volver"
         sweetAlertDialog.confirmText = "ir inicio"
+        sweetAlertDialog.setCancelable(false)
         sweetAlertDialog.setConfirmClickListener {
-            opcionSeleccionada = true
             val intent = Intent(this, Ainicio::class.java)
             startActivity(intent)
             finish()
             sweetAlertDialog.dismissWithAnimation()
         }
         sweetAlertDialog.setCancelClickListener {
-            opcionSeleccionada = true
             finish()
             sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.setOnDismissListener {
-            if (!opcionSeleccionada) {
-                alertFAIL()
-            }
         }
         sweetAlertDialog.show()
     }
@@ -237,26 +264,117 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
             PalabraCompleta = item.getString("palabra")
         }
         else{
-            val textToSpeak = "felicidades terminaste quieres volver a jugar"
+
+
+
+            val textToSpeak = "felicidades terminaste de jugar "
             speakOut(textToSpeak)
             alertTerminado()
         }
 
     }
 
+    fun alertTerminado(){
+
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_modal_game_torneo_siguiente_sumpunts)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.findViewById<TextView>(R.id.cant_correctas).text = correctas.toString()
+        dialog.findViewById<TextView>(R.id.cant_falladas).text = incorrectas.toString()
+        dialog.findViewById<TextView>(R.id.pts_correctas).text = pts_ganados.toString()
+        dialog.findViewById<TextView>(R.id.pts_falladas).text = pts_fallados.toString()
+        val sumar = pts_ganados+pts_fallados
+        dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
+
+        dialog.findViewById<Button>(R.id.btn_salir).setOnClickListener { alertSALIR() }
+        dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener { Next_Activity() }
+
+
+        dialog.show()
+
+    }
+
+
+    fun alertSALIR(){
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "¿ESTAS SEGURO DE SALIR?"
+        sweetAlertDialog.contentText = "perderas un intento y se guardara solo tu puntaje total"
+        sweetAlertDialog.confirmText = "si"
+        sweetAlertDialog.cancelText = "no"
+        sweetAlertDialog.setCancelable(false)
+        sweetAlertDialog.setConfirmClickListener {
+            finish()
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.show()
+    }
+
+    fun Next_Activity(){
+        val currentIndex = ESTUDdatos.indexActivity + 1
+
+        if (currentIndex <  ESTUDdatos.datos.size) {
+            val currentTarea = ESTUDdatos.datos[currentIndex]
+            val nextActivityClass = ESTUDdatos.temaActivityMap[currentTarea.nameTEMA]
+
+            Log.e("game", "$nextActivityClass")
+            Log.e("game", "$currentTarea")
+
+            ESTUDdatos.indexActivity++
+            if (nextActivityClass != null) {
+                val intent = Intent(this, nextActivityClass)
+                startActivity(intent)
+            }
+        } else {
+            // Manejar el caso cuando todas las tareas han sido completadas
+            val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+            sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
+            sweetAlertDialog.contentText = "¿QUIERES VOLVER A JUGAR?"
+            sweetAlertDialog.confirmText = "si"
+            sweetAlertDialog.cancelText = "no"
+            sweetAlertDialog.setCancelable(false)
+            sweetAlertDialog.setConfirmClickListener {
+                position = 0
+                recreate()
+                sweetAlertDialog.dismissWithAnimation()
+            }
+            sweetAlertDialog.setCancelClickListener {
+                finish()
+                sweetAlertDialog.dismissWithAnimation()
+            }
+
+            sweetAlertDialog.show()
+        }
+
+    }
+
+
     fun siguiente(resp:String){
         silaba_resp.setText(resp)
         val juntarresp = silaba_est.text.toString() + resp
+
+        val item = jsonArrayDatos.getJSONObject(position)
 
         if (PalabraCompleta == juntarresp)
         {
             val textToSpeak = "la palabra formada es $juntarresp y es correcto"
             speakOut(textToSpeak)
 
+            pts_ganados = pts_ganados + item.getString("puntaje").toInt()
+            puntaje.setText(pts_ganados.toString())
+
+            ESTUDdatos.correctas++
+            correctas++
 
             CoroutineScope(Dispatchers.IO).launch {
                 delay(2000)
                 withContext(Dispatchers.Main) {
+
                     alertCorrecto()
 
                 }
@@ -266,6 +384,10 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
         else{
             val textToSpeak = "la palabra correcta era $PalabraCompleta"
             speakOut(textToSpeak)
+
+            pts_fallados = pts_fallados - 2
+            ESTUDdatos.errores++
+            incorrectas++
 
             CoroutineScope(Dispatchers.IO).launch {
                 delay(2000)
@@ -279,11 +401,11 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
 
 
 
-    fun retroceder(view: View){
+    fun salir_btn(view: View){
 
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-        sweetAlertDialog.titleText = "ESTAS SEGURO!"
-        sweetAlertDialog.contentText = "¿QUE QUIERES SALIR?"
+        sweetAlertDialog.titleText = "¿ESTAS SEGURO DE SALIR?"
+        sweetAlertDialog.contentText = "perderas un intento y se guardara solo tu puntaje total"
         sweetAlertDialog.confirmText = "si"
         sweetAlertDialog.cancelText = "no"
         sweetAlertDialog.setCancelable(false)
@@ -340,33 +462,12 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
         sweetAlertDialog.show()
     }
 
-    fun alertTerminado(){
-        var opcionSeleccionada = false
 
-        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-        sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
-        sweetAlertDialog.contentText = "¿QUIERES VOLVER A JUGAR?"
-        sweetAlertDialog.confirmText = "si"
-        sweetAlertDialog.cancelText = "no"
-        sweetAlertDialog.setCancelable(false)
-        sweetAlertDialog.setConfirmClickListener {
-            position = 0
-            opcionSeleccionada = true
-            recreate()
-            sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.setCancelClickListener {
-            opcionSeleccionada = true
-            finish()
-            sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.setOnDismissListener {
-            if (!opcionSeleccionada) {
-                alertTerminado()
-            }
-        }
-        sweetAlertDialog.show()
-    }
+
+
+
+
+
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
@@ -393,5 +494,6 @@ class PruebaJuego_silabasimple : BaseActivity(), TextToSpeech.OnInitListener {
         }
         tts.shutdown()
     }
+
 
 }

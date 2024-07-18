@@ -214,7 +214,7 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
 
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
         sweetAlertDialog.titleText = "ESTAS SEGURO!"
-        sweetAlertDialog.contentText = "QUE QUIERES SALIR"
+        sweetAlertDialog.contentText = "¿QUE QUIERES SALIR?"
         sweetAlertDialog.confirmText = "si"
         sweetAlertDialog.cancelText = "no"
         sweetAlertDialog.setCancelable(false)
@@ -236,7 +236,7 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
 
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
         sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
-        sweetAlertDialog.contentText = "QUIERES VOLVER A JUGAR"
+        sweetAlertDialog.contentText = "¿QUIERES VOLVER A JUGAR?"
         sweetAlertDialog.confirmText = "si"
         sweetAlertDialog.cancelText = "no"
         sweetAlertDialog.setCancelable(false)

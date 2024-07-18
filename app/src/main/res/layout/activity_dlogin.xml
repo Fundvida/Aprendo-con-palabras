@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_login_admin"
+    android:background="@drawable/fondo_new_cristian"
+
     android:orientation="vertical"
     tools:context=".login">
 
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="DOCENTE"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="30dp"/>
         <View
             android:layout_width="match_parent"
@@ -50,9 +51,9 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="Ingresar Usuario"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/white"
             android:layout_gravity="center"
-            app:helperTextTextColor="@color/black"
+            app:helperTextTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
@@ -62,11 +63,11 @@
                 android:id="@+id/txtuserA"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:imeOptions="actionNext"
                 android:inputType="text|textNoSuggestions"
-                android:textColor="@color/black"></com.google.android.material.textfield.TextInputEditText>
+                android:textColor="@color/white"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -79,9 +80,9 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             app:endIconMode="password_toggle"
-            app:endIconTint="@color/black"
+            app:endIconTint="@color/white"
             android:hint="Ingresar Password"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
@@ -92,10 +93,10 @@
                 android:id="@+id/txtpassA"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/black"
-                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/white"
                 android:gravity="center"
-                android:textColorHint="@color/black"
+                android:textColorHint="@color/white"
                 android:imeOptions="actionDone"
                 android:inputType="text|textNoSuggestions"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -113,7 +114,7 @@
             android:paddingRight="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="INGRESAR"
-            android:backgroundTint="@color/successColor"
+            android:backgroundTint="@color/adminU"
             android:typeface="serif"
             android:textStyle="bold" />
 

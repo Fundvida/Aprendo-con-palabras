@@ -3,6 +3,7 @@ package com.example.fundacion
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
@@ -93,8 +94,6 @@ class login : BaseActivity() {
 
         val btnLogin = findViewById<ImageButton>(R.id.btnLogin)
         btnLogin.setOnClickListener {
-            /*val intent = Intent(this, inicio::class.java)
-            startActivity(intent)*/
             val u = txtuser.text.toString()
             val p = txtpass.text.toString()
             LOGIN(u,p)
@@ -112,22 +111,22 @@ class login : BaseActivity() {
 
     fun LOGIN(u: String, p: String) {
 
-
+/*
         val postData = """
             {
                 "username": "$u",
                 "password": "$p"
             }
         """.trimIndent()
+*/
 
-        /*
         val postData = """
             {
                 "username": "estu",
                 "password": "estu"
             }
         """.trimIndent()
-        */
+        var tokenManager = TokenManager(this)
 
         Fuel.post("${config.url}login")
             .jsonBody(postData)
@@ -140,9 +139,15 @@ class login : BaseActivity() {
                             Toasty.error(this, error, Toasty.LENGTH_LONG).show()
                         }
                         else {
+
+                            tokenManager.saveTokenData(jsonresp.getString("token"))
                             Toasty.success(this, "estudiante encontrado", Toasty.LENGTH_SHORT).show()
                             val intent = Intent(this, Ueligirnivel::class.java)
                             startActivity(intent)
+
+
+                            Log.e("login","$d")
+
                         }
                     },
                     failure = {error ->
