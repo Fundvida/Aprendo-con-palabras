@@ -1,13 +1,16 @@
 package com.example.fundacion.user.torneo_estud
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +22,7 @@ import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.admin.Game_Vocal
 import com.example.fundacion.admin.game.Adapter_vocales_gridview
 import com.example.fundacion.config
+import com.example.fundacion.configurefullScreen_fullview
 import com.example.fundacion.user.ESTUDdatos
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONArray
@@ -73,9 +77,21 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
     private lateinit var jsonArrayDatos: JSONArray
 
 
+
+    lateinit var txt_time : TextView
+    lateinit var txt_timerest : TextView
+    private var countDownTimer: CountDownTimer? = null
+    private var elapsedMillis = 0L
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_torneo_vocal_estud)
+
+        txt_time = findViewById(R.id.time_total)
+        txt_timerest = findViewById(R.id.time_rest)
+
+        timer()
 
 
 
@@ -144,6 +160,85 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
 
     }
 
+    fun timer()
+    {
+
+        val millis: Long = ESTUDdatos.GameTime // Milisegundos
+
+        val totalSeconds = millis / 1000
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+
+        val timeFormatted = String.format("%02d:%02d", minutes, seconds)
+
+        txt_time.text = "00:00"
+        txt_timerest.text = timeFormatted
+
+        val totalTimeInMillis = ESTUDdatos.GameTime
+
+        // Crear el contador regresivo
+        countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
+
+
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 1000 / 60
+                val seconds = millisUntilFinished / 1000 % 60
+                val timeFormatted = String.format("%02d:%02d", minutes, seconds)
+                txt_timerest.text = timeFormatted
+
+
+                // Actualizar tiempo transcurrido
+                elapsedMillis += 1000
+                val minutesElapsed = elapsedMillis / 1000 / 60
+                val secondsElapsed = elapsedMillis / 1000 % 60
+                val elapsedFormatted = String.format("%02d:%02d", minutesElapsed, secondsElapsed)
+                txt_time.text = elapsedFormatted
+            }
+
+            override fun onFinish() {
+                txt_timerest.text = "00:00"
+                txt_time.text = String.format(
+                    "%02d:%02d",
+                    totalTimeInMillis / 1000 / 60,
+                    totalTimeInMillis / 1000 % 60
+                )
+
+
+                Log.e("timer", "timer terminado")
+                alertTimEnd()
+            }
+        }
+
+        // Iniciar el contador
+        countDownTimer?.start()
+
+    }
+
+    fun alertTimEnd()
+    {
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_modal_game_torneo_time_end)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.findViewById<TextView>(R.id.cant_correctas).text = correctas.toString()
+        dialog.findViewById<TextView>(R.id.cant_falladas).text = incorrectas.toString()
+        dialog.findViewById<TextView>(R.id.pts_correctas).text = pts_ganados.toString()
+        dialog.findViewById<TextView>(R.id.pts_falladas).text = pts_fallados.toString()
+        val sumar = pts_ganados+pts_fallados
+        dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
+
+        dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener {
+            startActivity(Intent(this, Tabla_final_puntos::class.java))
+        }
+
+
+        dialog.show()
+        configurefullScreen_fullview(dialog)
+
+
+    }
 
     fun siguiente(imageUrls: MutableList<String>) {
         val selectedIds = HashSet<Long>()
@@ -217,8 +312,6 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
                     alertTerminado()
 
                 }else{
-                    val textToSpeak = "ahora"
-                    speakOut(textToSpeak)
                     Handler().postDelayed({
                         imageAdapter.reset(copiIMG[0])
                         faltantes = total

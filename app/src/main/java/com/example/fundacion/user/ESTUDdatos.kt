@@ -19,6 +19,8 @@ class ESTUDdatos {
         var errores = 0
         var correctas = 0
 
+        var GameTime = 0L
+
         var temaActivityMap = mapOf(
             "LAS VOCALES" to Game_torneo_vocal_estud::class.java,
             "EL ABECEDARIO" to PruebaJuego_abecedario::class.java,

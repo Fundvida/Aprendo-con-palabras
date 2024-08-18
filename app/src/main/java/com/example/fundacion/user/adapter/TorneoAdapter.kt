@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.R
+import com.example.fundacion.user.ESTUDdatos
 import com.example.fundacion.user.ETorneoEstudiante
 import com.example.fundacion.user.torneo_estud.Pre_torneo_estud
 
@@ -37,6 +38,8 @@ class TorneoAdapter (
             val intent = Intent(context, Pre_torneo_estud::class.java)
             intent.putExtra("TORNEO_ID", dato.torneo.id)
             intent.putExtra("TORNEO_NOMBRE", dato.torneo.nombre)
+            ESTUDdatos.GameTime = (dato.torneo.tiempo.toInt()*60) * 1000L
+            //ESTUDdatos.GameIntentos =
             context.startActivity(intent)
         }
 
