@@ -1,9 +1,678 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.torneo_estud.Tabla_final_puntos">
+    android:background="@drawable/fondo_game_torneo_estud"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:text="Tabla de Resultados"
+        android:fontFamily="@font/digitalt"
+        android:gravity="center"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="@drawable/fondo_game_torneo_estud"
+        android:orientation="vertical"
+        >
+
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:orientation="horizontal"
+             android:layout_margin="10dp"
+             >
+
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:padding="5dp"
+                 android:orientation="vertical"
+                 android:background="@drawable/buttonbartrue"
+                 android:layout_margin="15dp"
+                 >
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Intento"
+                     android:textSize="25dp"
+                     android:fontFamily="@font/digitalt"
+                     android:textColor="@color/white"
+                     android:layout_marginHorizontal="20dp"
+                     android:layout_marginVertical="10dp"
+                     />
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <TextView
+                     android:id="@+id/intentos"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:background="@color/white"
+                     android:textColor="@color/morado"
+                     android:text="12"
+                     android:fontFamily="@font/digitalt"
+                     android:textSize="90dp"
+                     android:gravity="center"
+                     />
+             </LinearLayout>
+
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:padding="5dp"
+                 android:orientation="vertical"
+                 android:background="@drawable/buttonbartrue"
+                 android:layout_margin="15dp"
+                 >
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Resultado de respuestas"
+                     android:textSize="25dp"
+                     android:fontFamily="@font/digitalt"
+                     android:textColor="@color/white"
+                     android:layout_marginHorizontal="20dp"
+                     android:layout_marginVertical="10dp"
+                     />
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="juegos jugados"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+                     <View
+                         android:layout_width="90dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:id="@+id/games_count"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="22 "
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="cantidad de acertadas"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                     <View
+                         android:layout_width="10dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:id="@+id/correctas"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="30"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/successColor"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntos ganados"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+                     <View
+                         android:layout_width="80dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:id="@+id/puntos"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="300"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+             </LinearLayout>
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:padding="5dp"
+                 android:orientation="vertical"
+                 android:background="@drawable/buttonbartrue"
+                 android:layout_margin="15dp"
+                 >
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Resultado de errores"
+                     android:textSize="25dp"
+                     android:fontFamily="@font/digitalt"
+                     android:textColor="@color/white"
+                     android:layout_marginHorizontal="20dp"
+                     android:layout_marginVertical="10dp"
+                     />
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="descuento de cada error"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="2 pts."
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="cantidad de errores"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                     <View
+                         android:layout_width="50dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:id="@+id/errores"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="30"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/errorColor"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntos a descontar"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+                     <View
+                         android:layout_width="50dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:id="@+id/puntos_errores"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="30"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+             </LinearLayout>
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:padding="5dp"
+                 android:orientation="vertical"
+                 android:background="@drawable/buttonbartrue"
+                 android:layout_margin="15dp"
+                 >
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Resultado de tiempo"
+                     android:textSize="25dp"
+                     android:fontFamily="@font/digitalt"
+                     android:textColor="@color/white"
+                     android:layout_marginHorizontal="20dp"
+                     android:layout_marginVertical="10dp"
+                     />
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="tiempo logrado"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                     <TextView
+                         android:id="@+id/time_logrado"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="15:00"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="tiempo faltante"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                     <TextView
+                         android:id="@+id/time_restante"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="10:00"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/warningColor"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntos extras"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                     <TextView
+                         android:id="@+id/time_bonus"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="30"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+             </LinearLayout>
+
+
+
+
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:padding="5dp"
+                 android:orientation="vertical"
+                 android:background="@drawable/buttonbartrue"
+                 android:layout_margin="15dp"
+                 android:layout_marginRight="20dp"
+                 >
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/successColor"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntos ganados"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+                     <View
+                         android:layout_width="72dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:gravity="center"
+                         android:id="@+id/puntos_ganados"
+                         android:layout_width="50dp"
+                         android:layout_height="wrap_content"
+                         android:text="300"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/errorColor"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntos a descontar"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+                     <View
+                         android:layout_width="30dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:gravity="center"
+                         android:id="@+id/puntos_descontar"
+                         android:layout_width="50dp"
+                         android:layout_height="wrap_content"
+                         android:text="30"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/warningColor"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntos extras"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+
+                     <View
+                         android:layout_width="88dp"
+
+                         android:layout_height="match_parent"/>
+
+                     <TextView
+                         android:gravity="center"
+                         android:id="@+id/puntos_extras"
+                         android:layout_width="50dp"
+                         android:layout_height="wrap_content"
+                         android:text="30"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+
+
+                 <View
+                     android:layout_width="match_parent"
+                     android:layout_height="2dp"
+                     android:background="@color/white"
+                     />
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:background="@color/verde_claro"
+                     >
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="puntaje final"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+
+                     <View
+                         android:layout_width="99dp"
+                         android:layout_height="match_parent"/>
+                     <TextView
+                         android:gravity="center"
+                         android:id="@+id/puntaje_final"
+                         android:layout_width="50dp"
+                         android:layout_height="wrap_content"
+                         android:text="300"
+                         android:textSize="25dp"
+                         android:fontFamily="@font/digitalt"
+                         android:textColor="@color/white"
+                         android:layout_marginHorizontal="20dp"
+                         android:layout_marginVertical="10dp"
+                         />
+                 </LinearLayout>
+
+             </LinearLayout>
+
+
+
+
+
+
+
+         </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/btn_guardar"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="guardar y continuar"
+            android:fontFamily="@font/digitalt"
+            android:background="@drawable/buttoncrear"
+            android:textSize="20dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

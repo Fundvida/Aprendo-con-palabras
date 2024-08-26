@@ -19,7 +19,16 @@ class ESTUDdatos {
         var errores = 0
         var correctas = 0
 
+
+
         var GameTime = 0L
+        var GameTimeGlobal = 0L
+        var GameIntentos = 0
+        var GameFechaInicio = ""
+        var GameFechaFin = ""
+        var GameID = 0
+        var GameUserIntento = 0
+        var Games = 0
 
         var temaActivityMap = mapOf(
             "LAS VOCALES" to Game_torneo_vocal_estud::class.java,

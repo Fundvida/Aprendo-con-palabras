@@ -39,7 +39,10 @@ class TorneoAdapter (
             intent.putExtra("TORNEO_ID", dato.torneo.id)
             intent.putExtra("TORNEO_NOMBRE", dato.torneo.nombre)
             ESTUDdatos.GameTime = (dato.torneo.tiempo.toInt()*60) * 1000L
-            //ESTUDdatos.GameIntentos =
+            ESTUDdatos.GameTimeGlobal = (dato.torneo.tiempo.toInt()*60) * 1000L
+            ESTUDdatos.GameIntentos = dato.torneo.intentos.toInt()
+            ESTUDdatos.GameFechaInicio = dato.torneo.fecha_inicio
+            ESTUDdatos.GameFechaFin = dato.torneo.fecha_fin
             context.startActivity(intent)
         }
 

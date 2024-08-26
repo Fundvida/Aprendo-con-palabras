@@ -16,19 +16,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bumptech.glide.Glide
-import com.example.fundacion.BaseActivity
+import com.example.fundacion.BarButtonOFF
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.admin.Game_Vocal
 import com.example.fundacion.admin.game.Adapter_vocales_gridview
 import com.example.fundacion.config
+import com.example.fundacion.configurefullScreen
 import com.example.fundacion.configurefullScreen_fullview
 import com.example.fundacion.user.ESTUDdatos
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONArray
 import java.util.Locale
 
-class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListener {
+class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitListener {
 
 
 
@@ -77,7 +78,7 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
     private lateinit var jsonArrayDatos: JSONArray
 
 
-
+    var position = 0
     lateinit var txt_time : TextView
     lateinit var txt_timerest : TextView
     private var countDownTimer: CountDownTimer? = null
@@ -196,13 +197,6 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
             }
 
             override fun onFinish() {
-                txt_timerest.text = "00:00"
-                txt_time.text = String.format(
-                    "%02d:%02d",
-                    totalTimeInMillis / 1000 / 60,
-                    totalTimeInMillis / 1000 % 60
-                )
-
 
                 Log.e("timer", "timer terminado")
                 alertTimEnd()
@@ -216,6 +210,17 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
 
     fun alertTimEnd()
     {
+        val timeText = txt_timerest.text
+
+        val parts = timeText.split(":")
+
+        val minutes = parts[0].toLong() // "14" -> 14
+        val seconds = parts[1].toLong() // "52" -> 52
+
+        val totalMilliseconds = (minutes * 60 + seconds) * 1000
+
+        ESTUDdatos.GameTime = totalMilliseconds
+
         val dialog = Dialog(this, R.style.TransparentDialog)
         dialog.setContentView(R.layout.uuu_modal_game_torneo_time_end)
 
@@ -229,8 +234,15 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
         val sumar = pts_ganados+pts_fallados
         dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
 
+        ESTUDdatos.correctas = correctas
+        ESTUDdatos.errores = incorrectas
+
+        ESTUDdatos.puntaje_total = ESTUDdatos.puntaje_total + sumar
+
+
         dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener {
             startActivity(Intent(this, Tabla_final_puntos::class.java))
+            finish()
         }
 
 
@@ -244,7 +256,7 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
         val selectedIds = HashSet<Long>()
         gridView = findViewById(R.id.grid_view)
 
-        val totalItem = 36
+        val totalItem = 4 //36
         imageAdapter = Adapter_vocales_gridview(this, imageUrls, totalItem, this@Game_torneo_vocal_estud)
         val copiIMG = imageUrls.toMutableList().shuffled() as MutableList<String>
         imageAdapter.reset(copiIMG[0])
@@ -282,13 +294,11 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
                     pts_ganados = pts_ganados + valor!!.toInt()
                     puntaje.setText(pts_ganados.toString())
                     correctas++
-                    ESTUDdatos.correctas++
 
                 }else{
                     val textToSpeak = "vocal incorrecta"
                     speakOut(textToSpeak)
                     incorrectas++
-                    ESTUDdatos.errores++
                     pts_fallados = pts_fallados - 2
                 }
             }else{
@@ -307,8 +317,6 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
                 if (copiIMG.isEmpty()){
                     gridView.isEnabled = false
 
-                    val textToSpeak = "felicidades terminaste quieres volver a jugar"
-                    speakOut(textToSpeak)
                     alertTerminado()
 
                 }else{
@@ -333,7 +341,7 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
                 return item.getString("puntaje")
             }
         }
-        return null // Retornar null si no se encuentra el ID
+        return null
     }
     fun retroceder(view: View){
 
@@ -359,25 +367,90 @@ class Game_torneo_vocal_estud : BaseActivity(), Game_Vocal, TextToSpeech.OnInitL
 
 
 
-
-    fun alertTerminado(){
-        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-        sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
-        sweetAlertDialog.contentText = "¿QUIERES VOLVER A JUGAR?"
+    fun alertSALIR(){
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "¿ESTAS SEGURO DE SALIR?"
+        sweetAlertDialog.contentText = "perderas un intento y se guardara solo tu puntaje total"
         sweetAlertDialog.confirmText = "si"
         sweetAlertDialog.cancelText = "no"
         sweetAlertDialog.setCancelable(false)
         sweetAlertDialog.setConfirmClickListener {
-            recreate()
-
+            finish()
             sweetAlertDialog.dismissWithAnimation()
         }
         sweetAlertDialog.setCancelClickListener {
-            finish()
             sweetAlertDialog.dismissWithAnimation()
         }
         sweetAlertDialog.show()
     }
+
+    fun Next_Activity(){
+        val currentIndex = ESTUDdatos.indexActivity + 1
+
+        if (currentIndex <  ESTUDdatos.datos.size) {
+            val currentTarea = ESTUDdatos.datos[currentIndex]
+            val nextActivityClass = ESTUDdatos.temaActivityMap[currentTarea.nameTEMA]
+
+            Log.e("game", "$nextActivityClass")
+            Log.e("game", "$currentTarea")
+
+            ESTUDdatos.indexActivity++
+            if (nextActivityClass != null) {
+                val intent = Intent(this, nextActivityClass)
+                startActivity(intent)
+                finish()
+            }
+        } else {
+            startActivity(Intent(this, Tabla_final_puntos::class.java))
+            finish()
+        }
+
+    }
+
+    fun alertTerminado(){
+
+
+        countDownTimer?.cancel()
+
+        val timeText = txt_timerest.text
+
+        val parts = timeText.split(":")
+
+        val minutes = parts[0].toLong() // "14" -> 14
+        val seconds = parts[1].toLong() // "52" -> 52
+
+        val totalMilliseconds = (minutes * 60 + seconds) * 1000
+
+        Log.e("timer final", "$totalMilliseconds")
+        ESTUDdatos.GameTime = totalMilliseconds
+
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_modal_game_torneo_siguiente_sumpunts)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.findViewById<TextView>(R.id.cant_correctas).text = correctas.toString()
+        dialog.findViewById<TextView>(R.id.cant_falladas).text = incorrectas.toString()
+        dialog.findViewById<TextView>(R.id.pts_correctas).text = pts_ganados.toString()
+        dialog.findViewById<TextView>(R.id.pts_falladas).text = pts_fallados.toString()
+        val sumar = pts_ganados+pts_fallados
+        ESTUDdatos.puntaje_total = ESTUDdatos.puntaje_total + sumar
+        dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
+
+        ESTUDdatos.correctas = correctas
+        ESTUDdatos.errores = incorrectas
+
+        dialog.findViewById<Button>(R.id.btn_salir).setOnClickListener { alertSALIR() }
+        dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener { Next_Activity() }
+
+
+        dialog.show()
+        configurefullScreen(dialog)
+
+    }
+
+
 
     fun alertFAIL(){
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)

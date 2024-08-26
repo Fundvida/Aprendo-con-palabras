@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:background="@color/float_transparent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:background="@drawable/modal_user"
+        android:backgroundTint="@color/successColor"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="Premios"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/white"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="primer lugar :"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:layout_marginVertical="10dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Trofeo y certificado."
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:layout_marginVertical="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="segundo lugar :"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:layout_marginVertical="10dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Medalla y certificado."
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:layout_marginVertical="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="tercer lugar :"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:layout_marginVertical="10dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="certificado."
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:layout_marginVertical="10dp"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inicio_close_btn"
+        android:layout_gravity="right"
+        android:id="@+id/btn_close"
+        />
+</FrameLayout>

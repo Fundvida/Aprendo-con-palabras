@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.R
 import com.example.fundacion.user.ETorneo_Game
-
 class Torneo_pre_Adapter  (
     private val context: Context,
     private val torneo: List<ETorneo_Game>

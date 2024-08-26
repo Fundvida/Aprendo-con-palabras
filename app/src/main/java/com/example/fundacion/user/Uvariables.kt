@@ -1,7 +1,5 @@
 package com.example.fundacion.user
 
-import org.json.JSONArray
-
 data class Tarea(
     val id: Int,
     val tema: Int,
@@ -71,4 +69,20 @@ data class Game_LIST(
     val temaActual: String
 )
 
+
+
+
+
+data class ETorneo_PreGame(
+    val id: String,
+    val estudiante: String,
+    val torneo: String,
+    val intentos: String,
+    val puntaje: String,
+    val tiempo: String,
+    val erroes: String,
+    val correctas: String,
+    val total: String,
+    val estado: String
+)
 

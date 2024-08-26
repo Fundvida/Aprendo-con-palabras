@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/buttonbartrue"
+    android:backgroundTint="@color/white"
+    android:padding="5dp"
+    android:layout_marginHorizontal="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="intento"
+            android:textSize="25dp"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"/>
+        <TextView
+            android:id="@+id/intento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="10"
+            android:textSize="50dp"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="puntaje"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/white"
+                android:layout_margin="2dp"
+                android:gravity="center"
+
+                />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="=>"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/white"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/puntaje"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/white"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"/>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="errores"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/errorColor"
+                android:layout_margin="2dp"
+                android:gravity="center"
+
+                />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="=>"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/errorColor"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/errores"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/errorColor"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="correctas"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/verde_claro"
+                android:layout_margin="2dp"
+                android:gravity="center"
+
+                />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="=>"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/verde_claro"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/correctas"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/verde_claro"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"/>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="tiempo"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/infoColor"
+                android:layout_margin="2dp"
+                android:gravity="center"
+
+                />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="=>"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/infoColor"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/tiempo"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/infoColor"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"/>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="bonus"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/gris_oscuro"
+                android:layout_margin="2dp"
+                android:gravity="center"
+
+                />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="=>"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/gris_oscuro"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/bonus"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/gris_oscuro"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"/>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="puntaje total"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/naranja"
+                android:layout_margin="2dp"
+                android:gravity="center"
+
+                />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="=>"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/naranja"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="500"
+                android:textSize="18dp"
+                android:fontFamily="@font/digitalt"
+                android:textColor="@color/naranja"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

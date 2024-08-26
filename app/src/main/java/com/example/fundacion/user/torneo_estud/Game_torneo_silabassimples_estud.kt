@@ -188,7 +188,7 @@ class Game_torneo_silabassimples_estud : BarButtonOFF(), TextToSpeech.OnInitList
         txt_time.text = "00:00"
         txt_timerest.text = timeFormatted
 
-        val totalTimeInMillis = 20000L//ESTUDdatos.GameTime
+        val totalTimeInMillis = ESTUDdatos.GameTime
 
         // Crear el contador regresivo
         countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {

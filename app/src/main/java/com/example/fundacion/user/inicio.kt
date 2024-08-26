@@ -15,6 +15,7 @@ import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.TokenManager
 import com.example.fundacion.config
+import com.example.fundacion.configurefullScreen
 import com.example.fundacion.user.adapter.TorneoAdapter
 import com.github.kittinunf.fuel.Fuel
 import com.google.gson.Gson
@@ -158,6 +159,8 @@ class inicio : BaseActivity() {
 
 
         dialog.show()
+
+        configurefullScreen(dialog)
     }
     fun torneoGame(){
 
@@ -168,9 +171,7 @@ class inicio : BaseActivity() {
 
         revTorneo = dialog.findViewById(R.id.recy)
         revTorneo.layoutManager = LinearLayoutManager(this)
-
         revTorneo.adapter = TorneoAdapter(this, torneo_list)
-
 
         val close = dialog.findViewById<ImageButton>(R.id.btn_close)
         close.setOnClickListener { dialog.dismiss() }
@@ -180,6 +181,8 @@ class inicio : BaseActivity() {
 
 
         dialog.show()
+        configurefullScreen(dialog)
+
     }
 
 

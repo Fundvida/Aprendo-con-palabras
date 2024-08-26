@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:background="@color/float_transparent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:background="@drawable/modal_user"
+        android:backgroundTint="@color/warningColor"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="reglas del juego"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="10dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/white"/>
+
+      <ScrollView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          >
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              >
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="1. cuando se empieza y no lo terminas, perderas un intento y no se guardara tu avance."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="2. Cada ronda dura el tiempo establecido ( se muestra antes de comenzar )."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="3. Formar la mayor cantidad de palabras correctas en el tiempo establecido."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="4. bonificación de 2 puntos por rapidez."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="5. Respuestas incorrectas no suman puntos y se restan 2 puntos por cada error."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="6. Los jugadores deben respetar el código de conducta."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="7. Cualquier trampa resultará en la descalificación."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="20dp"
+                  android:text="8. En caso de empate, se debera realizar otro torneo de desempate."
+                  android:fontFamily="@font/digitalt"
+                  android:textColor="@color/errorColor"
+                  android:layout_marginHorizontal="10dp"
+                  android:maxLines="3"
+                  android:singleLine="false"
+                  android:ellipsize="none"
+                  android:scrollHorizontally="false"
+                  android:layout_marginVertical="10dp"
+                  />
+          </LinearLayout>
+      </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inicio_close_btn"
+        android:layout_gravity="right"
+        android:id="@+id/btn_close"
+        />
+</FrameLayout>

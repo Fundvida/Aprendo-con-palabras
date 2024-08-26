@@ -57,10 +57,9 @@
                 android:id="@+id/torneo_list_pre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                tools:listitem="@layout/uuu_adapter_list_torneo_pre"
                 android:layout_gravity="center"
-                />
+                android:layout_marginHorizontal="50dp"
+                tools:listitem="@layout/uuu_adapter_list_torneo_pre" />
 
         </LinearLayout>
 
@@ -74,6 +73,21 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoninfo"
+                android:fontFamily="@font/digitalt"
+                android:text="Volver"
+                android:textSize="25dp"
+                android:paddingHorizontal="50dp"
+                android:textColor="@color/white"
+                android:onClick="volver"
+                />
+            <View
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/buttoncrear"
                 android:fontFamily="@font/digitalt"
                 android:text="Comenzar"
@@ -83,8 +97,68 @@
                 android:onClick="comenzar"
                 />
 
+
+
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="top|right"
+        android:layout_margin="20dp"
+        android:background="@drawable/buttonwarning"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:onClick="reglas"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/game_rules"
+            android:layout_marginVertical="5dp"
+            app:tint="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="reglas"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="top|right"
+        android:background="@drawable/buttoncrear"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:onClick="premios"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="20dp"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/premio_torneo"
+            android:layout_marginVertical="5dp"
+            app:tint="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="premios"
+            android:fontFamily="@font/digitalt"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="10dp"
+            />
+    </LinearLayout>
+
 
 
 
