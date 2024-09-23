@@ -57,7 +57,7 @@ class Ainicio : BaseActivity() {
         startActivity(intent)
     }
     fun reportes(view : View){
-        val intent = Intent(this, Abuscador::class.java)
+        val intent = Intent(this, Areportes::class.java)
         startActivity(intent)
     }
     fun pruebas(view : View){

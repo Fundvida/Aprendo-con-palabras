@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,295 +7,316 @@
     android:orientation="vertical"
     android:background="@drawable/fondo_new_cristian"
     tools:context=".user.inicio">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/inicio_back_btn"
-                android:onClick="retroceder"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:gravity="center"
-            >
-
-            <TextView
-                android:id="@+id/nombreCompleto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ramiro Vargas Coronel"
-                android:textColor="@color/white"
-                android:fontFamily="@font/digitalt"
-                android:textSize="25dp"
-                />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3.5"
-            android:background="@drawable/inicio_fondo_settings"
-            android:orientation="horizontal"
-            >
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logofund_pequeno"
-                android:layout_gravity="center"
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/inicio_info_btn"
-
-                />
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/inicio_mute_icon"
-
-                />
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/inicio_mic_icon"
-
-                />
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/inicio_settings_icon"
-
-                />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.5"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
         >
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
             >
+
             <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:layout_weight="1"
                 >
-
-                <ImageButton
-                    android:id="@+id/torneoBTN"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_torneo"
-                    android:onClick="torneo"
-                    android:visibility="gone"
-                    />
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_vocales"
-                    android:onClick="vocales"
-                    />
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_abecedario"
-                    android:onClick="abecedario"
-                    />
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_silabas_simples"
-                    android:onClick="silabas"
-                    />
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_deletreo"
-                    android:onClick="deletreo"
-                    />
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_sopaletras"
-                    android:onClick="sopaletras"
-                    />
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/inicio_btn_oraciones"
-                    android:onClick="oraciones"
-                    />
-
 
 
 
             </LinearLayout>
 
-        </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/nombreCompleto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ramiro Vargas Coronel"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/digitalt"
+                    android:textSize="25dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:background="@drawable/inicio_fondo_settings"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="7dp"
+                >
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logofund_pequeno"
+                    android:layout_gravity="center"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/inicio_info_btn"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_silencio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/inicio_mute_icon"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_sonido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/inicio_mic_icon"
+                    android:visibility="gone"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/inicio_settings_icon"
+
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
 
 
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        >
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.5"
             >
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageButton
+                        android:id="@+id/torneoBTN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_torneo"
+                        android:onClick="torneo"
+                        android:visibility="gone"
+                        />
+
+
+                    <ImageButton
+                        android:id="@+id/vocales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_vocales"
+                        android:onClick="vocales"
+                        />
+
+
+                    <ImageButton
+                        android:id="@+id/abecedario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_abecedario"
+                        android:onClick="abecedario"
+                        />
+
+
+                    <ImageButton
+                        android:id="@+id/silabas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_silabas_simples"
+                        android:onClick="silabas"
+                        />
+
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_deletreo"
+                        android:onClick="deletreo"
+                        />
+
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_sopaletras"
+                        android:onClick="sopaletras"
+                        />
+
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/inicio_btn_oraciones"
+                        android:onClick="oraciones"
+                        />
+
+
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
 
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            >
 
-        </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
             android:orientation="horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
             >
 
-
-            <View
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                />
-            <ImageButton
+                >
 
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/whatsapp"
-                android:padding="10dp"
-                android:onClick="whatsapp" />
-            <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                />
-            <ImageButton
 
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/instagram"
-                android:padding="10dp"
-                android:onClick="instagram" />
-            <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                />
-            <ImageButton
 
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:padding="10dp"
-                android:onClick="facebook" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                >
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal"
+                >
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+                <ImageButton
+
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/whatsapp"
+                    android:padding="10dp"
+                    android:onClick="whatsapp" />
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    />
+                <ImageButton
+
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/instagram"
+                    android:padding="10dp"
+                    android:onClick="instagram" />
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    />
+                <ImageButton
+
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/facebook"
+                    android:padding="10dp"
+                    android:onClick="facebook" />
+
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            />
+
     </LinearLayout>
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/menu_btn"
+        android:onClick="menu_btn"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         />
-</LinearLayout>
+</FrameLayout>

@@ -2,6 +2,7 @@ package com.example.fundacion.user.torneo_estud
 
 import android. app.Dialog
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,6 +24,7 @@ import com.example.fundacion.user.ETorneo_Game
 import com.example.fundacion.user.ETorneo_PreGame
 import com.example.fundacion.user.adapter.Torneo_pre_Adapter
 import com.example.fundacion.user.adapter.Torneo_pregame_Adapter
+import com.example.fundacion.user.inicio
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.google.gson.Gson
@@ -45,7 +47,7 @@ class Pre_torneo_estud : BaseActivity() {
     private lateinit var userData: Map<String, Any?>
 
 
-
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pre_torneo_estud)
@@ -65,8 +67,20 @@ class Pre_torneo_estud : BaseActivity() {
         datos()
 
 
-    }
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.pre_game)
+        mediaPlayer.isLooping = true
+
+        mediaPlayer.start()
+
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.release()
+        }
+    }
     fun datos()
     {
         Log.e("error IDTORNEO", "$IDTORNEO")
@@ -253,6 +267,8 @@ class Pre_torneo_estud : BaseActivity() {
     }
 
     fun volver(view: View){
+        val intent = Intent(this, inicio::class.java)
+        startActivity(intent)
         finish()
     }
 

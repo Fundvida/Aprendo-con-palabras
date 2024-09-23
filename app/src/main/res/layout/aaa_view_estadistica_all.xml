@@ -37,6 +37,9 @@
             android:orientation="vertical"
             >
 
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,6 +54,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:background="@color/white"
+                    android:fontFamily="@font/digitalt"
                     />
 
                 <TextView
@@ -61,122 +65,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textAllCaps="true"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="FECHA INICIO"
-                    android:textColor="@color/adminU"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:background="@color/white"
-                    />
-
-                <TextView
-                    android:id="@+id/fecha_inicio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textAllCaps="true"
-
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="FECHA FIN"
-                    android:textColor="@color/adminU"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:background="@color/white"
-                    />
-
-                <TextView
-                    android:id="@+id/fecha_fin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textAllCaps="true"
-
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TIEMPO"
-                    android:textColor="@color/adminU"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:background="@color/white"
-                    />
-
-                <TextView
-                    android:id="@+id/tiempo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textAllCaps="true"
-
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CANTIDAD DE INTENTOS"
-                    android:textColor="@color/adminU"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:background="@color/white"
-                    />
-
-                <TextView
-                    android:id="@+id/intentos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textAllCaps="true"
-
+                    android:fontFamily="@font/digitalt"
                     />
 
             </LinearLayout>
@@ -195,6 +84,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:background="@color/white"
+                    android:fontFamily="@font/digitalt"
                     />
 
                 <TextView
@@ -206,9 +96,165 @@
                     android:textColor="@color/white"
                     android:textAllCaps="true"
                     android:gravity="center"
+                    android:fontFamily="@font/digitalt"
                     />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Primer lugar"
+                    android:textColor="@color/adminU"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:fontFamily="@font/digitalt"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/primero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:fontFamily="@font/digitalt"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_primero"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.5"
+                        android:text="ver"
+                        android:background="@drawable/buttonbartrue"
+                        android:fontFamily="@font/digitalt"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Segundo lugar"
+                    android:textColor="@color/adminU"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:fontFamily="@font/digitalt"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/segundo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:fontFamily="@font/digitalt"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_segundo"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.5"
+                        android:text="ver"
+                        android:background="@drawable/buttonbartrue"
+                        android:fontFamily="@font/digitalt"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tercero lugar"
+                    android:textColor="@color/adminU"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:fontFamily="@font/digitalt"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/tercero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:fontFamily="@font/digitalt"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_tercero"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.5"
+                        android:text="ver"
+                        android:background="@drawable/buttonbartrue"
+                        android:fontFamily="@font/digitalt"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
 
 
         </LinearLayout>
@@ -229,70 +275,38 @@
 
 
 
+
+
         <LinearLayout
+            android:id="@+id/jugadores"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:orientation="vertical"
             >
             <ImageButton
-                android:id="@+id/games"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:layout_marginVertical="8dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/game"
-                app:tint="@color/black"
-                android:background="@android:color/transparent"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/white"/>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            >
-            <ImageButton
-                android:id="@+id/estudiante"
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:layout_marginVertical="8dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/estudiantes"
+                android:src="@drawable/reporte"
                 app:tint="@color/white"
                 android:background="@android:color/transparent"/>
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/white"/>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            >
-            <ImageButton
-                android:id="@+id/edit"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:layout_marginVertical="8dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/baseline_edit_24"
-                app:tint="@color/warningColor"
-                android:background="@android:color/transparent"/>
-
+                android:layout_height="wrap_content"
+                android:text="jugadores"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:fontFamily="@font/digitalt"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
         </LinearLayout>
 
         <View
@@ -301,20 +315,36 @@
             android:background="@color/white"/>
 
         <LinearLayout
+            android:id="@+id/tiempo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:orientation="vertical"
             >
             <ImageButton
                 android:layout_marginVertical="8dp"
-                android:id="@+id/delete"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
-                android:src="@drawable/baseline_delete_24"
-                app:tint="@color/errorColor"
+                android:src="@drawable/clock_torneo"
+                app:tint="@color/white"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mejor tiempo"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:fontFamily="@font/digitalt"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
         </LinearLayout>
 

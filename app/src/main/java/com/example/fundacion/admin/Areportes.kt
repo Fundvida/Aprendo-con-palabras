@@ -1,227 +1,67 @@
 package com.example.fundacion.admin
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.speech.tts.TextToSpeech
-import android.speech.tts.Voice
-import android.util.Log
-import android.widget.AdapterView
-import android.widget.GridView
-import android.widget.ImageView
-import android.widget.TextView
-import cn.pedant.SweetAlert.SweetAlertDialog
-import com.bumptech.glide.Glide
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
-import com.example.fundacion.admin.adapter.ImageAdapter
+import com.example.fundacion.admin.adapter.Adapter_admin_torneoReporte
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
-import org.json.JSONArray
-import java.util.Locale
-
-class Areportes : BaseActivity(), Game_Vocal, TextToSpeech.OnInitListener {
-    private lateinit var gridView: GridView
-    private lateinit var imageAdapter : ImageAdapter
-    var total = 0
-    var encontradas = 0
-    var faltantes = 0
-
-    private lateinit var etotal : TextView
-    private lateinit var efaltante : TextView
-    private lateinit var eecontradas : TextView
-
-    private lateinit var tts: TextToSpeech
-    var Tvocal : String? = null
-
-    private val datosList = mutableListOf<Pair<String, String>>()
-
-    private lateinit var  txtimage : ImageView
+import com.google.gson.Gson
 
 
-    override fun inicial(img: String, getvocal: String) {
-        if (img.toInt() == 0){
+private lateinit var rv: RecyclerView
+private val estadistica: MutableList<Estadistica> = mutableListOf()
 
-        }else{
-            total = img.toInt()
-            faltantes = img.toInt()
-            encontradas = 0
-            etotal.setText(total.toString())
-            efaltante.setText(faltantes.toString())
-            eecontradas.setText(encontradas.toString())
-            Tvocal = datosList.find { it.first == getvocal }?.second
-            val textToSpeak = "busquemos la vocal $Tvocal"
-            speakOut(textToSpeak)
-
-        }
-    }
+class Areportes : BaseActivity(), Refreshtorneo {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_areportes)
 
-        tts = TextToSpeech(this, this)
+        rv = findViewById(R.id.list)
+        rv.layoutManager = LinearLayoutManager(this)
 
 
-        etotal = findViewById(R.id.total)
-        efaltante = findViewById(R.id.faltante)
-        eecontradas = findViewById(R.id.encontradas)
-        txtimage = findViewById(R.id.txtimg)
+        cargar_datos()
 
-        val imageUrls = mutableListOf<String>()
+    }
 
 
-        Fuel.get("${config.url}admin/preg-vocal-all/1").responseString{ result ->
+    private fun cargar_datos(){
+
+
+        Fuel.get("${config.url}admin/estadistica-all").responseString { _, _, result ->
             result.fold(
-                success = { data ->
+                success = {data ->
                     println(data)
-                    val jsonArrayDatos = JSONArray(data)
+                    val userList = Gson().fromJson(data, Array<Estadistica>::class.java).toList()
+                    estadistica.clear()
+                    estadistica.addAll(userList)
 
-                    for (i in 0 until jsonArrayDatos.length()) {
-                        val item = jsonArrayDatos.getJSONObject(i)
-                        val imageUrl = item.getString("img")
-                        val palabra = item.getString("palabra")
-                        imageUrls.add(imageUrl)
-                        datosList.add(Pair(imageUrl, palabra))
+                    runOnUiThread{
+                        val aadapter = Adapter_admin_torneoReporte(this, estadistica, this@Areportes)
+                        rv?.adapter = aadapter
                     }
-
-                    siguiente(imageUrls)
-
                 },
-                failure = { error ->
-                    Log.e("Upload", "Error: ${error.exception.message}")
-                }
+                failure = { error -> println(error) }
             )
         }
-
-
-
-
     }
 
-    fun siguiente(imageUrls: MutableList<String>) {
-        val selectedIds = HashSet<Long>()
-        gridView = findViewById(R.id.grid_view)
-
-        val totalItem = 50
-        imageAdapter = ImageAdapter(this, imageUrls, totalItem, this@Areportes)
-        val copiIMG = imageUrls.toMutableList().shuffled() as MutableList<String>
-        imageAdapter.reset(copiIMG[0])
-        gridView.adapter = imageAdapter
-        gridView.numColumns = 5
-
-
-        Glide.with(this)
-            .load("${config.url}admin/preg-vocal-imagen/${copiIMG[0]}")
-            .into(txtimage)
-        
-        gridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-
-            if (!selectedIds.contains(id)) {
-                val vocal = parent.adapter.getItem(position)
-
-                if (vocal.toString() == copiIMG[0]){
-                    val textToSpeak = "vocal correcta"
-                    speakOut(textToSpeak)
-                    view.setBackgroundColor(Color.parseColor("#FFA726"))
-                    selectedIds.add(id)
-                    faltantes--
-                    encontradas++
-                }else{
-                    val textToSpeak = "vocal incorrecta"
-                    speakOut(textToSpeak)
-                }
-            }else{
-                val textToSpeak = "la vocal ya fue seleccionada!"
-                speakOut(textToSpeak)
-            }
-            efaltante.setText(faltantes.toString())
-            eecontradas.setText(encontradas.toString())
-
-            Glide.with(this)
-                .load("${config.url}admin/preg-vocal-imagen/${copiIMG[0]}")
-                .into(txtimage)
-
-            if (faltantes == 0){
-                copiIMG.removeFirstOrNull()
-                if (copiIMG.isEmpty()){
-                    gridView.isEnabled = false
-
-                    // Toasty.success(this, "felicidades terminaste ", Toasty.LENGTH_SHORT).show()
-                    //val textToSpeak = "felicidades terminaste de completar las vocales en carta minusculas"
-                    val textToSpeak = "felicidades terminaste quieres volver a jugar"
-                    speakOut(textToSpeak)
-                    alertTerminado()
-
-                }else{
-                    val textToSpeak = "bien ya encontramos todas las vocales $Tvocal, ahora sigamos y"
-                    speakOut(textToSpeak)
-                    Handler().postDelayed({
-                        imageAdapter.reset(copiIMG[0])
-                        faltantes = total
-                        selectedIds.clear()
-                    }, 5000)
-                }
-            }
-        }
+    override fun refresha() {
+        TODO("Not yet implemented")
     }
 
-    fun alertTerminado(){
-        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-        sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
-        sweetAlertDialog.contentText = "QUIERES VOLVER A JUGAR"
-        sweetAlertDialog.confirmText = "si"
-        sweetAlertDialog.cancelText = "no"
-        sweetAlertDialog.setCancelable(false)
-        sweetAlertDialog.setConfirmClickListener {
-            recreate()
-
-            sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.setCancelClickListener {
-            val intent = Intent(this, Ainicio::class.java)
-            startActivity(intent)
-            finish()
-            sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.show()
+    override fun verlist(fragment: Fragment) {
+        TODO("Not yet implemented")
     }
 
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus && ::tts.isInitialized && tts.isLanguageAvailable(Locale.getDefault()) == TextToSpeech.LANG_AVAILABLE) {
-            val textToSpeak = "busquemos la vocal $Tvocal"
-            tts.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null, "AUDIO_AFTER_LOADING")
-        }
+    override fun retro() {
+        TODO("Not yet implemented")
     }
 
-
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            val result = tts.setLanguage(Locale("es", "ES"))
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-            }
-            else{
-                val voiceId = "narrator" // Identificador de la voz de narrador
-                tts.voice = Voice(voiceId, Locale.getDefault(), Voice.QUALITY_HIGH, Voice.LATENCY_NORMAL, false, null)
-            }
-        }
-    }
-    private fun speakOut(text: String) {
-        if (::tts.isInitialized && tts.isLanguageAvailable(Locale.getDefault()) == TextToSpeech.LANG_AVAILABLE) {
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
-        } else {
-            Log.e("TextToSpeech", "TextToSpeech not initialized or language not available.")
-        }
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        if (tts.isSpeaking) {
-            tts.stop()
-        }
-        tts.shutdown()
-    }
 
 }

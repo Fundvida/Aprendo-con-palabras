@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fondo_vocal_cristian"
+        android:background="@drawable/fondo_silabas_simples_cristian"
         android:orientation="vertical"
         >
 
@@ -20,9 +20,12 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_marginLeft="160dp"
+            android:layout_marginRight="160dp"
+            android:layout_gravity="center"
             >
 
 
+            <!--
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,6 +37,9 @@
                 android:textSize="30dp"
                 android:gravity="center"
                 />
+
+            -->
+
             <TextView
                 android:id="@+id/tema"
                 android:layout_width="wrap_content"
@@ -424,5 +430,11 @@
 
     </LinearLayout>
 
-
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:src="@drawable/logofund_grande"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        />
 </FrameLayout>

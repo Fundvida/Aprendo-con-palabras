@@ -100,9 +100,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/digitalt"
                 android:textColor="@color/white"
-                android:text="preguntas a jugar"
+                android:text="numero de preguntas"
                 android:gravity="center"
-                android:textSize="17dp"
+                android:textSize="16dp"
                 />
 
             <TextView
@@ -111,9 +111,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/digitalt"
                 android:textColor="@color/white"
-                android:text="2 preg."
+                android:text="2"
                 android:gravity="center"
-                android:textSize="17dp"
+                android:textSize="20dp"
 
                 />
 
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/digitalt"
                 android:textColor="@color/white"
-                android:text="puntos a ganar"
+                android:text="puntaje maximo"
                 android:gravity="center"
                 android:textSize="17dp"
 
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/digitalt"
                 android:textColor="@color/white"
-                android:text="15 pts."
+                android:text="15 "
                 android:gravity="center"
                 android:textSize="17dp"
 

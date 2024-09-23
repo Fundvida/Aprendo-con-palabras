@@ -3,6 +3,7 @@ package com.example.fundacion.user
 import TareaAdapter
 import android.app.Dialog
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -14,8 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.TokenManager
+import com.example.fundacion.applyAnimationG_BTN
+import com.example.fundacion.applyAnimationG_P
 import com.example.fundacion.config
 import com.example.fundacion.configurefullScreen
+import com.example.fundacion.login
+import com.example.fundacion.muteSound
+import com.example.fundacion.unmuteSound
 import com.example.fundacion.user.adapter.TorneoAdapter
 import com.github.kittinunf.fuel.Fuel
 import com.google.gson.Gson
@@ -28,6 +34,10 @@ class inicio : BaseActivity() {
 
 
     lateinit var BTNtorneo : ImageButton
+
+
+    private lateinit var mediaPlayer: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,10 +97,85 @@ class inicio : BaseActivity() {
             )
         }
 
+
+
+
+
+        val imageButton: ImageButton = findViewById(R.id.imageButton)
+
+        applyAnimationG_P(imageButton)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.inicio2)
+        mediaPlayer.isLooping = true
+
+        mediaPlayer.start()
+
+
+        val abecedario: ImageButton = findViewById(R.id.abecedario)
+        val vocales: ImageButton = findViewById(R.id.vocales)
+        val silabaSimple: ImageButton = findViewById(R.id.silabas)
+
+        applyAnimationG_BTN(abecedario)
+        applyAnimationG_BTN(vocales)
+        applyAnimationG_BTN(silabaSimple)
+
+
+        val btnSonido = findViewById<ImageButton>(R.id.btn_sonido)
+        val btnSilencio = findViewById<ImageButton>(R.id.btn_silencio)
+
+        btnSonido.setOnClickListener {
+            btnSonido.visibility = View.GONE
+            btnSilencio.visibility = View.VISIBLE
+            unmuteSound(this)
+        }
+        btnSilencio.setOnClickListener {
+            btnSonido.visibility = View.VISIBLE
+            btnSilencio.visibility = View.GONE
+            muteSound(this)
+
+        }
+
     }
 
-    fun retroceder(view: View){
-        finish()
+
+
+    fun menu_btn(view: View){
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_modal_menuinicio)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        val btnnivel = dialog.findViewById<ImageButton>(R.id.btn_nivel)
+        val btnsalir = dialog.findViewById<ImageButton>(R.id.btn_salir)
+        val btncerrar = dialog.findViewById<ImageButton>(R.id.btn_cerrar)
+        val close = dialog.findViewById<ImageButton>(R.id.btn_close)
+
+        applyAnimationG_P(btnnivel)
+        applyAnimationG_P(btncerrar)
+        applyAnimationG_P(btnsalir)
+
+        btnnivel.setOnClickListener{
+            val intent = Intent(this, Ueligirnivel::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+        btncerrar.setOnClickListener{
+            val intent = Intent(this, login::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+        btnsalir.setOnClickListener{
+            finishAffinity()
+        }
+        close.setOnClickListener { dialog.dismiss() }
+
+
+
+        dialog.show()
+        configurefullScreen(dialog)
     }
 
 
@@ -171,7 +256,9 @@ class inicio : BaseActivity() {
 
         revTorneo = dialog.findViewById(R.id.recy)
         revTorneo.layoutManager = LinearLayoutManager(this)
-        revTorneo.adapter = TorneoAdapter(this, torneo_list)
+        revTorneo.adapter = TorneoAdapter(this, torneo_list){
+            finish()
+        }
 
         val close = dialog.findViewById<ImageButton>(R.id.btn_close)
         close.setOnClickListener { dialog.dismiss() }
@@ -221,6 +308,27 @@ class inicio : BaseActivity() {
 
     fun torneo(view: View){
         torneoGame()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.pause()  // Pausar la música cuando la app está minimizada
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!mediaPlayer.isPlaying) {
+            mediaPlayer.start()  // Reanudar la música cuando la app está activa de nuevo
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.release()
+        }
     }
 
 }

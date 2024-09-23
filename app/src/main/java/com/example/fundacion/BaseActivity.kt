@@ -23,6 +23,28 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
+/*
+        // Configura el OnKeyListener para interceptar eventos de volumen
+        findViewById<View>(R.id.someView).setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                when (keyCode) {
+                    KeyEvent.KEYCODE_VOLUME_UP -> {
+                        // Acción para el botón de subir volumen
+                        Toast.makeText(this, "Volume Up Pressed", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                        // Acción para el botón de bajar volumen
+                        Toast.makeText(this, "Volume Down Pressed", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
+                }
+            } else {
+                false
+            }
+        }*/
+
     }
     private fun hideNavegation() {
         window.decorView.apply {
@@ -38,9 +60,27 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_HOME || keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
+        /*if (keyCode == KeyEvent.KEYCODE_HOME || keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
             // Ignorar el botón home y el botón de aplicaciones recientes
             return false
+        }
+        return super.onKeyDown(keyCode, event)*/
+
+
+        if (event != null && event.action == KeyEvent.ACTION_DOWN) {
+            when (keyCode) {
+                KeyEvent.KEYCODE_VOLUME_UP -> {
+                    // Acción para el botón de subir volumen
+                  //  Toast.makeText(this, "Volume Up Pressed", Toast.LENGTH_SHORT).show()
+                    return true
+                }
+                KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                    // Acción para el botón de bajar volumen
+                 //   Toast.makeText(this, "Volume Down Pressed", Toast.LENGTH_SHORT).show()
+                    return true
+                }
+                else -> return super.onKeyDown(keyCode, event)
+            }
         }
         return super.onKeyDown(keyCode, event)
     }
@@ -52,4 +92,5 @@ open class BaseActivity : AppCompatActivity() {
         }
         return super.onKeyUp(keyCode, event)
     }
+
 }

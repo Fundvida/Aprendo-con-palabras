@@ -149,7 +149,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="correctas"
+                android:text="aciertos"
                 android:textSize="18dp"
                 android:fontFamily="@font/digitalt"
                 android:textColor="@color/verde_claro"
@@ -293,7 +293,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="puntaje total"
+                android:text="total"
                 android:textSize="18dp"
                 android:fontFamily="@font/digitalt"
                 android:textColor="@color/naranja"

@@ -1,6 +1,5 @@
 package com.example.fundacion
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 class Alogin : BaseActivity() {
@@ -9,3 +8,5 @@ class Alogin : BaseActivity() {
         setContentView(R.layout.activity_alogin)
     }
 }
+// primeros 3 puntos mas altos y el tiempo sus intentos el mejor inttento con mejor nota
+//

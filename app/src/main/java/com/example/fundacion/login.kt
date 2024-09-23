@@ -2,6 +2,7 @@ package com.example.fundacion
 
 import android.app.Dialog
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,34 +28,13 @@ class login : BaseActivity() {
 
     private lateinit var popupWindow: PopupWindow
 
-
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
 
         val btnMas = findViewById<FloatingActionButton>(R.id.btnmas)
-        /*
-        val inflater = LayoutInflater.from(this)
-        val popupView: View = inflater.inflate(R.layout.menu_btnmas, null)
-        popupWindow = PopupWindow(
-            popupView,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            true
-        )
-        btnMas.setOnClickListener {
-            if (!isFinishing && !isDestroyed) {
-                val offsetY = resources.getDimensionPixelSize(R.dimen.popup_offset_y)
-                popupWindow.showAtLocation(
-                    btnMas,
-                    Gravity.BOTTOM or Gravity.NO_GRAVITY,
-                    0,
-                    offsetY
-                )
-            }
-        }
-        */
 
         btnMas.setOnClickListener{
             val dialog = Dialog(this, R.style.TransparentDialog)
@@ -101,31 +81,44 @@ class login : BaseActivity() {
 
 
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.splash)
+
+        mediaPlayer.start()
+
+        mediaPlayer.setOnCompletionListener {
+            mediaPlayer.release()
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        //popupWindow.dismiss()
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.release()
+        }
     }
 
 
     fun LOGIN(u: String, p: String) {
 
-/*
+
         val postData = """
             {
                 "username": "$u",
                 "password": "$p"
             }
         """.trimIndent()
-*/
 
+
+        /*
         val postData = """
             {
                 "username": "estu",
                 "password": "estu"
             }
         """.trimIndent()
+        */
+
+
         var tokenManager = TokenManager(this)
 
         Fuel.post("${config.url}login")
@@ -144,7 +137,7 @@ class login : BaseActivity() {
                             Toasty.success(this, "estudiante encontrado", Toasty.LENGTH_SHORT).show()
                             val intent = Intent(this, Ueligirnivel::class.java)
                             startActivity(intent)
-
+                            finish()
 
                             Log.e("login","$d")
 
@@ -162,6 +155,7 @@ class login : BaseActivity() {
         Thread{
             val intent = Intent(this, Dlogin::class.java)
             startActivity(intent)
+            finish()
         }.start()
         //finish()
     }

@@ -191,3 +191,23 @@ data class Torneo_estudiante(
     val estado: String,
     val estu: lestudiantes
 )
+
+
+data class ESTA_datos(
+    val id : String,
+    val nombre : String,
+    val apellido : String,
+    val puntaje : String,
+    val tiempo : String,
+    val intento : String
+)
+data class Estadistica(
+    val id: String,
+    val nombre: String,
+    val fecha_inicio: String,
+    val fecha_fin: String,
+    val tiempo: String,
+    val intentos: String,
+    val estado: String,
+    val torneo: List<ESTA_datos>
+)

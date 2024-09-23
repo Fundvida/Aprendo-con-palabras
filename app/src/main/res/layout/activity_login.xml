@@ -22,15 +22,23 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logofund_grande"
             />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuario"
+            android:fontFamily="@font/digitalt"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="USUARIO"
             android:textColorHint="@color/greyinput"
             >
-
             <EditText
                 android:id="@+id/txtuser"
                 android:layout_width="450dp"
@@ -47,12 +55,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="contraseña"
+            android:fontFamily="@font/digitalt"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="contraseña"
-            android:textColorHint="@color/greyinput"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/greyinput">
             <EditText

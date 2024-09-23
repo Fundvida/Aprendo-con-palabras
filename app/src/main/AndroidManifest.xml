@@ -38,6 +38,7 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Aestudiantes"
             android:exported="false" />
         <activity
@@ -53,6 +54,7 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:screenOrientation="landscape"
             android:name=".admin.game.PruebaJuego_silabas_CTI"
             android:exported="false" />
         <activity
@@ -72,42 +74,55 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Apruebas"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".user.Evocales_game"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Abuscador"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Areportes"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Atorneo"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Ademo"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Adocentes"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Agame"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Ausuarios"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".admin.Ainicio"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Alogin"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".user.registrarme"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".docente.Dlogin"
             android:exported="false" />
         <activity

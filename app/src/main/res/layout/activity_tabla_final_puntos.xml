@@ -90,7 +90,7 @@
                  <TextView
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Resultado de respuestas"
+                     android:text="ACiertos"
                      android:textSize="25dp"
                      android:fontFamily="@font/digitalt"
                      android:textColor="@color/white"
@@ -110,7 +110,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="juegos jugados"
+                         android:text="numero de juegos"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -148,7 +148,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="cantidad de acertadas"
+                         android:text="numero de aciertos"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -156,7 +156,7 @@
                          android:layout_marginVertical="10dp"
                          />
                      <View
-                         android:layout_width="10dp"
+                         android:layout_width="75dp"
                          android:layout_height="match_parent"/>
                      <TextView
                          android:id="@+id/correctas"
@@ -187,7 +187,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntos ganados"
+                         android:text="puntaje obtenido"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -196,7 +196,7 @@
                          />
 
                      <View
-                         android:layout_width="80dp"
+                         android:layout_width="90dp"
                          android:layout_height="match_parent"/>
                      <TextView
                          android:id="@+id/puntos"
@@ -224,7 +224,7 @@
                  <TextView
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Resultado de errores"
+                     android:text="errores"
                      android:textSize="25dp"
                      android:fontFamily="@font/digitalt"
                      android:textColor="@color/white"
@@ -244,7 +244,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="descuento de cada error"
+                         android:text="puntaje a descontar"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -277,7 +277,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="cantidad de errores"
+                         android:text="numero de errores"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -316,7 +316,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntos a descontar"
+                         android:text="puntaje descontado"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -353,7 +353,7 @@
                  <TextView
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Resultado de tiempo"
+                     android:text="tiempo"
                      android:textSize="25dp"
                      android:fontFamily="@font/digitalt"
                      android:textColor="@color/white"
@@ -373,7 +373,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="tiempo logrado"
+                         android:text="tiempo empleado"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -407,7 +407,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="tiempo faltante"
+                         android:text="tiempo restante"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -443,13 +443,16 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntos extras"
+                         android:text="puntaje extra"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
                          android:layout_marginHorizontal="20dp"
                          android:layout_marginVertical="10dp"
                          />
+                     <View
+                         android:layout_width="40dp"
+                         android:layout_height="match_parent"/>
                      <TextView
                          android:id="@+id/time_bonus"
                          android:layout_width="wrap_content"
@@ -487,7 +490,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntos ganados"
+                         android:text="puntaje ontenido"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -526,7 +529,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntos a descontar"
+                         android:text="puntaje descontado"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -567,7 +570,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntos extras"
+                         android:text="puntaje extras"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"
@@ -612,7 +615,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="puntaje final"
+                         android:text="puntuación final"
                          android:textSize="25dp"
                          android:fontFamily="@font/digitalt"
                          android:textColor="@color/white"

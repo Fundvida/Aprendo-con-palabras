@@ -37,8 +37,8 @@
                     android:fontFamily="@font/digitalt"
                     android:textColor="@color/adminU"
                     android:textSize="20dp"
-                    android:text="Tiempo a terminar el torneo "
-                    android:layout_marginLeft="30dp"
+                    android:text="Tiempo asignado para el torneo "
+                    android:layout_marginLeft="25dp"
 
                     />
                 <TextView
@@ -72,7 +72,7 @@
                     android:fontFamily="@font/digitalt"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:text="Record Actual : "
+                    android:text="mejor puntuación : "
                     android:layout_marginLeft="30dp"
                     />
                 <TextView
@@ -115,7 +115,7 @@
                     android:fontFamily="@font/digitalt"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:text="Cantidad de intentos : "
+                    android:text="intentos realizados : "
                     android:layout_marginLeft="30dp"
                     />
                 <TextView
@@ -183,13 +183,13 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@color/black"
+                android:background="@color/white"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/digitalt"
-                    android:textColor="@color/white"
+                    android:textColor="@color/adminU"
                     android:textSize="20dp"
                     android:text="Fecha de inicio :"
                     android:layout_marginLeft="30dp"
@@ -200,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/digitalt"
-                    android:textColor="@color/white"
+                    android:textColor="@color/adminU"
                     android:textSize="20dp"
                     android:text="15/15/20204"
                     android:layout_marginLeft="30dp"
@@ -214,7 +214,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@color/azul_medianoche"
+                android:background="@color/adminU"
                 >
 
 
@@ -225,7 +225,7 @@
                     android:fontFamily="@font/digitalt"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:text="fecha fin : "
+                    android:text="fecha finalización : "
                     android:layout_marginLeft="30dp"
                     />
                 <TextView

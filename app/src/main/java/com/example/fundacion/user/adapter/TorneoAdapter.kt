@@ -16,7 +16,8 @@ import com.example.fundacion.user.torneo_estud.Pre_torneo_estud
 
 class TorneoAdapter (
     private val context: Context,
-    private val torneo: List<ETorneoEstudiante>
+    private val torneo: List<ETorneoEstudiante>,
+    private val onItemClick: () -> Unit
     //private val refreshableComponent: Refreshtorneo
 ): RecyclerView.Adapter<TorneoAdapter.ViewHolder>()
 {
@@ -44,6 +45,7 @@ class TorneoAdapter (
             ESTUDdatos.GameFechaInicio = dato.torneo.fecha_inicio
             ESTUDdatos.GameFechaFin = dato.torneo.fecha_fin
             context.startActivity(intent)
+            onItemClick()
         }
 
     }
