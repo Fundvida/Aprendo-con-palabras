@@ -211,3 +211,17 @@ data class Estadistica(
     val estado: String,
     val torneo: List<ESTA_datos>
 )
+
+data class Est_play(
+    val id: Int,
+    val estudiante: Int,
+    val torneo: Int,
+    val intentos: Int,
+    val puntaje: Int,
+    val tiempo: String,
+    val erroes: Int,
+    val correctas: Int,
+    val total: Int,
+    val estado: Int,
+    val estu: lestudiantes
+)

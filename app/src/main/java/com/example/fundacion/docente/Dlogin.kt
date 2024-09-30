@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
+import com.example.fundacion.TokenUser
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.config
 import com.github.kittinunf.fuel.Fuel
@@ -53,7 +54,7 @@ class Dlogin : BaseActivity() {
             }
         """.trimIndent()
 
-
+        var tokenManager = TokenUser(this)
 
 
         Fuel.post("${config.url}Alogin")
@@ -67,9 +68,12 @@ class Dlogin : BaseActivity() {
                             Toasty.error(this, error, Toasty.LENGTH_LONG).show()
                         }
                         else {
+                            tokenManager.saveTokenData(jsonresp.getString("token"))
+
                             Toasty.success(this, "Credenciales Correctas", Toasty.LENGTH_SHORT).show()
                             val intent = Intent(this, Ainicio::class.java)
                             startActivity(intent)
+                            finish()
                         }
                     },
                     failure = {error ->

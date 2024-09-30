@@ -63,6 +63,8 @@
                             android:layout_gravity="center"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/digitalt"
                             />
 
                         <View
@@ -109,28 +111,74 @@
                         android:layout_weight="8"
                         android:orientation="vertical"
                         >
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="nombres"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:fontFamily="@font/digitalt"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="6"
+                                android:text="apellidos"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="center"
+                                android:fontFamily="@font/digitalt"
+                                />
+                        </LinearLayout>
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             >
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:id="@+id/nombres"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="4"
                                 android:text="nombres"
                                 android:textAllCaps="true"
                                 android:textStyle="bold"
                                 android:textColor="@color/adminU"
+                                android:gravity="center"
+                                android:fontFamily="@font/digitalt"
+                                android:textSize="18dp"
                                 />
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:id="@+id/apellidos"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="6"
                                 android:text="apellidos"
                                 android:textAllCaps="true"
                                 android:textStyle="bold"
                                 android:textColor="@color/adminU"
                                 android:layout_marginLeft="20dp"
+                                android:gravity="center"
+                                android:fontFamily="@font/digitalt"
+                                android:textSize="18dp"
+
                                 />
                         </LinearLayout>
                         <View
@@ -405,7 +453,7 @@
                 android:background="@drawable/fondoinicio"
                 android:layout_margin="15dp"
                 android:orientation="vertical"
-                android:onClick="demo"
+                android:onClick="ayuda"
                 >
 
                 <LinearLayout
@@ -428,7 +476,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DEMO"
+                        android:text="AYUDA"
                         android:textColor="@color/adminU"
                         />
                 </LinearLayout>
@@ -545,7 +593,6 @@
                     android:gravity="center"
                     android:background="@drawable/buttonbartrue"
                     android:layout_margin="5dp"
-                    android:onClick="inicio"
                     >
                     <ImageButton
                         android:layout_width="wrap_content"
@@ -643,7 +690,7 @@
                     android:background="@drawable/buttonbartrue"
                     app:tint="@color/white"
                     android:backgroundTint="@color/white"
-                    android:onClick="demo"
+                    android:onClick="ayuda"
                     />
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -660,7 +707,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/buscador"
+                    android:src="@drawable/baseline_play_circle_24"
                     android:padding="5dp"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"

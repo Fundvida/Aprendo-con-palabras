@@ -4,6 +4,11 @@
 
 
 
+    <color name="colorPrimerLugar">#FFD700</color>
+    <color name="colorSegundoLugar">#C0C0C0</color>
+    <color name="colorTercerLugar">#CD7F32</color>
+
+
     <color name="greyinput">#737370</color>
     <color name="gamecolorazul">#436185</color>
     <color name="gamecolorazuldos">#6F8B9F</color>

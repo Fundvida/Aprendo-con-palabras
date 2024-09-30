@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="30dp"
+        android:background="@drawable/fondoinicio"
+        android:backgroundTint="@color/adminU"
+        android:padding="15dp"
+
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="opciones"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:fontFamily="@font/digitalt"
+            android:textSize="35dp"
+            android:layout_marginVertical="5dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <Button
+            android:id="@+id/ayuda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/digitalt"
+            android:text="ayuda"
+            android:background="@drawable/buttonbartrue"
+            android:paddingHorizontal="30dp"
+            android:layout_gravity="center"
+            android:textSize="23dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <Button
+            android:id="@+id/editar_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/digitalt"
+            android:text="Editar perfil"
+            android:background="@drawable/buttonbartrue"
+            android:paddingHorizontal="30dp"
+            android:layout_gravity="center"
+            android:textSize="23dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <Button
+            android:id="@+id/cerrar_sesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/digitalt"
+            android:text="cerrar session"
+            android:background="@drawable/buttonbartrue"
+            android:paddingHorizontal="30dp"
+            android:layout_gravity="center"
+            android:textSize="23dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <Button
+            android:id="@+id/salir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/digitalt"
+            android:text="salir"
+            android:background="@drawable/buttonbartrue"
+            android:paddingHorizontal="30dp"
+            android:layout_gravity="center"
+            android:textSize="23dp"
+            />
+
+
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/inicio_close_btn"
+        android:layout_gravity="right"
+        android:backgroundTint="@color/float_transparent"
+        />
+</FrameLayout>

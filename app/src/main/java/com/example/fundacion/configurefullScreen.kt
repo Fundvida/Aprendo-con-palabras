@@ -27,7 +27,7 @@ fun configurefullScreen_fullview (dialog: Dialog){
     dialog.window?.let { window ->
         // Configura el tamaño del diálogo para que ocupe toda la pantalla
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
-
+        window.setBackgroundDrawableResource(android.R.color.transparent)
         // Oculta la barra de navegación y la barra de estado
         window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
