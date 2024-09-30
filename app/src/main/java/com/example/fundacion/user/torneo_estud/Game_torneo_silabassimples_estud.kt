@@ -440,24 +440,8 @@ class Game_torneo_silabassimples_estud : BarButtonOFF(), TextToSpeech.OnInitList
                 finish()
             }
         } else {
-            // Manejar el caso cuando todas las tareas han sido completadas
-            val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-            sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
-            sweetAlertDialog.contentText = "¿QUIERES VOLVER A JUGAR?"
-            sweetAlertDialog.confirmText = "si"
-            sweetAlertDialog.cancelText = "no"
-            sweetAlertDialog.setCancelable(false)
-            sweetAlertDialog.setConfirmClickListener {
-                position = 0
-                recreate()
-                sweetAlertDialog.dismissWithAnimation()
-            }
-            sweetAlertDialog.setCancelClickListener {
-                finish()
-                sweetAlertDialog.dismissWithAnimation()
-            }
-
-            sweetAlertDialog.show()
+            startActivity(Intent(this, Tabla_final_puntos::class.java))
+            finish()
         }
 
     }

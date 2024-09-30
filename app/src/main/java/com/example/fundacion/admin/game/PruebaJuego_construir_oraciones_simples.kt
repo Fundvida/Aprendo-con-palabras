@@ -171,8 +171,6 @@ class PruebaJuego_construir_oraciones_simples : BaseActivity(), TextToSpeech.OnI
         }
     }
 
-
-
     fun retroceder(view: View){
 
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
@@ -191,12 +189,6 @@ class PruebaJuego_construir_oraciones_simples : BaseActivity(), TextToSpeech.OnI
         sweetAlertDialog.show()
 
     }
-
-
-
-
-
-
 
     fun alertCorrecto(){
         var opcionSeleccionada = false
@@ -267,8 +259,6 @@ class PruebaJuego_construir_oraciones_simples : BaseActivity(), TextToSpeech.OnI
         }
         sweetAlertDialog.show()
     }
-
-
     fun alertFAIL(){
         var opcionSeleccionada = false
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)

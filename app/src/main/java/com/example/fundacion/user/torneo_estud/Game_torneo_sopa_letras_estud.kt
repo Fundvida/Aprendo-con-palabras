@@ -1,8 +1,10 @@
-package com.example.fundacion.admin.game
+package com.example.fundacion.user.torneo_estud
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
@@ -20,12 +22,16 @@ import com.example.fundacion.BaseActivity
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
 import com.example.fundacion.admin.RefreshGameSopaLetrasPrueba
+import com.example.fundacion.admin.game.AdapterJuegoSopaLetras
 import com.example.fundacion.config
+import com.example.fundacion.configurefullScreen_fullview
+import com.example.fundacion.user.ESTUDdatos
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONArray
 import java.util.Locale
 
-class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListener, RefreshGameSopaLetrasPrueba {
+class Game_torneo_sopa_letras_estud : BaseActivity(), TextToSpeech.OnInitListener,
+    RefreshGameSopaLetrasPrueba {
 
     lateinit var jsonArrayDatos : JSONArray
     var position = 0
@@ -46,12 +52,21 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
     private lateinit var tts: TextToSpeech
 
 
-    override fun puntajes(x: String, y: String) {
-        TODO("Not yet implemented")
-    }
     override fun letraSelect(callback: (String, String) -> Unit) {
         letraSelect?.let { letraTag?.let { it1 -> callback(it, it1) } }
     }
+
+    override fun puntajes(x: String, y: String) {
+
+
+        val puntos = x.toInt()*y.toInt()
+        pts_ganados = pts_ganados + puntos!!.toInt()
+        puntaje.setText(pts_ganados.toString())
+
+        ESTUDdatos.correctas++
+        correctas++
+    }
+
 
     override fun botonSelect(tag: String) {
         val boton = GridBoton.findViewWithTag<Button>(tag)
@@ -63,6 +78,7 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
 
         val textToSpeak = "letra correcta"
         speakOut(textToSpeak)
+
     }
 
     override fun letraincorrecto(tag: String) {
@@ -73,6 +89,10 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
         boton.setBackgroundResource(R.drawable.fondo_boton_sopa_letras)
         val textToSpeak = "la letra incorrecta"
         speakOut(textToSpeak)
+
+        pts_fallados = pts_fallados - 2
+        ESTUDdatos.errores++
+        incorrectas++
     }
 
     override fun noselect() {
@@ -83,25 +103,67 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
 
     override fun terminado() {
         botonclick++
-        println(botonclick)
-        println(contador)
 
         if (botonclick == contador){
-            val textToSpeak = "felicidades terminaste quieres volver a jugar"
-            speakOut(textToSpeak)
             alertTerminado()
         }
 
     }
 
+
+    var index : Int? = null
+
+
+    lateinit var txt_time : TextView
+    lateinit var txt_timerest : TextView
+    private var countDownTimer: CountDownTimer? = null
+    private var elapsedMillis = 0L
+
+    var pts_ganados = 0
+    var pts_fallados = 0
+    var correctas = 0
+    var incorrectas = 0
+    lateinit var puntaje : TextView
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_prueba_juego_sopaletras_basico)
+        setContentView(R.layout.activity_game_torneo_sopa_letras_estud)
+
+
+
+        txt_time = findViewById(R.id.time_total)
+        txt_timerest = findViewById(R.id.time_rest)
+
+        timer()
+
+        index = ESTUDdatos.indexActivity
+
+        puntaje = findViewById(R.id.puntaje)
+
+        findViewById<TextView>(R.id.puntaje_total).setText(ESTUDdatos.puntaje_total.toString())
+
+        val games_total = ESTUDdatos.datos.size - index!! -1
+
+        if (games_total == 1){
+            findViewById<TextView>(R.id.faltan_games).setText("Falta " + games_total.toString() + " juego")
+        }
+        else if (games_total == 0){
+            findViewById<TextView>(R.id.faltan_games).setText("ultimo juego")
+        }
+        else{
+            findViewById<TextView>(R.id.faltan_games).setText("Faltan " + games_total.toString() + " juegos")
+        }
+
+
+
+
 
         tts = TextToSpeech(this, this)
 
         val tema : TextView = findViewById(R.id.tema)
-        tema.setText(config.NAMEJuegoPrueba)
+        tema.setText(ESTUDdatos.datos[index!!].nameGAME)
 
         txtimage = findViewById(R.id.txtimg)
         GridBoton = findViewById(R.id.botones)
@@ -113,9 +175,88 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
 
     }
 
+    fun timer()
+    {
+
+        val millis: Long = ESTUDdatos.GameTime // Milisegundos
+
+        val totalSeconds = millis / 1000
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+
+        val timeFormatted = String.format("%02d:%02d", minutes, seconds)
+
+        txt_time.text = "00:00"
+        txt_timerest.text = timeFormatted
+
+        val totalTimeInMillis = ESTUDdatos.GameTime
+
+        // Crear el contador regresivo
+        countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
+
+
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 1000 / 60
+                val seconds = millisUntilFinished / 1000 % 60
+                val timeFormatted = String.format("%02d:%02d", minutes, seconds)
+                txt_timerest.text = timeFormatted
+
+
+                // Actualizar tiempo transcurrido
+                elapsedMillis += 1000
+                val minutesElapsed = elapsedMillis / 1000 / 60
+                val secondsElapsed = elapsedMillis / 1000 % 60
+                val elapsedFormatted = String.format("%02d:%02d", minutesElapsed, secondsElapsed)
+                txt_time.text = elapsedFormatted
+            }
+
+            override fun onFinish() {
+                txt_timerest.text = "00:00"
+                txt_time.text = String.format(
+                    "%02d:%02d",
+                    totalTimeInMillis / 1000 / 60,
+                    totalTimeInMillis / 1000 % 60
+                )
+                txt_time.text = (totalTimeInMillis / 1000).toString()
+
+                Log.e("timer", "timer terminado")
+                alertTimEnd()
+            }
+        }
+
+        // Iniciar el contador
+        countDownTimer?.start()
+
+    }
+    fun alertTimEnd()
+    {
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_modal_game_torneo_time_end)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.findViewById<TextView>(R.id.cant_correctas).text = correctas.toString()
+        dialog.findViewById<TextView>(R.id.cant_falladas).text = incorrectas.toString()
+        dialog.findViewById<TextView>(R.id.pts_correctas).text = pts_ganados.toString()
+        dialog.findViewById<TextView>(R.id.pts_falladas).text = pts_fallados.toString()
+        val sumar = pts_ganados+pts_fallados
+        dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
+
+        dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener {
+            startActivity(Intent(this, Tabla_final_puntos::class.java))
+        }
+
+
+        dialog.show()
+        configurefullScreen_fullview(dialog)
+
+
+    }
+
     fun datos(){
 
-        Fuel.get("${config.url}admin/preg-sopaletras-simples-all/${config.IDJuegoPrueba}").responseString{ result ->
+        Fuel.get("${config.url}admin/preg-sopaletras-simples-all/${ESTUDdatos.datos[index!!].idGAME}").responseString{ result ->
             result.fold(
                 success = { data ->
                     println("Sopa de letras simples los datos $data")
@@ -156,7 +297,7 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
             println("Todas las letras juntas: $letras")
 
 
-            val adapter = AdapterJuegoSopaLetras(this, jsonArrayDatos, this@PruebaJuego_sopaletras_basico)
+            val adapter = AdapterJuegoSopaLetras(this, jsonArrayDatos, this@Game_torneo_sopa_letras_estud)
             recyclear.adapter = adapter
 
 
@@ -232,36 +373,83 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
 
     }
 
-
-
     fun alertTerminado(){
-        var opcionSeleccionada = false
 
-        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-        sweetAlertDialog.titleText = "FELICIDADES TERMINASTE!"
-        sweetAlertDialog.contentText = "¿QUIERES VOLVER A JUGAR?"
+
+        countDownTimer?.cancel()
+
+        val timeText = txt_timerest.text
+
+        val parts = timeText.split(":")
+
+        val minutes = parts[0].toLong() // "14" -> 14
+        val seconds = parts[1].toLong() // "52" -> 52
+
+        val totalMilliseconds = (minutes * 60 + seconds) * 1000
+
+        ESTUDdatos.GameTime = totalMilliseconds
+
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.uuu_modal_game_torneo_siguiente_sumpunts)
+
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.findViewById<TextView>(R.id.cant_correctas).text = correctas.toString()
+        dialog.findViewById<TextView>(R.id.cant_falladas).text = incorrectas.toString()
+        dialog.findViewById<TextView>(R.id.pts_correctas).text = pts_ganados.toString()
+        dialog.findViewById<TextView>(R.id.pts_falladas).text = pts_fallados.toString()
+        val sumar = pts_ganados+pts_fallados
+        ESTUDdatos.puntaje_total = ESTUDdatos.puntaje_total + sumar
+        dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
+
+        dialog.findViewById<Button>(R.id.btn_salir).setOnClickListener { alertSALIR() }
+        dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener { Next_Activity() }
+
+
+        dialog.show()
+
+    }
+
+    fun alertSALIR(){
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "¿ESTAS SEGURO DE SALIR?"
+        sweetAlertDialog.contentText = "perderas un intento y se guardara solo tu puntaje total"
         sweetAlertDialog.confirmText = "si"
         sweetAlertDialog.cancelText = "no"
         sweetAlertDialog.setCancelable(false)
         sweetAlertDialog.setConfirmClickListener {
-            position = 0
-            opcionSeleccionada = true
-            recreate()
-            sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.setCancelClickListener {
-            opcionSeleccionada = true
             finish()
             sweetAlertDialog.dismissWithAnimation()
         }
-        sweetAlertDialog.setOnDismissListener {
-            if (!opcionSeleccionada) {
-                alertTerminado()
-            }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
         }
         sweetAlertDialog.show()
     }
 
+    fun Next_Activity(){
+        val currentIndex = ESTUDdatos.indexActivity + 1
+
+        if (currentIndex <  ESTUDdatos.datos.size) {
+            val currentTarea = ESTUDdatos.datos[currentIndex]
+            val nextActivityClass = ESTUDdatos.temaActivityMap[currentTarea.nameTEMA]
+
+            Log.e("game", "$nextActivityClass")
+            Log.e("game", "$currentTarea")
+
+            ESTUDdatos.indexActivity++
+            if (nextActivityClass != null) {
+                val intent = Intent(this, nextActivityClass)
+                startActivity(intent)
+                finish()
+            }
+        } else {
+            startActivity(Intent(this, Tabla_final_puntos::class.java))
+            finish()
+        }
+
+    }
 
     fun alertFAIL(){
         var opcionSeleccionada = false
@@ -318,4 +506,6 @@ class PruebaJuego_sopaletras_basico : BaseActivity(), TextToSpeech.OnInitListene
         }
         tts.shutdown()
     }
+
+
 }

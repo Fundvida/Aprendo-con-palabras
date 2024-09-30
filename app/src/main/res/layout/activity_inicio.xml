@@ -182,11 +182,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/inicio_btn_silabas_simples"
-                        android:onClick="silabas"
-                        />
-
+                        android:onClick="silabas" />
 
                     <ImageButton
+                        android:id="@+id/deletreo"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/inicio_btn_deletreo"
@@ -195,6 +194,7 @@
 
 
                     <ImageButton
+                        android:id="@+id/sopa"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/inicio_btn_sopaletras"
@@ -203,6 +203,7 @@
 
 
                     <ImageButton
+                        android:id="@+id/oraciones"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/inicio_btn_oraciones"

@@ -103,7 +103,7 @@ class inicio : BaseActivity() {
 
         val imageButton: ImageButton = findViewById(R.id.imageButton)
 
-        applyAnimationG_P(imageButton)
+        //applyAnimationG_P(imageButton)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.inicio2)
         mediaPlayer.isLooping = true
@@ -114,10 +114,17 @@ class inicio : BaseActivity() {
         val abecedario: ImageButton = findViewById(R.id.abecedario)
         val vocales: ImageButton = findViewById(R.id.vocales)
         val silabaSimple: ImageButton = findViewById(R.id.silabas)
+        val deletreo: ImageButton = findViewById(R.id.deletreo)
+        val sopa: ImageButton = findViewById(R.id.sopa)
+        val oraciones: ImageButton = findViewById(R.id.oraciones)
 
+        applyAnimationG_BTN(BTNtorneo)
         applyAnimationG_BTN(abecedario)
         applyAnimationG_BTN(vocales)
         applyAnimationG_BTN(silabaSimple)
+        applyAnimationG_BTN(deletreo)
+        applyAnimationG_BTN(sopa)
+        applyAnimationG_BTN(oraciones)
 
 
         val btnSonido = findViewById<ImageButton>(R.id.btn_sonido)

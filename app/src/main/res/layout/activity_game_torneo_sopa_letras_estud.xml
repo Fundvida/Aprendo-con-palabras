@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.game.PruebaJuego_silabasimple">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,22 +17,43 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:gravity="center"
             android:layout_marginHorizontal="160dp"
             >
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sopa de letras de "
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="30dp"
+                android:gravity="center"
+                />
             <TextView
                 android:id="@+id/tema"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="silaba simple"
+                android:text="hogar casa"
                 android:textColor="@color/gamecolorazul"
                 android:textStyle="bold"
                 android:fontFamily="@font/digitalt"
-                android:textSize="27dp"
+                android:textSize="30dp"
                 android:gravity="center"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" :"
+                android:textColor="@color/gamecolorazul"
+                android:textStyle="bold"
+                android:fontFamily="@font/digitalt"
+                android:textSize="35dp"
+                android:gravity="center"
+                />
+
+
 
         </LinearLayout>
 
@@ -50,154 +71,92 @@
                 android:layout_height="0dp"
                 android:layout_weight="8"
                 android:orientation="vertical"
-                android:gravity="center"
                 >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Completa la palabra de la imagen"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/digitalt"
-                    android:textColor="@color/gamecolorazul"
-                    android:textSize="25dp"
-                    android:gravity="center"
-                    />
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"/>
-                <ImageView
-                    android:id="@+id/txtimg"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:text="1"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"/>
+                    android:layout_height="40dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:gravity="center"
                     >
-                    <TextView
-                        android:id="@+id/silaba_est"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="nn"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/digitalt"
-                        android:textColor="@color/gamecolorazul"
-                        android:textSize="30dp"
-                        android:gravity="center"
-                        />
-                    <TextView
-                        android:id="@+id/silaba_resp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" _ _"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/digitalt"
-                        android:textColor="@color/gamecolorazul"
-                        android:textSize="30dp"
-                        android:gravity="center"
-                        />
+                    <View
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:padding="20dp"
+                        android:orientation="vertical"
+                        >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/gridView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/aaa_view_sopaletras_game"
+                            />
+
+                        <ImageView
+                            android:id="@+id/txtimg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="1"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:gravity="center">
+
+                        <ScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <GridLayout
+                                android:id="@+id/botones"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alignmentMode="alignMargins"
+                                android:columnOrderPreserved="false"
+                                android:padding="10dp" />
+                        </ScrollView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
                 </LinearLayout>
 
 
+
             </LinearLayout>
 
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_weight="0.5"
                 android:orientation="horizontal"
                 android:gravity="center"
-                >
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:background="@drawable/fondo_vocal_noselect"
-                    />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:background="@drawable/fondo_vocal_noselect"
-                    />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:background="@drawable/fondo_vocal_noselect"
-                    />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:background="@drawable/fondo_vocal_noselect"
-                    />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:textStyle="bold"
-                    android:background="@drawable/fondo_vocal_noselect"
-                    />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+                />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"
-            android:orientation="horizontal"
-            android:gravity="center"
-            >
-        </LinearLayout>
 
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="150dp"
@@ -266,13 +225,13 @@
                 android:textSize="12dp"
                 />
             <TextView
-                android:id="@+id/time_rest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/digitalt"
                 android:text="10:30 "
                 android:textColor="@color/white"
                 android:textSize="12dp"
+                android:id="@+id/time_rest"
 
                 />
         </LinearLayout>
@@ -385,23 +344,13 @@
 
     </LinearLayout>
 
-<!--
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:layout_gravity="end"
-        android:src="@drawable/logofund_grande"
-        app:elevation="8dp"
-        app:backgroundTint="@color/float_transparent"
-        app:maxImageSize="56dp"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        />
--->
+
     <ImageView
         android:layout_width="150dp"
         android:layout_height="90dp"
         android:src="@drawable/logofund_grande"
         android:layout_gravity="right"
         />
+
+
 </FrameLayout>

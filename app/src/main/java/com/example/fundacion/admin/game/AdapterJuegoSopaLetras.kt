@@ -2,6 +2,7 @@ package com.example.fundacion.admin.game
 
 import android.content.Context
 import android.graphics.Typeface
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fundacion.R
@@ -26,7 +28,6 @@ class AdapterJuegoSopaLetras (
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.imagenview)
-
         val squaresContainer: LinearLayout = view.findViewById(R.id.squaresContainer)
 
     }
@@ -50,22 +51,18 @@ class AdapterJuegoSopaLetras (
         holder.squaresContainer.visibility = View.VISIBLE
 
 
+        val palabra = item.getString("palabra")
+        val puntos = item.getString("puntaje")
+        val texto = palabra.toList()
 
-
-
-
-
-
-
-
-
-
-
+        holder.squaresContainer.removeAllViews()
 
         for (i in 1..item.getString("palabra").length) {
 
             val valor = i-1
             val texto = item.getString("palabra").toList()
+
+            Log.e("twxt", "$texto")
 
             val text = TextView(context)
             text.layoutParams = LinearLayout.LayoutParams(
@@ -76,11 +73,9 @@ class AdapterJuegoSopaLetras (
             }
 
             text.setBackgroundResource(R.drawable.fondo_sopa_letras_simples)
+            text.gravity = Gravity.CENTER
 
             text.setOnClickListener {
-                println(position)
-                text.gravity = Gravity.CENTER
-
                 letraClick.letraSelect { result, tag ->
 
                     if (result == "default"){
@@ -95,7 +90,6 @@ class AdapterJuegoSopaLetras (
                         text.setText(result)
                         text.textSize = 20f
                         text.setTypeface(null, Typeface.BOLD)
-                        //text.setBackgroundResource(cn.pedant.SweetAlert.R.color.float_transparent)
                         text.setBackgroundResource(R.drawable.fondo_sopa_letras_simples)
                         text.setTextColor(context.resources.getColor(R.color.white))
                         text.gravity = Gravity.CENTER
@@ -113,6 +107,10 @@ class AdapterJuegoSopaLetras (
                                 put("$i", result)
                             })
 
+                        }
+
+                        if (json.getJSONObject("$position").length() == palabra.length) {
+                            letraClick.puntajes(palabra.length.toString(), "$puntos")
                         }
 
 

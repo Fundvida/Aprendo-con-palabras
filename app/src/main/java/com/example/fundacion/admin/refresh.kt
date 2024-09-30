@@ -55,6 +55,8 @@ interface RefreshGameSopaLetrasPrueba{
     fun noselect()
     fun terminado()
 
+    fun puntajes(x:String,y:String)
+
 }
 
 

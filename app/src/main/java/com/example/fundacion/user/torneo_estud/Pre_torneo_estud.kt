@@ -1,6 +1,6 @@
 package com.example.fundacion.user.torneo_estud
 
-import android. app.Dialog
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle

@@ -100,7 +100,7 @@ class login : BaseActivity() {
 
     fun LOGIN(u: String, p: String) {
 
-
+/*
         val postData = """
             {
                 "username": "$u",
@@ -108,15 +108,14 @@ class login : BaseActivity() {
             }
         """.trimIndent()
 
-
-        /*
+        */
         val postData = """
             {
                 "username": "estu",
                 "password": "estu"
             }
         """.trimIndent()
-        */
+
 
 
         var tokenManager = TokenManager(this)

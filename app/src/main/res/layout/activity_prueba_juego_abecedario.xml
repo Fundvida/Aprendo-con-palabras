@@ -20,36 +20,8 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:paddingHorizontal="10dp"
+            android:layout_marginHorizontal="160dp"
             >
-
-            <View
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                />
-
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/inicio_back_btn"
-                android:background="@color/float_transparent"
-                android:onClick="retroceder"
-                />
-            <View
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                />
-            <ImageButton
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/button_menu_new"
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,11 +70,7 @@
             </LinearLayout>
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+
         </LinearLayout>
 
 
@@ -128,12 +96,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logofund_grande"
-                        android:layout_gravity="center"
-                        />
+
                 </LinearLayout>
 
                 <GridView
@@ -154,12 +117,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logofund_grande"
-                        android:layout_gravity="center"
-                        />
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -262,4 +219,22 @@
 
 
     </LinearLayout>
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/inicio_back_btn"
+        android:background="@color/float_transparent"
+        android:onClick="retroceder"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:src="@drawable/logofund_grande"
+        android:layout_gravity="right"
+        />
 </FrameLayout>

@@ -34,22 +34,18 @@ class Ueligirnivel : BaseActivity() {
         val apellidos = userData["apellidos"]
 
 
-
         mediaPlayer = MediaPlayer.create(this, R.raw.select_nivel)
 
         mediaPlayer.isLooping = true
         mediaPlayer.start()
 
-
     }
-
     override fun onDestroy() {
         super.onDestroy()
         if (this::mediaPlayer.isInitialized) {
             mediaPlayer.release()
         }
     }
-
     fun facil(view: View){
         val intent = Intent(this, inicio::class.java)
         startActivity(intent)

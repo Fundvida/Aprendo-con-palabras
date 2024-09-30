@@ -714,7 +714,7 @@
                     android:background="@drawable/buttonbartrue"
                     app:tint="@color/white"
                     android:backgroundTint="@color/white"
-                    android:onClick="buscador"
+                    android:onClick="pruebas"
                     />
             </LinearLayout>
 

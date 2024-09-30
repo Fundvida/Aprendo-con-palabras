@@ -18,27 +18,10 @@
             android:layout_height="0dp"
             android:layout_weight="1.5"
             android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginLeft="160dp"
             android:layout_marginRight="160dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             >
-
-
-            <!--
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="encuentre la "
-                android:textColor="@color/gamecolorazul"
-                android:textStyle="bold"
-                android:fontFamily="@font/digitalt"
-                android:textSize="30dp"
-                android:gravity="center"
-                />
-
-            -->
 
             <TextView
                 android:id="@+id/tema"
@@ -49,7 +32,6 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/digitalt"
                 android:textSize="30dp"
-                android:gravity="center"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +41,6 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/digitalt"
                 android:textSize="35dp"
-                android:gravity="center"
                 />
 
 
@@ -76,11 +57,7 @@
                     android:text="1"/>
             </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+
         </LinearLayout>
 
 
@@ -106,12 +83,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logofund_grande"
-                        android:layout_gravity="center"
-                        />
                 </LinearLayout>
 
                 <GridView
@@ -133,12 +104,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logofund_grande"
-                        android:layout_gravity="center"
-                        />
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -435,6 +400,5 @@
         android:layout_height="90dp"
         android:src="@drawable/logofund_grande"
         android:layout_gravity="right"
-        android:layout_margin="10dp"
         />
 </FrameLayout>

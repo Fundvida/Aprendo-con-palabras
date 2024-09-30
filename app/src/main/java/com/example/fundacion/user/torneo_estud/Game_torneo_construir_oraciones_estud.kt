@@ -2,99 +2,74 @@ package com.example.fundacion.user.torneo_estud
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Button
-import android.widget.GridView
+import android.widget.GridLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bumptech.glide.Glide
 import com.example.fundacion.BarButtonOFF
 import com.example.fundacion.R
 import com.example.fundacion.admin.Ainicio
-import com.example.fundacion.admin.Game_Vocal
-import com.example.fundacion.admin.game.Adapter_vocales_gridview
 import com.example.fundacion.config
-import com.example.fundacion.configurefullScreen
 import com.example.fundacion.configurefullScreen_fullview
 import com.example.fundacion.user.ESTUDdatos
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONArray
 import java.util.Locale
 
-class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitListener {
+class Game_torneo_construir_oraciones_estud : BarButtonOFF(), TextToSpeech.OnInitListener {
 
+    lateinit var jsonArrayDatos : JSONArray
+    var position = 0
+    var botonclick = 0
+    var oracionV : String? = null
+    var puntosV : String? = null
 
+    lateinit var txtimage : ImageView
+    lateinit var GridBoton : GridLayout
+    lateinit var txtoracion : TextView
 
-    private lateinit var gridView: GridView
-    private lateinit var imageAdapter : Adapter_vocales_gridview
-    var total = 0
-    var encontradas = 0
-    var faltantes = 0
-
-    private lateinit var etotal : TextView
-    private lateinit var efaltante : TextView
-    private lateinit var eecontradas : TextView
 
     private lateinit var tts: TextToSpeech
-    var Tvocal : String? = null
-
-    private val datosList = mutableListOf<Pair<String, String>>()
-
-    private lateinit var  txtimage : ImageView
-
-    override fun inicial(img: String, getvocal: String) {
-        if (img.toInt() == 0){
-
-        }else{
-            total = img.toInt()
-            faltantes = img.toInt()
-            encontradas = 0
-            etotal.setText(total.toString())
-            efaltante.setText(faltantes.toString())
-            eecontradas.setText(encontradas.toString())
-            Tvocal = datosList.find { it.first == getvocal }?.second
-            val textToSpeak = "busquemos la vocal $Tvocal"
-            speakOut(textToSpeak)
-
-        }
-    }
 
 
     var index : Int? = null
-    lateinit var puntaje : TextView
-    var pts_ganados = 0
-    var pts_fallados = 0
-    var correctas = 0
-    var incorrectas = 0
-
-    private lateinit var jsonArrayDatos: JSONArray
 
 
-    var position = 0
     lateinit var txt_time : TextView
     lateinit var txt_timerest : TextView
     private var countDownTimer: CountDownTimer? = null
     private var elapsedMillis = 0L
 
+    var pts_ganados = 0
+    var pts_fallados = 0
+    var correctas = 0
+    var incorrectas = 0
+    lateinit var puntaje : TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game_torneo_vocal_estud)
+        setContentView(R.layout.activity_game_torneo_construir_oraciones_estud)
+
+
 
         txt_time = findViewById(R.id.time_total)
         txt_timerest = findViewById(R.id.time_rest)
 
         timer()
-
-
 
         index = ESTUDdatos.indexActivity
 
@@ -119,45 +94,17 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
 
         tts = TextToSpeech(this, this)
 
-        etotal = findViewById(R.id.total)
-        efaltante = findViewById(R.id.faltante)
-        eecontradas = findViewById(R.id.encontradas)
-        txtimage = findViewById(R.id.txtimg)
+        Handler(Looper.getMainLooper()).postDelayed({
+            speakOut("ordena la oracion")
+        }, 2000)
 
-        val tema = findViewById<TextView>(R.id.tema)
+        val tema : TextView = findViewById(R.id.tema)
         tema.setText(ESTUDdatos.datos[index!!].nameGAME)
 
-
-        val imageUrls = mutableListOf<String>()
-
-        Fuel.get("${config.url}admin/preg-vocal-all/${ESTUDdatos.datos[index!!].idGAME}").responseString{ result ->
-            result.fold(
-                success = { data ->
-                    println(data)
-                    jsonArrayDatos = JSONArray(data)
-                    if (jsonArrayDatos.length() > 0){
-                        for (i in 0 until jsonArrayDatos.length()) {
-                            val item = jsonArrayDatos.getJSONObject(i)
-                            val imageUrl = item.getString("img")
-                            val palabra = item.getString("palabra")
-                            imageUrls.add(imageUrl)
-                            datosList.add(Pair(imageUrl, palabra))
-                        }
-
-                        siguiente(imageUrls)
-                    }else{
-                        alertFAIL()
-                    }
-
-
-                },
-                failure = { error ->
-                    Log.e("Upload", "Error: ${error.exception.message}")
-                }
-            )
-        }
-
-
+        txtimage = findViewById(R.id.txtimg)
+        GridBoton = findViewById(R.id.botones)
+        txtoracion = findViewById(R.id.textoracion)
+        datos()
 
     }
 
@@ -197,6 +144,13 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
             }
 
             override fun onFinish() {
+                txt_timerest.text = "00:00"
+                txt_time.text = String.format(
+                    "%02d:%02d",
+                    totalTimeInMillis / 1000 / 60,
+                    totalTimeInMillis / 1000 % 60
+                )
+                txt_time.text = (totalTimeInMillis / 1000).toString()
 
                 Log.e("timer", "timer terminado")
                 alertTimEnd()
@@ -208,19 +162,10 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
 
     }
 
+
+
     fun alertTimEnd()
     {
-        val timeText = txt_timerest.text
-
-        val parts = timeText.split(":")
-
-        val minutes = parts[0].toLong() // "14" -> 14
-        val seconds = parts[1].toLong() // "52" -> 52
-
-        val totalMilliseconds = (minutes * 60 + seconds) * 1000
-
-        ESTUDdatos.GameTime = totalMilliseconds
-
         val dialog = Dialog(this, R.style.TransparentDialog)
         dialog.setContentView(R.layout.uuu_modal_game_torneo_time_end)
 
@@ -234,15 +179,8 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
         val sumar = pts_ganados+pts_fallados
         dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
 
-        ESTUDdatos.correctas = correctas
-        ESTUDdatos.errores = incorrectas
-
-        ESTUDdatos.puntaje_total = ESTUDdatos.puntaje_total + sumar
-
-
         dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener {
             startActivity(Intent(this, Tabla_final_puntos::class.java))
-            finish()
         }
 
 
@@ -252,118 +190,96 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
 
     }
 
-    fun siguiente(imageUrls: MutableList<String>) {
-        val selectedIds = HashSet<Long>()
-        gridView = findViewById(R.id.grid_view)
+    fun datos(){
 
-        val totalItem = 4
-        imageAdapter = Adapter_vocales_gridview(this, imageUrls, totalItem, this@Game_torneo_vocal_estud)
-        val copiIMG = imageUrls.toMutableList().shuffled() as MutableList<String>
-        imageAdapter.reset(copiIMG[0])
-        gridView.adapter = imageAdapter
-        gridView.numColumns = 9
+        Fuel.get("${config.url}admin/preg-oraciones-simples-all/${ESTUDdatos.datos[index!!].idGAME}").responseString{ result ->
+            result.fold(
+                success = { data ->
+                    println(data)
+                    jsonArrayDatos = JSONArray(data)
 
-        Glide.with(this)
-            .load("${config.url}admin/preg-vocal-imagen/${copiIMG[0]}")
-            .into(txtimage)
-
-        gridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-
-            if (!selectedIds.contains(id)) {
-                val vocal = parent.adapter.getItem(position)
-
-                if (vocal.toString() == copiIMG[0]){
-                    val textToSpeak = "vocal correcta"
-                    speakOut(textToSpeak)
-                    //view.setBackgroundColor(Color.parseColor("#6F8B9F"))
-                    view.background = getDrawable(R.drawable.fondo_vocal_select)
-                    selectedIds.add(id)
-                    faltantes--
-                    encontradas++
-
-                    Log.e("id de vocal", "$selectedIds")
-                    Log.e("id de vocal", "$imageUrls")
-                    Log.e("id de vocal", "$copiIMG")
-
-
-                    val valor = buscarpuntaje(copiIMG[0])
-
-                    Log.e("id de vocal", "$valor")
-
-                    pts_ganados = pts_ganados + valor!!.toInt()
-                    puntaje.setText(pts_ganados.toString())
-                    correctas++
-
-                }else{
-                    val textToSpeak = "vocal incorrecta"
-                    speakOut(textToSpeak)
-                    incorrectas++
-                    pts_fallados = pts_fallados - 2
+                    if (jsonArrayDatos.length() > 0){
+                        inicio()
+                    }else{
+                        alertFAIL()
+                    }
+                },
+                failure = { error ->
+                    Log.e("Upload", "Error: ${error.exception.message}")
                 }
-            }else{
-                val textToSpeak = "la vocal ya fue seleccionada!"
-                speakOut(textToSpeak)
-            }
-            efaltante.setText(faltantes.toString())
-            eecontradas.setText(encontradas.toString())
+            )
+        }
+    }
 
+    fun inicio(){
+        if (jsonArrayDatos.length() > position){
+
+
+
+            val item = jsonArrayDatos.getJSONObject(position)
+            val img = item.getString("img")
             Glide.with(this)
-                .load("${config.url}admin/preg-vocal-imagen/${copiIMG[0]}")
+                .load("${config.url}admin/preg-oraciones-simples-imagen/$img")
                 .into(txtimage)
 
-            if (faltantes == 0){
-                copiIMG.removeFirstOrNull()
-                if (copiIMG.isEmpty()){
-                    gridView.isEnabled = false
 
-                    alertTerminado()
 
-                }else{
-                    Handler().postDelayed({
-                        imageAdapter.reset(copiIMG[0])
-                        faltantes = total
-                        selectedIds.clear()
-                    }, 200)
-                    Glide.with(this)
-                        .load("${config.url}admin/preg-vocal-imagen/${copiIMG[0]}")
-                        .into(txtimage)
+            oracionV = item.getString("palabra").toString()
+            puntosV = item.getString("puntaje").toString()
+
+
+            val oracion = item.getString("palabra")
+            val palabras = oracion.split(" ")
+            val arrayPalabras = palabras.toTypedArray()
+            arrayPalabras.shuffle()
+
+
+            val columnas = if (arrayPalabras.size <= 3) 3 else 4
+            GridBoton.columnCount = columnas
+
+
+            println(arrayPalabras.size)
+
+            for (palabra in arrayPalabras) {
+                val button = Button(this)
+                button.text = palabra
+                button.layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(10, 10, 10, 10)
                 }
+
+                button.setOnClickListener {
+                    var texto = ""
+                    if (txtoracion.text.toString().isEmpty() ){
+                        texto = "$palabra"
+
+                    }else{
+                        texto = "${txtoracion.text} $palabra"
+                    }
+                    txtoracion.setText(texto)
+                    button.isEnabled = false
+                    botonclick++
+                    if (botonclick == arrayPalabras.count()){
+                        siguiente()
+                    }
+                }
+                button.setBackgroundResource(R.drawable.fondo_vocal_noselect)
+                //button.typeface = ResourcesCompat.getFont(this, R.font.digitalt)
+                button.setTypeface(null, Typeface.BOLD)
+                button.isAllCaps = false
+                GridBoton.addView(button)
             }
-        }
-    }
 
-
-    private fun buscarpuntaje(img: String): String? {
-        for (i in 0 until jsonArrayDatos.length()) {
-            val item = jsonArrayDatos.getJSONObject(i)
-            if (item.getString("img") == img) {
-                return item.getString("puntaje")
-            }
         }
-        return null
-    }
-    fun retroceder(view: View){
-
-        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-        sweetAlertDialog.titleText = "ESTAS SEGURO!"
-        sweetAlertDialog.contentText = "¿QUE QUIERES SALIR?"
-        sweetAlertDialog.confirmText = "si"
-        sweetAlertDialog.cancelText = "no"
-        sweetAlertDialog.setCancelable(false)
-        sweetAlertDialog.setConfirmClickListener {
-            finish()
-            sweetAlertDialog.dismissWithAnimation()
+        else{
+            val textToSpeak = "felicidades terminaste quieres volver a jugar"
+            speakOut(textToSpeak)
+            alertTerminado()
         }
-        sweetAlertDialog.setCancelClickListener {
-            sweetAlertDialog.dismissWithAnimation()
-        }
-        sweetAlertDialog.show()
 
     }
-
-
-
-
 
 
     fun alertSALIR(){
@@ -406,6 +322,99 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
 
     }
 
+    fun siguiente(){
+        if(txtoracion.text == oracionV){
+            println("la oracion es correcta")
+            GridBoton.removeAllViews()
+            GridBoton.invalidate()
+            alertCorrecto()
+
+            pts_ganados = pts_ganados + puntosV!!.toInt()
+            puntaje.setText(pts_ganados.toString())
+
+            ESTUDdatos.correctas++
+            correctas++
+
+            val textToSpeak = "la oracion es correcta"
+            speakOut(textToSpeak)
+        }else{
+            println("la oracion era $oracionV")
+            GridBoton.removeAllViews()
+            GridBoton.invalidate()
+            alertIncorrecto()
+
+            pts_fallados = pts_fallados - 2
+            ESTUDdatos.errores++
+            incorrectas++
+
+            val textToSpeak = "la oracion correcta era $oracionV"
+            speakOut(textToSpeak)
+        }
+    }
+
+    fun retroceder(view: View){
+
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        sweetAlertDialog.titleText = "ESTAS SEGURO!"
+        sweetAlertDialog.contentText = "¿QUE QUIERES SALIR?"
+        sweetAlertDialog.confirmText = "si"
+        sweetAlertDialog.cancelText = "no"
+        sweetAlertDialog.setCancelable(false)
+        sweetAlertDialog.setConfirmClickListener {
+            finish()
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setCancelClickListener {
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.show()
+
+    }
+
+    fun alertCorrecto(){
+        var opcionSeleccionada = false
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+        sweetAlertDialog.titleText = "Oracion Correcta!!!"
+        sweetAlertDialog.confirmText = "siguiente"
+        sweetAlertDialog.setConfirmClickListener {
+            opcionSeleccionada = true
+            position++
+            botonclick = 0
+            inicio()
+            txtoracion.setText("")
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setOnDismissListener {
+            if (!opcionSeleccionada) {
+                alertCorrecto()
+            }
+        }
+        sweetAlertDialog.show()
+    }
+
+    fun alertIncorrecto(){
+        var opcionSeleccionada = false
+        val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+        sweetAlertDialog.titleText = "Oracion Icorrecta!!!"
+        sweetAlertDialog.confirmText = "siguiente"
+        sweetAlertDialog.setConfirmClickListener {
+            opcionSeleccionada = true
+            position++
+            botonclick = 0
+            inicio()
+            txtoracion.setText("")
+            sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setOnDismissListener {
+            if (!opcionSeleccionada) {
+                alertIncorrecto()
+            }
+        }
+        sweetAlertDialog.show()
+    }
+
+
+
     fun alertTerminado(){
 
 
@@ -420,7 +429,6 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
 
         val totalMilliseconds = (minutes * 60 + seconds) * 1000
 
-        Log.e("timer final", "$totalMilliseconds")
         ESTUDdatos.GameTime = totalMilliseconds
 
         val dialog = Dialog(this, R.style.TransparentDialog)
@@ -437,46 +445,44 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
         ESTUDdatos.puntaje_total = ESTUDdatos.puntaje_total + sumar
         dialog.findViewById<TextView>(R.id.total_pts).text = sumar.toString()
 
-        ESTUDdatos.correctas = correctas
-        ESTUDdatos.errores = incorrectas
-
         dialog.findViewById<Button>(R.id.btn_salir).setOnClickListener { alertSALIR() }
         dialog.findViewById<Button>(R.id.btn_siguiente).setOnClickListener { Next_Activity() }
 
 
         dialog.show()
-        configurefullScreen(dialog)
 
     }
 
-
-
+    
     fun alertFAIL(){
+        var opcionSeleccionada = false
         val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
         sweetAlertDialog.titleText = "NO HAY DATOS"
         sweetAlertDialog.cancelText = "volver"
         sweetAlertDialog.confirmText = "ir inicio"
-        sweetAlertDialog.setCancelable(false)
         sweetAlertDialog.setConfirmClickListener {
+            opcionSeleccionada = true
             val intent = Intent(this, Ainicio::class.java)
             startActivity(intent)
             finish()
             sweetAlertDialog.dismissWithAnimation()
         }
         sweetAlertDialog.setCancelClickListener {
+            opcionSeleccionada = true
             finish()
             sweetAlertDialog.dismissWithAnimation()
+        }
+        sweetAlertDialog.setOnDismissListener {
+            if (!opcionSeleccionada) {
+                alertFAIL()
+            }
         }
         sweetAlertDialog.show()
     }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus && ::tts.isInitialized && tts.isLanguageAvailable(Locale.getDefault()) == TextToSpeech.LANG_AVAILABLE) {
-            val textToSpeak = "busquemos la vocal $Tvocal"
-            tts.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null, "AUDIO_AFTER_LOADING")
-        }
-    }
+
+
+
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
@@ -503,4 +509,7 @@ class Game_torneo_vocal_estud : BarButtonOFF(), Game_Vocal, TextToSpeech.OnInitL
         }
         tts.shutdown()
     }
+
+
+
 }

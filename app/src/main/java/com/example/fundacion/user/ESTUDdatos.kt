@@ -1,10 +1,10 @@
 package com.example.fundacion.user
 
-import com.example.fundacion.admin.game.PruebaJuego_abecedario
-import com.example.fundacion.admin.game.PruebaJuego_construir_oraciones_simples
-import com.example.fundacion.admin.game.PruebaJuego_deletreo_simple
-import com.example.fundacion.admin.game.PruebaJuego_sopaletras_basico
+import com.example.fundacion.user.torneo_estud.Game_torneo_abecedario_estud
+import com.example.fundacion.user.torneo_estud.Game_torneo_construir_oraciones_estud
+import com.example.fundacion.user.torneo_estud.Game_torneo_deletreo_estud
 import com.example.fundacion.user.torneo_estud.Game_torneo_silabassimples_estud
+import com.example.fundacion.user.torneo_estud.Game_torneo_sopa_letras_estud
 import com.example.fundacion.user.torneo_estud.Game_torneo_vocal_estud
 
 class ESTUDdatos {
@@ -32,11 +32,11 @@ class ESTUDdatos {
 
         var temaActivityMap = mapOf(
             "LAS VOCALES" to Game_torneo_vocal_estud::class.java,
-            "EL ABECEDARIO" to PruebaJuego_abecedario::class.java,
+            "EL ABECEDARIO" to Game_torneo_abecedario_estud::class.java,
             "LAS SILABAS SIMPLES" to Game_torneo_silabassimples_estud::class.java,
-            "EL DELETREO DE PALABRAS HASTA TRES SILABAS" to PruebaJuego_deletreo_simple::class.java,
-            "SOPA DE LETRAS DE ALIMENTOS, MUEBLES DE LA CASA, CIUDADES DE BOLIVIA" to PruebaJuego_sopaletras_basico::class.java,
-            "CONSTRUIR ORACIONES CORTAS ORDENANDO PALABRAS" to PruebaJuego_construir_oraciones_simples::class.java
+            "EL DELETREO DE PALABRAS HASTA TRES SILABAS" to Game_torneo_deletreo_estud::class.java,
+            "SOPA DE LETRAS DE ALIMENTOS, MUEBLES DE LA CASA, CIUDADES DE BOLIVIA" to Game_torneo_sopa_letras_estud::class.java,
+            "CONSTRUIR ORACIONES CORTAS ORDENANDO PALABRAS" to Game_torneo_construir_oraciones_estud::class.java
         )
     }
 }
