@@ -347,6 +347,8 @@ class Apruebas : BaseActivity() {
     }
 
     fun volver(view: View){
+        val intent = Intent(this, Ainicio::class.java)
+        startActivity(intent)
         finish()
     }
 }

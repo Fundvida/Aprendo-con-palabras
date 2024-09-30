@@ -326,6 +326,8 @@ class Atorneo : BaseActivity(), Refreshtorneo {
     }
 
     fun volver(view: View){
+        val intent = Intent(this, Ainicio::class.java)
+        startActivity(intent)
         finish()
     }
 

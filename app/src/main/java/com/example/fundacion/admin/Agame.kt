@@ -324,8 +324,9 @@ class Agame : BaseActivity(), RefreshGame {
     }
 
     fun volver(view: View){
+        val intent = Intent(this, Ainicio::class.java)
+        startActivity(intent)
         finish()
     }
-
 
 }

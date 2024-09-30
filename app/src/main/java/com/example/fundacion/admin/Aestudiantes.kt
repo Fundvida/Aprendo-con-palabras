@@ -327,9 +327,10 @@ class Aestudiantes : BaseActivity(), Refresh {
     }
 
     fun volver(view: View){
+        val intent = Intent(this, Ainicio::class.java)
+        startActivity(intent)
         finish()
     }
-
 
 
 
